@@ -1,0 +1,24 @@
+			p {
+				background-color: green;
+			}
+			.yellowBg {
+				background-color:yellow;
+			}
+			#intro {
+				background-color:gray;
+			}
+			h1 {
+				color:white;
+				background-color:red;
+			}
+			h1 {
+				color:blue !important;
+				background-color:beige !important;
+			}
+			h1 {
+				color:red;
+				background-color:blue;
+			}
+			#secondPara {
+			color:red;background-color:yellow
+			}
