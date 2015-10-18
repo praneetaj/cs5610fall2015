@@ -6,10 +6,10 @@
 	function Configure($routeProvider) {
 		$routeProvider
 			.when("/", {
-				templateURL: "home.html"	
+				templateUrl: "home.html"	
 			})
 			.when("/register", {
-				templateURL: "register.html"	
+				templateUrl: "register.html"	
 			});
 	} 
 }) ();
