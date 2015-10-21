@@ -1,5 +1,4 @@
-(function()
-{
+(function(){
 	angular
-		.module("FormMakerApp", ["ngRoute"]);	
+		.module("FormBuilderApp", ["ngRoute"]);	
 })();

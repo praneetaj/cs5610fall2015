@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="FormBuilderApp">
 	<head>
-        <title>Index</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"/>
-		<link rel="stylesheet" href="css/dashboard.css"/>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"/>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"/>
-		<script src="app.js"/>
-		<script scr="config.js"/>
+		<title>Index</title>
+		<link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+		<link rel = "stylesheet" href = "css/dashboard.css"></link>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-route.js"></script>
+		<script type="text/javascript" scr="app.js"></script>
+		<script type="text/javascript" scr="config.js"></script>
+		<script type="text/javascript" scr="MainController.js"></script>
 	</head>
-	<body>
-		 <div ng-view>
-		 </div>
-	</body>	
+	<body ng-controller="MainController">
+		<h1> Hello </h1>
+		<div class = "container">
+			<div class = "row">
+				<div ng-include = "'header.html'"></div>
+			</div>
+		</div>
+	</body>
 </html>
-	
