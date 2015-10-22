@@ -3,7 +3,7 @@
         .module("FormBuilderApp")
         .controller("SidebarController", SidebarController);
 
-    function SidebarController($location, $scope) {
-        $location.$scope = $scope;
+    function SidebarController($scope, $location) {
+        $scope.$location = $location;
     }
 }) ();
