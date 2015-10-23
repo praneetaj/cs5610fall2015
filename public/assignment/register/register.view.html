@@ -1,32 +1,32 @@
 <h1 class="page-header">Register</h1>
 <form class="form-horizontal">
       <div class="form-group">
-            <label for="Username" class="col-sm-2 control-label">Username</label>
+            <label for="inputUsername" class="col-sm-2 control-label">Username</label>
             <div class="col-sm-10">
-                  <input type="text" class="form-control" id="Username" placeholder="Username">
+                  <input type="text" class="form-control" id="inputUsername" placeholder="Username" ng-model="userName">
             </div>
       </div>
       <div class="form-group">
             <label for="inputPassword1" class="col-sm-2 control-label">Password</label>
             <div class="col-sm-10">
-                  <input type="password" class="form-control" id="inputPassword1" placeholder="Password">
+                  <input type="password" class="form-control" id="inputPassword1" placeholder="Password" ng-model="password1">
             </div>
       </div>
       <div class="form-group">
             <label for="inputPassword2" class="col-sm-2 control-label">Verify Password</label>
             <div class="col-sm-10">
-                  <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+                  <input type="password" class="form-control" id="inputPassword2" placeholder="Password" ng-model="password2">
             </div>
       </div>
       <div class="form-group">
             <label for="inputEmail" class="col-sm-2 control-label">Email</label>
             <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                  <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="email">
             </div>
       </div>
       <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                  <a role="button" type="submit" class="form-control btn btn-default" href="profile.html">Register</a>
+                  <a ng-click="register()" role="button" type="submit" class="form-control btn btn-default" href="#/profile">Register</a>
             </div>
       </div>
 </form>
