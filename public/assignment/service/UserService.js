@@ -1,3 +1,4 @@
+"use strict";
 (function () {
     angular
         .module("FormBuilderApp")
@@ -5,53 +6,76 @@
 
     function UserService() {
         var users = [
-            {userName: "praneeta", password: "praneeta", email: "praneeta@gmail.com"}
+            {id: 1, userName: "praneeta", password: "praneeta", email: "praneeta@gmail.com"}
         ];
+
+        function guid() {
+            function s4() {
+                return Math.floor((1 + Math.random()) * 0x10000)
+                    .toString(16)
+                    .substring(1);
+            }
+            return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+                s4() + '-' + s4() + s4() + s4();
+        }
 
         var service = {
             createUser: createUser,
             findAllUsers: findAllUsers,
-            findUserByUsernameAndPassword: findUserByUsernameAndPassword
-        };
-/*
-        var service1 = {
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
-            findAllUsers: findAllUsers,
-            createUser: createUser,
             deleteUserById: deleteUserById,
             updateUser: updateUser
-        };  */
+        };
         return service;
 
-        function findUserByUsernameAndPassword(currUserName, currPassword) {
-            console.log(currUserName);
-            console.log(currPassword);
-            console.log(users);
+        function findUserByUsernameAndPassword(currUserName, currPassword, callback) {
             for (var user in users) {
                 if ((users[user].userName.localeCompare(currUserName) == 0) && (users[user].password.localeCompare(currPassword) == 0)) {
-                    console.log("found");
-                    return user;
+                    callback(users[user]);
+                    return;
                 }
-                console.log(users[user].userName);
-                console.log(users[user].password);
-                console.log(users[user].email);
+            }
+            callback(null);
+        }
+
+        function findAllUsers(callback) {
+            callback(users);
+            return;
+        }
+
+        function createUser(newUser, callback) {
+            var user = {
+                id: guid(),
+                userName: newUser.userName,
+                password: newUser.password1,
+                email: newUser.email
+            };
+            users.push(user);
+            callback(user);
+        }
+
+        function deleteUserById(id, callback) {
+            for (var index in users) {
+                if (users[index].id == id) {
+                    users.splice(index, 1);
+                    callback(users);
+                    return;
+                }
             }
         }
 
-        function findAllUsers() {
-            return users;
-        }
-
-        function createUser(newUser) {
-            users.push(newUser);
-        }
-
-        function deleteUserById() {
-
-        }
-
-        function updateUser() {
-
+        function updateUser(id, user, callback) {
+            for (var index in users) {
+                if (users[index].id == id) {
+                    users[index].userName = user.userName;
+                    users[index].password = user.password;
+                    users[index].email = user.email;
+                    users[index].firstName = user.firstName;
+                    users[index].lastName = user.lastName;
+                    callback(users[index]);
+                    return;
+                }
+            }
         }
     }
 }) ();
