@@ -10,15 +10,13 @@
 
         $scope.update = update;
         function update() {
-            var id = $rootScope.id;
+            var id = $rootScope.user.id;
             UserService.updateUser(id, $scope.user, initiateUpdate);
-        }
 
-        function initiateUpdate(updatedUser) {
-            $scope.user = updatedUser;
-            $rootScope.user = updatedUser;
-            console.log($rootScope.user);
+            function initiateUpdate(updatedUser) {
+                $scope.user = updatedUser;
+                $rootScope.user = updatedUser;
+            }
         }
-
     }
 }) ();

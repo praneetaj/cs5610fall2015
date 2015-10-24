@@ -47,7 +47,7 @@
             var user = {
                 id: guid(),
                 userName: newUser.userName,
-                password: newUser.password1,
+                password: newUser.password,
                 email: newUser.email
             };
             users.push(user);
@@ -77,5 +77,16 @@
                 }
             }
         }
+/*
+        function updateUser(id, user, callback) {
+            for (var index in users) {
+                if (users[index].id == id) {
+                    break;
+                }
+            }
+            users.splice(index, 1);
+            users.push(user);
+            callback(user);
+        }*/
     }
 }) ();
