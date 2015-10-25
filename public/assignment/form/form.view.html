@@ -11,39 +11,19 @@
                         <th><span class="glyphicon glyphicon-triangle-bottom"></span>Action</th>
                   </tr>
                   <tr>
-                        <td><input type="text" id="formname" placeholder="name"></td>
+                        <td><input type="text" id="formname" placeholder="name" ng-model="newForm.formName"></td>
                         <td>
-                              <a href="#"><span class="glyphicon glyphicon-plus"></span></a>
-                              <a href="#"><span class="glyphicon glyphicon-ok"></span></a>      
+                              <button ng-click="addForm()" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
+                              <button ng-click="updateForm()" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
                         </td>
                   </tr>
             </thead>
             <tbody>
-                  <tr>
+                  <tr ng-repeat="entry in forms">
+                        <td>{{entry.form.formName}}</td>
                         <td>
-                              <a href="form-fields.html">Registration Form</a>
-                        </td>
-                        <td>
-                              <a href="#"><span class="glyphicon glyphicon-remove"></span></a>
-                              <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-                        </td>
-                  </tr>
-                  <tr>
-                        <td>
-                              <a href="form-fields.html">Contact List</a>
-                        </td>
-                        <td>
-                              <a href="#"><span class="glyphicon glyphicon-remove"></span></a>
-                              <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-                        </td>
-                  </tr>
-                  <tr>
-                        <td>
-                              <a href="form-fields.html">To Do List</a>
-                        </td>
-                        <td>
-                              <a href="#"><span class="glyphicon glyphicon-remove"></span></a>
-                              <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+                              <button ng-click="deleteForm($index)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                              <button ng-click="selectForm($index)" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button>
                         </td>
                   </tr>
             </tbody>

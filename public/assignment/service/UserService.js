@@ -5,9 +5,7 @@
         .factory("UserService", UserService);
 
     function UserService() {
-        var users = [
-            {id: 1, userName: "praneeta", password: "praneeta", email: "praneeta@gmail.com"}
-        ];
+        var users = [];
 
         function guid() {
             function s4() {

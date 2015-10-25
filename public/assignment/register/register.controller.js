@@ -9,13 +9,12 @@
         $scope.register = register;
 
         function register() {
-            console.log($scope.user);
-            UserService.createUser($scope.user, initiate);
+            UserService.createUser($scope.user, initiateUserCreation);
         }
 
-        function initiate(newUser) {
+        function initiateUserCreation(newUser) {
             $rootScope.user = newUser;
-            console.log($rootScope.user);
+            $scope.$location.url("/profile");
         }
     }
 }) ();

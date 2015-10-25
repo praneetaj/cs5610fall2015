@@ -5,9 +5,7 @@
         .factory("FormService", FormService);
 
     function FormService() {
-        var forms = [
-            {formId: 1,  userId: 1, form: null}
-        ];
+        var forms = [];
 
         function guid() {
             function s4() {
@@ -28,12 +26,13 @@
         return service;
 
         function createFormForUser(userId, form, callback) {
-            var newform = {
+            var newForm = {
                 formId: guid(),
                 userId: userId,
-                form: form
+                form: {formName: form.formName}
             };
             forms.push(newForm);
+            console.log(forms);
             callback(newForm);
         }
 
