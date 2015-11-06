@@ -36,17 +36,17 @@
                         <li role="presentation"><a href="restaurant-profile.html">Restaurant Profile</a></li>
                         <li role="presentation"><a href="create-quantity-coupon.html">Create Coupons</a></li>
                         <li role="presentation"><a href="record-transaction.html">Record Transaction</a></li>
-                        <li role="presentation" class="active"><a href="#">View Coupons</a></li>
+                        <li role="presentation"><a href="restaurant-view-quantity-coupons.html">View Coupons</a></li>
                         <hr>
                         <li role="presentation"><a href="user-profile.html">User Profile</a></li>
-                        <li role="presentation"><a href="user-view-quantity-coupons.html">View Coupons</a></li>
+                        <li role="presentation" class="active"><a href="#">View Coupons</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                     <h1 class="page-header">View Coupons</h1>
                     <ul class="nav nav-tabs">
                         <li role="presentation" class="active"><a href="#">Quantity Based Coupons</a></li>
-                        <li role="presentation"><a href="restaurant-view-amount-coupons.html">Amount Based Coupons</a></li>
+                        <li role="presentation"><a href="user-view-amount-coupons.html">Amount Based Coupons</a></li>
                     </ul>
                     <br>
                     <div class="table-responsive">
@@ -54,32 +54,29 @@
                             <thead>
                                 <tr>
                                     <th>Coupon Id</th>
+                                    <th><span class="glyphicon glyphicon-triangle-bottom"></span>Restaurant Name</th>
                                     <th>Item Name</th>
                                     <th>Quantity</th>
+                                    <th>Threshold Value</th>
                                     <th><span class="glyphicon glyphicon-triangle-bottom"></span>Valid Until</th>
-                                    <th><span class="glyphicon glyphicon-triangle-bottom"></span>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>1</td>
+                                    <td>Red Robin Burgers</td>
                                     <td>Burger</td>
+                                    <td>3</td>
                                     <td>10</td>
                                     <td>12/31/2016</td>
-                                    <td>
-                                        <button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
-                                        <button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button>
-                                    </td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
+                                    <td>Dominos Pizza</td>
                                     <td>Pizza</td>
+                                    <td>8</td>
                                     <td>15</td>
                                     <td>N/A </td>
-                                    <td>
-                                        <button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
-                                        <button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button>
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
