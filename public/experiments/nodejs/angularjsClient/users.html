@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="UserApp">
+    <head>
+        <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+        <link rel = "stylesheet" href = "../css/dashboard.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-route.js"></script>
+    </head>
+    <body>
+        <div class="container" ng-controller="UserController">
+            <h1>Users</h1>
+            {{hello}}
+            {{users}}
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>First</th>
+                            <th>Last</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" ng-model="user.first" class="form-control"></td>
+                            <td><input type="text" ng-model="user.last" class="form-control"></td>
+                            <td>
+                                <button class="btn btn-success" ng-click="add(user)">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                                <button class="btn btn-success" ng-click="update(user)">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="user in users">
+                            <td>{{user.first}}</td>
+                            <td>{{user.last}}</td>
+                            <td>
+                                <button class="btn btn-danger" ng-click="delete(user)">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                                <button class="btn btn-warning" ng-click="select(user)">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script>
+            (function () {
+                angular
+                    .module("UserApp", [])
+                    .controller("UserController", UserController)
+                    .factory("UserService", UserService);
+
+                function UserController($scope, $http, UserService) {
+                    $scope.hello = "Hello from User Controller";
+
+                    UserService.all(function (response) {
+                        $scope.users = response;
+                    });
+
+                    $scope.delete = function (user) {
+                        var index = $scope.users.indexOf(user);
+                        UserService.remove (index, function (response) {
+                            $scope.users = response;
+                        });
+                    }
+
+                    $scope.add = function (newuser) {
+                        UserService.add(newuser, function (response) {
+                            $scope.users = response;
+                        });
+                    }
+
+                    $scope.select = function (user) {
+                        $scope.selectedUser = user;
+                        var index = $scope.users.indexOf(user);
+                        $scope.selectedUserIndex = index;
+                        UserService.one(index, function (response) {
+                            $scope.user = response;
+                        });
+                    }
+
+                    $scope.update = function (user) {
+                        UserService.update($scope.selectedUserIndex, user, function (response) {
+                            $scope.users = response;
+                        });
+                    }
+                }
+
+                function UserService($http) {
+                    var service = {
+                        add : addUser,
+                        remove : removeUser,
+                        all : findAll,
+                        one : findOne,
+                        update : updateUser
+                    };
+                    return service;
+
+                    function addUser(newuser, callback) {
+                        $http
+                                .post("/api/user", newuser)
+                                .success(callback);
+                    }
+
+                    function removeUser(index, callback) {
+                        $http
+                            .delete("/api/user/"+index)
+                            .success(callback);
+                    }
+                    function findAll(callback) {
+                        $http
+                            .get("/api/user")
+                            .success(callback);
+                    }
+                    function findOne(index, callback) {
+                        $http
+                            .get("/api/user/"+index)
+                            .success(callback);
+                    }
+                    function updateUser(selectedUserIndex, user, callback) {
+                        $http
+                                .put("/api/user/"+selectedUserIndex, user)
+                                .success(callback);
+                    }
+                }
+            }) ();
+        </script>
+    </body>
+</html>
