@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MovieApp">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/../../css/dashboard.css"/>
+    <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers/SearchMoviesController.js"></script>
+    <script src="services/MovieService.js"></script>
+    <title></title>
+</head>
+<body>
+    <div class="container" ng-controller="SearchMoviesController">
+        <h1>Search Movie</h1>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for..." ng-model="movie.title">
+                <span class="input-group-btn">
+                    <button ng-click="SearchMovie(movie.title)" class="btn btn-primary" type="button">Search</button>
+                </span>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>IMBD ID</th>
+                    <th>Title</th>
+                    <th>Like</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat = "movie in response">
+                    <td>{{movie.idIMDB}}</td>
+                    <td>{{movie.title}}</td>
+                    <td>
+                        <button ng-click="likeMovie(movie.idIMDB)" class="btn btn-info">
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
