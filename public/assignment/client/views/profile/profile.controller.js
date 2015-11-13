@@ -4,18 +4,18 @@
         .module("FormBuilderApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope, $rootScope, UserService) {
+    function ProfileController($rootScope, UserService) {
+        var model = this;
+        model.user = $rootScope.user;
+        model.update = update;
 
-        $scope.user = $rootScope.user;
+        function update (user) {
+            var id = user.id;
+            UserService.updateUser(id, user).then(initiateUpdate);
+            model.user = user;
 
-        $scope.update = update;
-        function update() {
-            var id = $rootScope.user.id;
-            UserService.updateUser(id, $scope.user, initiateUpdate);
-
-            function initiateUpdate(updatedUser) {
-                $scope.user = updatedUser;
-                $rootScope.user = updatedUser;
+            function initiateUpdate (response) {
+                console.log(response);
             }
         }
     }

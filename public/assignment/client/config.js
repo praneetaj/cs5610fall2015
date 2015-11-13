@@ -11,7 +11,7 @@
 			})
 			.when("/profile", {
 				templateUrl: "views/profile/profile.view.html",
-				controller: "ProfileController"
+				controller: "ProfileController as model"
 			})
 			.when("/forms", {
 				templateUrl: "views/form/form.view.html",
@@ -23,7 +23,7 @@
 			})
 			.when("/login", {
 				templateUrl: "views/login/login.view.html",
-				controller: "LoginController"
+				controller: "LoginController as model"
 			})
 			.otherwise({
 				redirectTo: "/home"

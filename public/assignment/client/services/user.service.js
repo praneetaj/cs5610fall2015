@@ -4,7 +4,7 @@
         .module("FormBuilderApp")
         .factory("UserService", UserService);
 
-    function UserService() {
+    function UserService($http, $q) {
         var users = [];
 
         function guid() {
@@ -17,15 +17,15 @@
                 s4() + '-' + s4() + s4() + s4();
         }
 
-        var service = {
+        var api = {
             createUser: createUser,
             findAllUsers: findAllUsers,
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
             deleteUserById: deleteUserById,
             updateUser: updateUser
         };
-        return service;
-
+        return api;
+        /*
         function findUserByUsernameAndPassword(currUserName, currPassword, callback) {
             for (var user in users) {
                 if ((users[user].userName.localeCompare(currUserName) == 0) && (users[user].password.localeCompare(currPassword) == 0)) {
@@ -34,6 +34,16 @@
                 }
             }
             callback(null);
+        }*/
+
+        function findUserByUsernameAndPassword(currUsername, currPassword) {
+            var deferred = $q.defer();
+            $http
+                .get("/api/assignment/user/username="+currUsername+"&password="+currPassword)
+                .success(function (response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
         }
 
         function findAllUsers(callback) {
@@ -53,27 +63,17 @@
         }
 
         function deleteUserById(id, callback) {
-            for (var index in users) {
-                if (users[index].id == id) {
-                    users.splice(index, 1);
-                    callback(users);
-                    return;
-                }
-            }
+
         }
 
-        function updateUser(id, user, callback) {
-            for (var index in users) {
-                if (users[index].id == id) {
-                    users[index].userName = user.userName;
-                    users[index].password = user.password;
-                    users[index].email = user.email;
-                    users[index].firstName = user.firstName;
-                    users[index].lastName = user.lastName;
-                    callback(users[index]);
-                    return;
-                }
-            }
+        function updateUser(id, user) {
+            var deferred = $q.defer();
+            $http
+                .put("/api/assignment/user/"+id, user)
+                .success(function (response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
         }
 /*
         function updateUser(id, user, callback) {
