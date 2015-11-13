@@ -18,5 +18,6 @@ var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 require("./public/experiments/nodejs/angularjsClient/server.js")(app);
+require("./public/experiments/angular/jsonp/server/MovieService.js")(app);
 
 app.listen(port, ipaddress);

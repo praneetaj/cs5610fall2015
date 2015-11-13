@@ -14,7 +14,7 @@
 
         $scope.likeMovie = function(idIMDB) {
             MovieService.likeMovie(idIMDB, function (response) {
-                    
+
             });
         }
     }

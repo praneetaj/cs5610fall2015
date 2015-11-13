@@ -29,6 +29,15 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td>321</td>
+                    <td>Dumb and Dumber</td>
+                    <td>
+                        <button ng-click="likeMovie(321)" class="btn btn-info">
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                        </button>
+                    </td>
+                </tr>
                 <tr ng-repeat = "movie in response">
                     <td>{{movie.idIMDB}}</td>
                     <td>{{movie.title}}</td>

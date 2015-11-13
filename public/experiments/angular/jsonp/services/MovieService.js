@@ -20,7 +20,15 @@
         }
 
         function likeMovie(idIMDB, callback) {
+            var likes = {
+                userId: 123,
+                idIMDB: idIMDB
+            };
 
+
+            $http
+                .post("/api/experiments/angular/jsonp/user/1234/movie/"+idIMDB+"/like")
+                .success(callback);
         }
     }
 }) ();
