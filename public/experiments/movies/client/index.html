@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MovieApp">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script src="views/movies/search.controller.js"></script>
+    <script src="views/movies/details.controller.js"></script>
+    <script src="services/movie.service.js"></script>
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <h1>Movie App</h1>
+        <div ng-include="'views/header/header.view.html'">
+
+        </div>
+        <div ng-view>
+
+        </div>
+    </div>
+
+</body>
+</html>

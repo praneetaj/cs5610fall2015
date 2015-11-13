@@ -3,7 +3,7 @@ module.exports = function(app) {
         var userId = req.params.userId;
         var idIMDB = req.params.idIMDB;
         console.log("here");
-        console.log(userID + " "+ idIMDB);
+        console.log(userId + " "+ idIMDB);
 
     });
 };
