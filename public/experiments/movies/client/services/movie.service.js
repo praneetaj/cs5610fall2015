@@ -24,10 +24,10 @@
             return deferred.promise;
         }
 
-        function likes (idIMDB) {
+        function likes (movie) {
             var deferred = $q.defer();
             $http
-                .post("/api/experiments/movies/likes/"+idIMDB)
+                .post("/api/experiments/movies/likes/"+movie.idIMDB, movie)
                 .success(function (response) {
                     deferred.resolve(response);
                 });

@@ -5,19 +5,23 @@
 <table class="table table-striped">
     <tbody>
         <tr>
-            <td>Dumb and Dumber</td>
-            <td>1234</td>
             <td>
-                <button ng-click="model.like(1234)" class="btn btn-info">
+                <a href="#/details/tt0111946">Dumb and Dumber</a>
+            </td>
+            <td>tt0111946</td>
+            <td>
+                <button ng-click="model.like(tt0111946)" class="btn btn-info">
                     <span class="glyphicon glyphicon-star-empty"></span>
                 </button>
             </td>
         </tr>
         <tr ng-repeat="movie in model.results">
-            <td>{{movie.title}}</td>
-            <td>{{movie.title}}</td>
             <td>
-                <button ng-click="model.like(movie.idIMDB)" class="btn btn-info">
+                <a href="#/details/{{movie.idIMDB}}">{{movie.title}}</a>
+            </td>
+            <td>{{movie.idIMDB}}</td>
+            <td>
+                <button ng-click="model.like(movie)" class="btn btn-info">
                     <span class="glyphicon glyphicon-star-empty"></span>
                 </button>
             </td>

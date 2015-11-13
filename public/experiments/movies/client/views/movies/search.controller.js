@@ -8,9 +8,8 @@
 		model.search = search;
 		model.like = like;
 
-		function like (idIMDB) {
-			MovieService.likes(idIMDB).then(function(response) {
-			});
+		function like (movie) {
+			MovieService.likes(movie);
 		}
 
 		function search (title) {
