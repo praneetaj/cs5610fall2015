@@ -5,68 +5,70 @@
         .factory("UserService", UserService);
 
     function UserService($http, $q) {
-        var users = [];
-
-        function guid() {
-            function s4() {
-                return Math.floor((1 + Math.random()) * 0x10000)
-                    .toString(16)
-                    .substring(1);
-            }
-            return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-                s4() + '-' + s4() + s4() + s4();
-        }
 
         var api = {
-            createUser: createUser,
-            findAllUsers: findAllUsers,
-            findUserByUsernameAndPassword: findUserByUsernameAndPassword,
-            deleteUserById: deleteUserById,
-            updateUser: updateUser
+            createUser : createUser,
+            findAllUsers : findAllUsers,
+            findUserByUsernameAndPassword : findUserByUsernameAndPassword,
+            deleteUserById : deleteUserById,
+            updateUser : updateUser
         };
         return api;
-        /*
-        function findUserByUsernameAndPassword(currUserName, currPassword, callback) {
-            for (var user in users) {
-                if ((users[user].userName.localeCompare(currUserName) == 0) && (users[user].password.localeCompare(currPassword) == 0)) {
-                    callback(users[user]);
-                    return;
-                }
-            }
-            callback(null);
-        }*/
 
-        function findUserByUsernameAndPassword(currUsername, currPassword) {
+        function createUser (newUser) {
             var deferred = $q.defer();
             $http
-                .get("/api/assignment/user/username="+currUsername+"&password="+currPassword)
+                .post("/api/assignment/user", newUser)
                 .success(function (response) {
                     deferred.resolve(response);
                 });
             return deferred.promise;
         }
 
-        function findAllUsers(callback) {
-            callback(users);
-            return;
+        function findUserByUsernameAndPassword(username, password) {
+            var deferred = $q.defer();
+            $http.get("/api/assignment/user/username=" + username + "&password=" + password)
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+
+            return deferred.promise;
         }
 
-        function createUser(newUser, callback) {
-            var user = {
-                id: guid(),
-                userName: newUser.userName,
-                password: newUser.password,
-                email: newUser.email
-            };
-            users.push(user);
-            callback(user);
+        /*
+        function findUserByUsernameAndPassword (username, password) {
+            var deferred = $q.defer();
+            $http
+                .get("/api/assignment/user/username="+username+"&password="+password)
+                .success(function (response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }*/
+
+        function findAllUsers () {
+            var deferred = $q.defer();
+            $http
+                .get("/api/assignment/user")
+                .success(function (response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
         }
 
-        function deleteUserById(id, callback) {
 
+
+        function deleteUserById (id) {
+            var deferred = $q.defer();
+            $http
+                .delete("/api/assignment/user/"+id)
+                .success(function (response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
         }
 
-        function updateUser(id, user) {
+        function updateUser (id, user) {
             var deferred = $q.defer();
             $http
                 .put("/api/assignment/user/"+id, user)
@@ -75,16 +77,5 @@
                 });
             return deferred.promise;
         }
-/*
-        function updateUser(id, user, callback) {
-            for (var index in users) {
-                if (users[index].id == id) {
-                    break;
-                }
-            }
-            users.splice(index, 1);
-            users.push(user);
-            callback(user);
-        }*/
     }
 }) ();

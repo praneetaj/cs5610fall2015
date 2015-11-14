@@ -14,7 +14,24 @@ module.exports = function (app) {
 	};
 	return api;
 
-	function createUser (user) {
+	function guid() {
+		function s4() {
+			return Math.floor((1 + Math.random()) * 0x10000)
+				.toString(16)
+				.substring(1);
+		}
+		return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+			s4() + '-' + s4() + s4() + s4();
+	}
+
+	function createUser (newuser) {
+		var user = {
+			id : guid(),
+			username : newuser.username,
+			password : newuser.password,
+			email : newuser.email
+		};
+		console.log(user);
 		users.push(user);
 		return users;
 	}
@@ -53,6 +70,7 @@ module.exports = function (app) {
 				break;
 			}
 		}
+		console.log(toReturn);
 		return toReturn;
 	}
 

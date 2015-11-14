@@ -8,11 +8,16 @@
         var model = this;
         model.login = login;
 
-        function login(username, password) {
-            UserService.findUserByUsernameAndPassword(username, password).then(initiateLogin);
+        UserService.findAllUsers().then(function (response) {
+            console.log(response);
+        });
+
+        function login() {
+            UserService.findUserByUsernameAndPassword(model.username, model.password).then(initiateLogin);
 
             function initiateLogin(response) {
                 $rootScope.user = response;
+                console.log(response);
                 $location.url("/profile");
             }
         }

@@ -1,13 +1,13 @@
 var model = require("../models/user.model.js")();
 
 module.exports = function (app) {
+	app.get("/api/assignment/user/username=:username&password=:password", getUserByUsernameAndPassword);
 	app.post("/api/assignment/user", createUser);
 	app.get("/api/assignment/user", findAllUsers);
 	app.get("/api/assignment/user/:id", findUserById);
-	app.get("/api/assignment/user/username=:username", findUserByUsername);
-	app.get("/api/assignment/user/username=:currUsername&password=:currPassword", getUserByUsernameAndPassword);
 	app.put("/api/assignment/user/:id", updateUser);
 	app.delete("/api/assignment/user/:id", deleteUser);
+	app.get("/api/assignment/user/username=:username", findUserByUsername);
 
 	function createUser (req, res) {
 		var newuser = req.body;
@@ -30,8 +30,8 @@ module.exports = function (app) {
 
 	function getUserByUsernameAndPassword (req, res) {
 		var credentials = {
-			"username" : req.params.currUsername,
-			"password" : req.params.currPassword
+			"username" : req.params.username,
+			"password" : req.params.password
 		};
 		res.json(model.findUserByCredentials(credentials));
 	}

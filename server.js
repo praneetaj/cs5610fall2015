@@ -20,6 +20,7 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 require("./public/experiments/nodejs/angularjsClient/server.js")(app);
 require("./public/experiments/angular/jsonp/server/services/MovieService.js")(app);
 require("./public/experiments/movies/server/services/movie.service.js")(app);
+//require("./public/assignment/server/services/user.service.js") (app);
 require("./public/assignment/server/app.js")(app);
 
 app.listen(port, ipaddress);

@@ -1,17 +1,47 @@
 var model = require("../models/form.model.js")();
 
 module.exports = function(app) {
-    app.post('/api/experiments/movies/likes/:idIMDB', likes);
-    app.get('/api/experiments/movies/likes', getLikes);
+    app.post("/api/assignment/form", createForm);
+    app.get("/api/assignment/form", findAllForms);
+    app.get("/api/assignment/form/:formId", findFormById);
+    app.put("/api/assignment/form/:formId", updateForm);
+    app.delete("/api/assignment/form/:formId", deleteForm);
+    app.get("/api/assignment/user/:userId/form", findAllFormsForUserId);
+    app.post("/api/assignment/user/:userId/form", createFormForUserId);
 
-    function likes (req, res) {
-        var idIMDB = req.params.idIMDB;
-        var movie = req.body;
-        console.log("likes: "+idIMDB);
-        model.likes(idIMDB, movie);
+    function createForm (req, res) {
+        var newform = req.body;
+        res.json(model.createForm(newform));
     }
 
-    function getLikes(req, res) {
-        res.json(model.getLikes());
+    function findAllForms (req, res) {
+        res.json(model.findAllForms());
+    }
+
+    function findFormById (req, res) {
+        var formId = req.params.formId;
+        res.json(model.findFormById(formId));
+    }
+
+    function updateForm (req, res) {
+        var formId = req.params.formId;
+        var updatedForm = req.body;
+        res.json(model.updateForm(formId, updatedForm));
+    }
+
+    function deleteForm (req, res) {
+        var formId = req.params.formId;
+        res.json(model.deleteForm(formId));
+    }
+
+    function findAllFormsForUserId (req, res) {
+        var userId = req.params.userId;
+        res.json(model.findAllFormsForUserId(userId));
+    }
+
+    function createFormForUserId (req, res) {
+        var userId = req.params.userId;
+        var newform = req.body;
+        res.json(model.createFormForUserId(userId, newform));
     }
 };

@@ -4,17 +4,21 @@
         .module("FormBuilderApp")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController($scope, $rootScope, UserService) {
+    function RegisterController($location, $rootScope, UserService) {
 
-        $scope.register = register;
+        var model = this;
+        model.register = register;
 
         function register() {
-            UserService.createUser($scope.user, initiateUserCreation);
+            UserService.createUser(model.user).then(initiateUserCreation);
         }
 
-        function initiateUserCreation(newUser) {
-            $rootScope.user = newUser;
-            $scope.$location.url("/profile");
+        function initiateUserCreation (response) {
+            UserService.findUserByUsernameAndPassword(model.user.username, model.user.password).then(function (registeredUser) {
+                $rootScope.user = registeredUser;
+                console.log($rootScope.user);
+            });
+            $location.url("/profile");
         }
     }
 }) ();
