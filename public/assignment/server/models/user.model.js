@@ -1,16 +1,11 @@
 // You will have the CRUD operations on user here
-var users = [
-	{"id": 123, "firstName": "Alice", 	"lastName": "Wonderland",	"username": "alice", 	"password": "alice"},
-	{"id": 234, "firstName": "Bob",	"lastName": "Hope", 		"username": "bob", 	"password": "bob"},
-	{"id": 345, "firstName": "Charlie",	"lastName": "Brown", 		"username": "charlie", "password": "charlie"},
-	{"id": 456, "firstName": "Dan",	"lastName": "Craig", 		"username": "dan", 	"password": "dan"},
-	{"id": 567, "firstName": "Edward",	"lastName": "Norton", 		"username": "ed",	"password": "ed"}
-];
+
+var users = require("./user.mock.json");
 
 module.exports = function (app) {
 	var api = {
-		create : create,
-		findAll : findAll,
+		createUser : createUser,
+		findAllUsers : findAllUsers,
 		findUserById : findUserById,
 		updateUser : updateUser,
 		deleteUser : deleteUser,
@@ -19,12 +14,12 @@ module.exports = function (app) {
 	};
 	return api;
 
-	function create (user) {
+	function createUser (user) {
 		users.push(user);
 		return users;
 	}
 
-	function findAll() {
+	function findAllUsers() {
 		return users;
 	}
 
@@ -60,6 +55,7 @@ module.exports = function (app) {
 		}
 		return toReturn;
 	}
+
 	function updateUser (id, updatedUser) {
 		for (var index = 0; index < users.length; index++) {
 			if (users[index].id == id) {

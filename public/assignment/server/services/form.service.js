@@ -1,4 +1,4 @@
-var model = require("../models/movie.model.js")();
+var model = require("../models/form.model.js")();
 
 module.exports = function(app) {
     app.post('/api/experiments/movies/likes/:idIMDB', likes);
