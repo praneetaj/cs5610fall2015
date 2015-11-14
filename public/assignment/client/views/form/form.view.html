@@ -3,6 +3,7 @@
             <li role="presentation" class="active"><a href="#">Forms</a></li>
             <li role="presentation"><a href="form-fields.html">Fields</a></li>
       </ul>
+<br>
 <div class="table-responsive">
       <table class="table table-striped table-bordered table-hover">
             <thead>
@@ -11,19 +12,19 @@
                         <th><span class="glyphicon glyphicon-triangle-bottom"></span>Action</th>
                   </tr>
                   <tr>
-                        <td><input type="text" id="formname" placeholder="name" ng-model="newForm.formName"></td>
+                        <td><input type="text" id="formname" placeholder="name" ng-model="model.newForm.title"></td>
                         <td>
-                              <button ng-click="addForm()" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
-                              <button ng-click="updateForm()" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+                              <button ng-click="model.addForm()" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
+                              <button ng-click="model.updateForm()" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
                         </td>
                   </tr>
             </thead>
             <tbody>
-                  <tr ng-repeat="entry in forms">
-                        <td>{{entry.form.formName}}</td>
+                  <tr ng-repeat="entry in model.forms">
+                        <td>{{entry.title}}</td>
                         <td>
-                              <button ng-click="deleteForm($index)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
-                              <button ng-click="selectForm($index)" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button>
+                              <button ng-click="model.deleteForm(entry.id)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                              <button ng-click="model.selectForm(entry.id)" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button>
                         </td>
                   </tr>
             </tbody>

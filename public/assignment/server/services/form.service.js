@@ -5,7 +5,7 @@ module.exports = function(app) {
     app.get("/api/assignment/form", findAllForms);
     app.get("/api/assignment/form/:formId", findFormById);
     app.put("/api/assignment/form/:formId", updateForm);
-    app.delete("/api/assignment/form/:formId", deleteForm);
+    app.delete("/api/assignment/form/:formId", deleteFormById);
     app.get("/api/assignment/user/:userId/form", findAllFormsForUserId);
     app.post("/api/assignment/user/:userId/form", createFormForUserId);
 
@@ -29,7 +29,7 @@ module.exports = function(app) {
         res.json(model.updateForm(formId, updatedForm));
     }
 
-    function deleteForm (req, res) {
+    function deleteFormById (req, res) {
         var formId = req.params.formId;
         res.json(model.deleteForm(formId));
     }

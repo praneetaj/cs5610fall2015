@@ -8,7 +8,7 @@ module.exports = function (app) {
 		findAllForms : findAllForms,
 		findFormById : findFormById,
 		updateForm : updateForm,
-		deleteForm : deleteForm,
+		deleteFormById : deleteFormById,
 		findFormByTitle : findFormByTitle,
 		findAllFormsForUserId : findAllFormsForUserId,
 		createFormForUserId : createFormForUserId,
@@ -68,7 +68,7 @@ module.exports = function (app) {
 		return forms;
 	}
 
-	function deleteForm (id) {
+	function deleteFormById (id) {
 		for (var index = 0; index < forms.length; index++) {
 			if (forms[index].id == id) {
 				forms.splice(index, 1);
@@ -101,12 +101,12 @@ module.exports = function (app) {
 
 	function createFormForUserId (userId, newform) {
 		var form = {
-			id : newform.id,
+			id : guid(),
 			title : newform.title,
 			userId : userId,
 			fields : newform.fields
 		}
-		forms.push(user);
+		forms.push(form);
 		return findAllFormsForUserId(userId);
 	}
 

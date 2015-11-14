@@ -5,42 +5,57 @@
         .controller("FormController", FormController);
 
     function FormController ($scope, $rootScope, FormService) {
+
+        var model = this;
+        model.addForm = addForm;
+        model.deleteForm = deleteForm;
+        model.selectForm = selectForm;
+        model.updateForm = updateForm;
+
         if ($rootScope.user != null) {
-            FormService.findAllFormsForUser($rootScope.user.id, initiateAllForms);
+            FormService.findAllFormsForUser($rootScope.user.id).then(initiateGetAllFormsForUser);
 
-            function initiateAllForms(forms) {
-                $scope.forms = forms;
+            function initiateGetAllFormsForUser (response) {
+                model.forms = response;
             }
         }
 
-        $scope.addForm = addForm;
-        $scope.deleteForm = deleteForm;
-        $scope.updateForm = updateForm;
-        $scope.selectForm = selectForm;
+        function addForm () {
+            FormService.createFormForUser($rootScope.user.id, model.newForm).then(initiateFormCreation);
 
-        function addForm() {
-            FormService.createFormForUser($rootScope.user.id, $scope.newForm, initiateFormCreation);
-            function initiateFormCreation(newForm) {
-                $scope.forms.push(newForm);
+            function initiateFormCreation(response) {
+                model.forms = response;
+                model.newForm.title = "";
             }
         }
 
-        function deleteForm(index) {
-            FormService.deleteFormById($scope.forms[index].formId, initiateDelete);
-            function initiateDelete(forms) {
-                FormService.findAllFormsForUser($rootScope.user.id, initiateAllForms);
-                function initiateAllForms(forms) {
-                    $scope.forms = forms;
-                }
+        function deleteForm (formId) {
+            FormService.deleteFormById(formId).then(initiateDelete);
+
+            function initiateDelete (response) {
+                FormService.findAllFormsForUser($rootScope.user.id).then(function (allFormsForUser) {
+                    model.forms = allFormsForUser;
+                });
             }
         }
 
         function updateForm() {
+            FormService.updateFormById(model.newForm.id, model.newForm).then(initiateUpdate);
 
+            function initiateUpdate (response) {
+                FormService.findAllFormsForUser($rootScope.user.id).then(function (allFormsForUser) {
+                    model.forms = allFormsForUser;
+                    model.newForm = null;
+                });
+            }
         }
 
-        function selectForm(index) {
+        function selectForm(formId) {
+            FormService.findFormByFormId(formId).then(initiateFindFormById);
 
+            function initiateFindFormById (response) {
+                model.newForm = response;
+            }
         }
     }
 }) ();
