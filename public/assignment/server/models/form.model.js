@@ -147,17 +147,18 @@ module.exports = function (app) {
 				}
 			}
 		}
-		return null;
+		return forms;
 	}
 
 	function createNewFieldForFormId (formId, newField) {
+		newField.id = guid();
 		for (var i = 0; i < forms.length; i++) {
 			if (forms[i].id == formId) {
 				forms[i].fields.push(newField);
 				break;
 			}
 		}
-		return forms[i];
+		return forms;
 	}
 
 	function updateFieldByFieldAndFormId (formId, fieldId, updatedField) {

@@ -1,7 +1,7 @@
 [
   {"id": "000", "title": "Contacts", "userId": 123,
     "fields": [
-      {"id": "111", "label": "First Name", "type": "TEXT", "s": "First Name"},
+      {"id": "111", "label": "First Name", "type": "TEXT", "placeholder": "First Name"},
       {"id": "222", "label": "Last Name", "type": "TEXT", "placeholder": "Last Name"},
       {"id": "333", "label": "Address", "type": "TEXT", "placeholder": "Address"},
       {"id": "444", "label": "State", "type": "OPTIONS", "options": [

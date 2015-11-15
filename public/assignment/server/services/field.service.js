@@ -1,11 +1,11 @@
 var model = require("../models/form.model.js")();
 
-module.exports = function(app) {
-    app.get("/api/assignment/form/:formId/field", findAllFieldsForFormId);
-    app.get("/api/assignment/form/:formId/field/:fieldId", findFieldByFieldAndFormId);
+module.exports = function (app) {
     app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldByFieldAndFormId);
+    app.get("/api/assignment/form/:formId/field", findAllFieldsForFormId);
+//    app.get("/api/assignment/form/:formId/field/:fieldId", findFieldByFieldAndFormId);
     app.post("/api/assignment/form/:formId/field", createNewFieldForFormId);
-    app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldByFieldAndFormId);
+//    app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldByFieldAndFormId);
 
     function findAllFieldsForFormId (req, res) {
         var formId = req.params.formId;
@@ -19,6 +19,7 @@ module.exports = function(app) {
     }
 
     function deleteFieldByFieldAndFormId (req, res) {
+        console.log("delete from server field service");
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
         res.json(model.deleteFieldByFieldAndFormId(formId, fieldId));
