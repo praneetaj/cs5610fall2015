@@ -1,0 +1,125 @@
+<h1 class="page-header">Forms : {{model.form.title}}</h1>
+<ul class="nav nav-tabs">
+      <ul class="nav nav-tabs">
+            <li ng-class="{'active' : $location.url().indexOf('forms') != -1}"><a href="#/forms">Forms</a></li>
+            <li ng-class="{'active' : $location.url().indexOf('fields') != -1}"><a href="#/">Fields</a></li>
+      </ul>
+</ul>
+<br>
+<form>
+      <div ng-repeat="currField in model.fields">
+            <div ng-switch="currField.type">
+                  <div ng-switch-when="TEXT">
+                       <div class="form-group">
+                             <label>{{currField.label}}</label>
+                             <div class="input-group">
+                                   <input class="form-control" type="text" placeholder="{{currField.placeholder}}">
+                                   <span class="input-group-btn">
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-align-justify"></span></button></a>
+                                    </span>
+                             </div>
+                       </div>
+                  </div>
+                  <div ng-switch-when="TEXTAREA">
+                        <div class="form-group">
+                              <label>{{currField.label}}</label>
+                              <div class="input-group">
+                                   <textarea class="form-control" placeholder="{{currField.placeholder}}"></textarea>
+                                   <span class="input-group-btn">
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-align-justify"></span></button></a>
+                                   </span>
+                              </div>
+                        </div>
+                  </div>
+                  <div ng-switch-when="EMAIL">
+                        <div class="form-group">
+                              <label>{{currField.label}}</label>
+                              <div class="input-group">
+                                   <input class="form-control" type="email" placeholder="{{currField.placeholder}}">
+                                   <span class="input-group-btn">
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-align-justify"></span></button></a>
+                                   </span>
+                              </div>
+                        </div>
+                  </div>
+                  <div ng-switch-when="DATE">
+                        <div class="form-group">
+                              <label>{{currField.label}}</label>
+                              <div class="input-group">
+                                    <input class="form-control" type="date">
+                                   <span class="input-group-btn">
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-align-justify"></span></button></a>
+                                   </span>
+                              </div>
+                        </div>
+                  </div>
+                  <div ng-switch-when="RADIOS">
+                        <div class="form-group">
+                              <label>{{currField.label}}</label>
+                              <div class="input-group">
+                                   <div class = "radio">
+                                         <div ng-repeat="currOption in currField.options">
+                                               <label><input type="radio" name="{{currField.label}}" value="{{currOption.value}}">{{currOption.label}}</label>
+                                         </div>
+                                   </div>
+                                   <span class="input-group-btn">
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-align-justify"></span></button></a>
+                                   </span>
+                              </div>
+                        </div>
+                  </div>
+                  <div ng-switch-when="CHECKBOXES">
+                        <div class="form-group">
+                              <label>{{currField.label}}</label>
+                              <div class="input-group">
+                                    <div ng-repeat="currOption in currField.options">
+                                          <div class="checkbox">
+                                                <label>
+                                                      <input type="checkbox" value="{{currOption.value}}">{{currOption.label}}
+                                                </label>
+                                          </div>
+                                    </div>
+                                   <span class="input-group-btn">
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-align-justify"></span></button></a>
+                                   </span>
+                              </div>
+                        </div>
+                  </div>
+                  <div ng-switch-when="OPTIONS">
+                        <div class="form-group">
+                              <label>{{currField.label}}</label>
+                              <div class="input-group">
+                                    <select class="form-control">
+                                          <option ng-repeat="currOption in currField.options" value="{{currOption.value}}">{{currOption.label}}</option>
+                                    </select>
+                                   <span class="input-group-btn">
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span></button></a>
+                                         <a href="#"><button class="btn btn-default" type="button"><span class="glyphicon glyphicon-align-justify"></span></button></a>
+                                   </span>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </div>
+</form>
+

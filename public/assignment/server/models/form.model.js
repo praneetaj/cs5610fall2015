@@ -105,7 +105,7 @@ module.exports = function (app) {
 			title : newform.title,
 			userId : userId,
 			fields : newform.fields
-		}
+		};
 		forms.push(form);
 		return findAllFormsForUserId(userId);
 	}
@@ -114,10 +114,11 @@ module.exports = function (app) {
 		var fieldsToReturn = [];
 		for (var i = 0; i < forms.length; i++) {
 			if (forms[i].id == formId) {
-				fieldsToReturn.push(forms[i].fields);
+				fieldsToReturn = forms[i].fields;
 				break;
 			}
 		}
+		console.log(fieldsToReturn);
 		return fieldsToReturn;
 	}
 

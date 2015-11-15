@@ -7,6 +7,7 @@
     function FormController ($scope, $rootScope, FormService) {
 
         var model = this;
+        model.user = $rootScope.user;
         model.addForm = addForm;
         model.deleteForm = deleteForm;
         model.selectForm = selectForm;

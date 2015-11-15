@@ -1,7 +1,7 @@
 <h1 class="page-header">Forms</h1>
       <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="#">Forms</a></li>
-            <li role="presentation"><a href="form-fields.html">Fields</a></li>
+            <li ng-class="{'active' : $location.url().indexOf('forms') != -1}"><a href="#">Forms</a></li>
+            <li ng-class="{'active' : $location.url().indexOf('fields') != -1}"><a href="#/fields">Fields</a></li>
       </ul>
 <br>
 <div class="table-responsive">
@@ -21,7 +21,10 @@
             </thead>
             <tbody>
                   <tr ng-repeat="entry in model.forms">
-                        <td>{{entry.title}}</td>
+                        <td>
+                              <a href="#/user/{{model.user.id}}/form/{{entry.id}}/fields">{{entry.title}}</a>
+                        <!--      <a href="#/details/{{entry.id}}">{{entry.title}}</a>  -->
+                        </td>
                         <td>
                               <button ng-click="model.deleteForm(entry.id)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
                               <button ng-click="model.selectForm(entry.id)" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button>
