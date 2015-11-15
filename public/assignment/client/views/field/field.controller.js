@@ -29,13 +29,12 @@
                 model.fields = response;
                 console.log(response);
             }
-
         }
 
         function removeField (field) {
             FieldService.deleteFieldFromForm(formId, field.id).then(initiateDelete);
             function initiateDelete (response) {}
-            loadFields(formId);
+            loadFields();
         }
 
         function addField (fieldType) {

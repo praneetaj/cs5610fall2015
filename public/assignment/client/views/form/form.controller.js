@@ -22,7 +22,13 @@
         }
 
         function addForm () {
-            FormService.createFormForUser($rootScope.user.id, model.newForm).then(initiateFormCreation);
+            var newForm = {
+                id : null,
+                title : model.newForm.title,
+                userId : $rootScope.user.id,
+                fields : []
+            };
+            FormService.createFormForUser($rootScope.user.id, newForm).then(initiateFormCreation);
 
             function initiateFormCreation(response) {
                 model.forms = response;

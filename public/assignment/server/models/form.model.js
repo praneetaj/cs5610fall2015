@@ -141,7 +141,7 @@ module.exports = function (app) {
 				var fields = forms[i].fields;
 				for (var j = 0; j < fields.length; j++) {
 					if (fields[j].id == fieldId) {
-						forms[i].fields[j].splice(j, 1);
+						forms[i].fields.splice(j, 1);
 						break;
 					}
 				}
