@@ -1,12 +1,12 @@
 var model = require("../models/user.model.js")();
 
 module.exports = function (app) {
-	app.get("/api/assignment/user/username=:username&password=:password", getUserByUsernameAndPassword);
+	app.get("/api/assignment/user/username=:username&password=:password", findUserByUsernameAndPassword);
 	app.post("/api/assignment/user", createUser);
 	app.get("/api/assignment/user", findAllUsers);
-	app.get("/api/assignment/user/:id", findUserById);
-	app.put("/api/assignment/user/:id", updateUser);
-	app.delete("/api/assignment/user/:id", deleteUser);
+	app.get("/api/assignment/user/:userId", findUserById);
+	app.put("/api/assignment/user/:userId", updateUser);
+	app.delete("/api/assignment/user/:userId", deleteUser);
 	app.get("/api/assignment/user/username=:username", findUserByUsername);
 
 	function createUser (req, res) {
@@ -19,7 +19,7 @@ module.exports = function (app) {
 	}
 
 	function findUserById (req, res) {
-		var id = req.params.id;
+		var id = req.params.userId;
 		res.json(model.findUserById(id));
 	}
 
@@ -28,7 +28,7 @@ module.exports = function (app) {
 		res.json(model.findUserByUsername(username));
 	}
 
-	function getUserByUsernameAndPassword (req, res) {
+	function findUserByUsernameAndPassword (req, res) {
 		var credentials = {
 			"username" : req.params.username,
 			"password" : req.params.password
@@ -37,13 +37,13 @@ module.exports = function (app) {
 	}
 
 	function updateUser (req, res) {
-		var id = req.params.id;
+		var id = req.params.userId;
 		var updatedUser = req.body;
 		res.json(model.updateUser(id, updatedUser));
 	}
 
 	function deleteUser (req, res) {
-		var id = req.params.id;
+		var id = req.params.userId;
 		res.json(model.deleteUser(id));
 	}
 };

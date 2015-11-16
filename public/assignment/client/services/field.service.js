@@ -8,8 +8,10 @@
 
         var api = {
             getFieldsForForm : getFieldsForForm,
-            createNewFieldForFormId : createNewFieldForFormId,
-            deleteFieldFromForm : deleteFieldFromForm
+            createFieldForForm : createFieldForForm,
+            deleteFieldFromForm : deleteFieldFromForm,
+            getFieldForForm : getFieldForForm,
+            updateField : updateField
         };
         return api;
 
@@ -23,7 +25,7 @@
             return deferred.promise;
         }
 
-        function createNewFieldForFormId (formId, newField) {
+        function createFieldForForm (formId, newField) {
             var deferred = $q.defer();
             $http
                 .post("/api/assignment/form/" + formId + "/field", newField)
@@ -38,6 +40,26 @@
             var deferred = $q.defer();
             $http
                 .delete("/api/assignment/form/" + formId + "/field/" + fieldId)
+                .success(function (response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
+        function getFieldForForm (formId, fieldId) {
+            var deferred = $q.defer();
+            $http
+                .get("/api/assignment/form/" + formId + "/field/" + fieldId)
+                .success(function (response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
+        function updateField (formId, fieldId, field) {
+            var deferred = $q.defer();
+            $http
+                .put("/api/assignment/form/" + formId + "/field/" + fieldId, field)
                 .success(function (response) {
                     deferred.resolve(response);
                 });

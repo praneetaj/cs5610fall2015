@@ -165,7 +165,7 @@ module.exports = function (app) {
 				var fields = forms[i].fields;
 				for (var j = 0; j < fields.length; j++) {
 					if (fields[j].id == fieldId) {
-						forms[i].fields[j].id = updatedField.id;
+						forms[i].fields[j].id = fieldId;
 						forms[i].fields[j].label = updatedField.label;
 						forms[i].fields[j].type = updatedField.type;
 						forms[i].fields[j].placeholder = updatedField.placeholder;
@@ -174,6 +174,6 @@ module.exports = function (app) {
 				}
 			}
 		}
-		return forms[i];
+		return forms;
 	}
 };

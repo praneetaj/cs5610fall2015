@@ -4,7 +4,7 @@
         .module("FormBuilderApp")
         .controller("FieldController", FieldController);
 
-    function FieldController (FieldService, FormService, $routeParams, $rootScope) {
+    function FieldController (FieldService, FormService, $routeParams) {
         var model = this;
         var userId = $routeParams.userId;
         var formId = $routeParams.formId;
@@ -14,27 +14,23 @@
         FormService.findFormByFormId(formId).then(initiateFindFormById);
 
         function initiateFindFormById (response) {
-            console.log("reached here");
             model.form = response;
-            console.log(model.form);
         }
 
         loadFields();
-
-        console.log(userId + " " +formId);
 
         function loadFields () {
             FieldService.getFieldsForForm(formId).then(initiateGetFieldsForForm);
             function initiateGetFieldsForForm (response) {
                 model.fields = response;
-                console.log(response);
             }
         }
 
         function removeField (field) {
             FieldService.deleteFieldFromForm(formId, field.id).then(initiateDelete);
-            function initiateDelete (response) {}
-            loadFields();
+            function initiateDelete (response) {
+                loadFields();
+            }
         }
 
         function addField (fieldType) {
@@ -99,14 +95,11 @@
                         "placeholder" : "New Field"
                     };
             }
-            console.log(fieldType);
-            console.log(newField);
 
-            FieldService.createNewFieldForFormId(formId, newField).then(initiateFieldCreate);
+            FieldService.createFieldForForm(formId, newField).then(initiateFieldCreate);
             function initiateFieldCreate (response) {
+                loadFields();
             }
-
-            loadFields(formId);
         }
     }
 }) ();
