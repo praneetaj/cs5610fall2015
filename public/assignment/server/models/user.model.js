@@ -29,9 +29,10 @@ module.exports = function (app) {
 			id : guid(),
 			username : newuser.username,
 			password : newuser.password,
-			email : newuser.email
+			email : newuser.email,
+			firstName : newuser.firstName,
+			lastName : newuser.lastName
 		};
-		console.log(user);
 		users.push(user);
 		return users;
 	}
@@ -62,7 +63,7 @@ module.exports = function (app) {
 		return toReturn;
 	}
 
-	function findUserByCredentials(credentials) {
+	function findUserByCredentials (credentials) {
 		var toReturn = null;
 		for (var i = 0; i < users.length; i++) {
 			if (users[i].username == credentials.username && users[i].password == credentials.password) {
@@ -70,7 +71,6 @@ module.exports = function (app) {
 				break;
 			}
 		}
-		console.log(toReturn);
 		return toReturn;
 	}
 
