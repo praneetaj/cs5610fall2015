@@ -1,6 +1,4 @@
-var model = require("../models/form.model.js")();
-
-module.exports = function(app) {
+module.exports = function(app, model) {
     app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldByFieldAndFormId);
     app.get("/api/assignment/form/:formId/field", findAllFieldsForFormId);
     app.get("/api/assignment/form/:formId/field/:fieldId", findFieldByFieldAndFormId);

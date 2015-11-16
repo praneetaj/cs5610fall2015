@@ -1,6 +1,4 @@
-var model = require("../models/form.model.js")();
-
-module.exports = function(app) {
+module.exports = function(app, model) {
     app.post("/api/assignment/form", createForm);
     app.get("/api/assignment/form", findAllForms);
     app.get("/api/assignment/form/:formId", findFormById);

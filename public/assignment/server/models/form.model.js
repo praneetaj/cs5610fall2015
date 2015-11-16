@@ -1,4 +1,5 @@
 var forms = require("./form.mock.json");
+var uuid = require('node-uuid');
 
 module.exports = function (app) {
 	var api = {
@@ -18,19 +19,9 @@ module.exports = function (app) {
 	};
 	return api;
 
-	function guid() {
-		function s4() {
-			return Math.floor((1 + Math.random()) * 0x10000)
-				.toString(16)
-				.substring(1);
-		}
-		return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-			s4() + '-' + s4() + s4() + s4();
-	}
-
 	function createForm (newform) {
 		var form = {
-			id : guid(),
+			id : uuid.v1(),
 			title : newform.title,
 			userId : newform.userId,
 			fields : newform.fields
@@ -99,7 +90,7 @@ module.exports = function (app) {
 
 	function createFormForUserId (userId, newform) {
 		var form = {
-			id : guid(),
+			id : uuid.v1(),
 			title : newform.title,
 			userId : userId,
 			fields : newform.fields

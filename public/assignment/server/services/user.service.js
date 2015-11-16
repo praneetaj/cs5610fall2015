@@ -1,6 +1,4 @@
-var model = require("../models/user.model.js")();
-
-module.exports = function (app) {
+module.exports = function (app, model) {
 	app.get("/api/assignment/user/username=:username&password=:password", findUserByUsernameAndPassword);
 	app.post("/api/assignment/user", createUser);
 	app.get("/api/assignment/user", findAllUsers);
