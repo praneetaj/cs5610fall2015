@@ -29,7 +29,7 @@ module.exports = function(app, model) {
 
     function deleteFormById (req, res) {
         var formId = req.params.formId;
-        res.json(model.deleteForm(formId));
+        res.json(model.deleteFormById(formId));
     }
 
     function findAllFormsForUserId (req, res) {
