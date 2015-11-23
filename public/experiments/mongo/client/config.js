@@ -6,8 +6,13 @@
     function Configuration ($routeProvider) {
         $routeProvider
             .when("/page", {
-                templateUrl: "client/page/page.list.view.html",
+                templateUrl: "page/page.list.view.html",
                 controller: "PageListController",
+                controllerAs: "model"
+            })
+            .when("/page/:pageId/details", {
+                templateUrl : "page/page.details.view.html",
+                controller: "PageDetailsController",
                 controllerAs: "model"
             });
     }

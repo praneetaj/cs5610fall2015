@@ -1,4 +1,4 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/cd5610');
+mongoose.connect('mongodb://localhost/cs5610');
 
 console.log(mongoose);
