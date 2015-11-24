@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="LoyalUApp">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/dashboard.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script src="views/header/header.controller.js"></script>
+    <script src="views/sidebar/sidebar.controller.js"></script>
+    <title>LoyalU</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div ng-include = "'views/header/header.view.html'"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class= "col-sm-3 col-md-2 sidebar">
+                <div ng-include = "'views/sidebar/sidebar.view.html'"></div>
+            </div>
+            <div class = "col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view></div>
+        </div>
+    </div>
+</body>
+</html>
