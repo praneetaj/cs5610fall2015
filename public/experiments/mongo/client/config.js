@@ -10,6 +10,11 @@
                 controller: "PageListController",
                 controllerAs: "model"
             })
+            .when ("/page/:pageId/details/:index", {
+                templateUrl : "page/page.content.details.view.html",
+                controller: "PageContentEditorController",
+                controllerAs: "model"
+            })
             .when("/page/:pageId/details", {
                 templateUrl : "page/page.details.view.html",
                 controller: "PageDetailsController",
