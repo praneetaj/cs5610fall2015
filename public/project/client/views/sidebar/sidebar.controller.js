@@ -4,7 +4,7 @@
         .module("LoyalUApp")
         .controller("SidebarController",SidebarController);
 
-    function SidebarController () {
-        console.log ("sidebar controller");
+    function SidebarController ($scope, $location) {
+        $scope.$location = $location;
     }
 })()

@@ -3,7 +3,7 @@
         .module ("LoyalUApp")
         .controller ("HeaderController", HeaderController);
 
-    function HeaderController () {
-        console.log ("header controller");
+    function HeaderController ($scope, $location) {
+        $scope.$location = $location;
     }
 })();
