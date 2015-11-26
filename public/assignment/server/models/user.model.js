@@ -1,7 +1,10 @@
-var users = require("./user.mock.json");
+//var users = require("./user.mock.json");
 var uuid = require('node-uuid');
 
 module.exports = function (app) {
+	var UserSchema = require ("./user.schema.js") (mongoose);
+	var UserModel = mongoose.model ("UserModel", UserSchema);
+
 	var api = {
 		createUser : createUser,
 		findAllUsers : findAllUsers,
@@ -13,6 +16,58 @@ module.exports = function (app) {
 	};
 	return api;
 
+	function createUser (newuser) {
+		var deferred = q.defer ();
+
+		UserModel.create (newuser, function (err, user) {
+			if (err)
+				deferred.reject (err);
+			else
+				deferred.resolve (user);
+		});
+		return deferred.promise;
+	}
+
+	function findAllUsers () {
+		var deferred = q.defer ();
+
+		UserModel.find (function (err, users) {
+			if (err)
+				deferred.reject (err);
+			else
+				deferred.resolve (users);
+		});
+		return deferred.promise;
+	}
+
+	function findUserById (id) {
+		var deferred = q.defer ();
+
+		UserModel.findById (id, function (err, user) {
+			if (err)
+				deferred.reject (err);
+			else
+				deferred.resolve (user);
+		});
+		return deferred.promise;
+	}
+
+	function updateUser (id, updatedUser) {
+		var deferred = q.defer ();
+
+		updatedUser.delete ("_id");
+
+		UserModel.update ({_id: id}, {$set: updatedUser}, function (err, user) {
+			if (err)
+				deferred.reject (err);
+			else
+				deferred.resolve (user);
+		});
+		return deferred.promise;
+	}
+
+
+	/*
 	function createUser (newuser) {
 		var user = {
 			id : uuid.v1(),
@@ -85,5 +140,5 @@ module.exports = function (app) {
 			}
 		}
 		return users;
-	}
+	}  */
 };

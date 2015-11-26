@@ -25,7 +25,7 @@ require("./public/experiments/nodejs/angularjsClient/server.js")(app);
 require("./public/experiments/angular/jsonp/server/services/MovieService.js")(app);
 require("./public/experiments/movies/server/services/movie.service.js")(app);
 //require("./public/assignment/server/services/user.service.js") (app);
-require("./public/assignment/server/app.js")(app);
+require("./public/assignment/server/app.js")(app, mongoose, db);
 require("./public/experiments/mongo/server/app.js")(app, mongoose, db);
 
 app.listen(port, ipaddress);
