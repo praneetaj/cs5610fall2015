@@ -11,7 +11,7 @@
 
         function register() {
             var newuser = {
-                id : null,
+                _id : null,
                 username : model.user.username,
                 password : model.user.password,
                 email : model.user.email,
@@ -25,11 +25,6 @@
             console.log (user);
             $rootScope.user = user;
             $location.url("/profile");
-/*
-            UserService.findUserByUsernameAndPassword(model.user.username, model.user.password).then(function (registeredUser) {
-                $rootScope.user = registeredUser;
-                $location.url("/profile");
-            }); */
         }
     }
 }) ();

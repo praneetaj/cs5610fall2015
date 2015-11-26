@@ -12,10 +12,8 @@ module.exports = function (mongoose, db) {
 		findUserById : findUserById,
 		updateUser : updateUser,
 		deleteUser : deleteUser,
-		findUserByCredentials : findUserByCredentials
-		/*,
-		findUserByUsername: findUserByUsername,
-		 */
+		findUserByCredentials : findUserByCredentials,
+		findUserByUsername: findUserByUsername
 	};
 	return api;
 
@@ -24,7 +22,7 @@ module.exports = function (mongoose, db) {
 
 		UserModel.create (newuser, function (err, user) {
 			if (err)
-				deferred.reject (err);
+				deferred.reject(err);
 			else
 				deferred.resolve (user);
 		});
@@ -58,7 +56,7 @@ module.exports = function (mongoose, db) {
 	function updateUser (id, updatedUser) {
 		var deferred = q.defer ();
 
-		updatedUser.delete ("_id");
+		//updatedUser.delete ("_id");
 
 		UserModel.update ({_id: id}, {$set: updatedUser}, function (err, user) {
 			if (err)
@@ -84,7 +82,7 @@ module.exports = function (mongoose, db) {
 	function findUserByCredentials (credentials) {
 		var deferred = q.defer ();
 
-		UserModel.find ({username : credentials.username}, {password : credentials.password}, function (err, user) {
+		UserModel.find ({$and : [{username : credentials.username}, {password : credentials.password}]}, function (err, user) {
 			if (err)
 				deferred.reject (err);
 			else
@@ -93,78 +91,15 @@ module.exports = function (mongoose, db) {
 		return deferred.promise;
 	}
 
-	/*
-	function createUser (newuser) {
-		var user = {
-			id : uuid.v1(),
-			username : newuser.username,
-			password : newuser.password,
-			email : newuser.email,
-			firstName : newuser.firstName,
-			lastName : newuser.lastName
-		};
-		users.push(user);
-		return users;
-	}
-
-	function findAllUsers() {
-		return users;
-	}
-
-	function findUserById (id) {
-		var toReturn = null;
-		for (var i = 0; i < users.length; i++) {
-			if (users[i].id == id) {
-				toReturn = users[i];
-				break;
-			}
-		}
-		return toReturn;
-	}
-
 	function findUserByUsername (username) {
-		var toReturn = null;
-		for (var i = 0; i < users.length; i++) {
-			if (users[i].username == username) {
-				toReturn = users[i];
-				break;
-			}
-		}
-		return toReturn;
-	}
+		var deferred = q.defer ();
 
-	function findUserByCredentials (credentials) {
-		var toReturn = null;
-		for (var i = 0; i < users.length; i++) {
-			if (users[i].username == credentials.username && users[i].password == credentials.password) {
-				toReturn = users[i];
-				break;
-			}
-		}
-		return toReturn;
+		UserModel.find ({username : username}, function (err, user) {
+			if (err)
+				deferred.reject (err);
+			else
+				deferred.resolve (user);
+		});
+		return deferred.promise;
 	}
-
-	function updateUser (id, updatedUser) {
-		for (var index = 0; index < users.length; index++) {
-			if (users[index].id == id) {
-				users[index].userName = updatedUser.userName;
-				users[index].password = updatedUser.password;
-				users[index].email = updatedUser.email;
-				users[index].firstName = updatedUser.firstName;
-				users[index].lastName = updatedUser.lastName;
-				break;
-			}
-		}
-		return users;
-	}
-
-	function deleteUser (id) {
-		for (var index = 0; index < users.length; index++) {
-			if (users[index].id == id) {
-				users.splice(index, 1);
-				break;
-			}
-		}
-		return users;
-	}  */
 };

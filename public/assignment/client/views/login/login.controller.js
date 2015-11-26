@@ -15,9 +15,8 @@
         function login() {
             UserService.findUserByUsernameAndPassword(model.username, model.password).then(initiateLogin);
 
-            function initiateLogin(response) {
-                $rootScope.user = response;
-                console.log(response);
+            function initiateLogin (response) {
+                $rootScope.user = response[0];
                 $location.url("/profile");
             }
         }
