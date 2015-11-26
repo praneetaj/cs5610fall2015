@@ -10,4 +10,5 @@ module.exports = function (mongoose) {
             }
         ]
     }, {collection : "cs5610.assignment.form"});
+    return FormSchema;
 };

@@ -14,6 +14,7 @@
 
         function initiateUserCreation(newUser) {
             $rootScope.user = newUser;
+            console.log (newUser);
             $scope.$location.url("/profile");
         }
     }

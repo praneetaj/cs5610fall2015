@@ -21,11 +21,15 @@
             UserService.createUser(newuser).then(initiateUserCreation);
         }
 
-        function initiateUserCreation (response) {
+        function initiateUserCreation (user) {
+            console.log (user);
+            $rootScope.user = user;
+            $location.url("/profile");
+/*
             UserService.findUserByUsernameAndPassword(model.user.username, model.user.password).then(function (registeredUser) {
                 $rootScope.user = registeredUser;
                 $location.url("/profile");
-            });
+            }); */
         }
     }
 }) ();

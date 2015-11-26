@@ -14,6 +14,7 @@
             var updatedUser = model.user;
             $rootScope.user = model.user;
             console.log(updatedUser);
+            console.log(id);
             var id = updatedUser.id;
             UserService.updateUser(id, updatedUser).then(initiateUpdate);
 

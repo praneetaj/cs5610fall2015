@@ -1,9 +1,10 @@
-//var forms = require("./form.mock.json");
+var forms = require("./form.mock.json");
+//var q = require ("q");
 var uuid = require('node-uuid');
 
-module.exports = function (app, mongoose, db) {
-	var FormSchema = require ("./form.schema.js") (mongoose);
-	var FormModel = mongoose.model ("FormModel", FormSchema);
+module.exports = function (mongoose, db) {
+/*	var FormSchema = require ("./form.schema.js") (mongoose);
+	var FormModel = mongoose.model ("FormModel", FormSchema); */
 	var api = {
 		createForm : createForm,
 		findAllForms : findAllForms,
@@ -22,7 +23,7 @@ module.exports = function (app, mongoose, db) {
 	return api;
 
 
-	/*
+
 	function createForm (newform) {
 		var form = {
 			id : uuid.v1(),
@@ -170,5 +171,5 @@ module.exports = function (app, mongoose, db) {
 			}
 		}
 		return forms;
-	} */
+	}
 };

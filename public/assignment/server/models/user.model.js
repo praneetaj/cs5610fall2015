@@ -1,7 +1,8 @@
 //var users = require("./user.mock.json");
+var q = require ("q");
 var uuid = require('node-uuid');
 
-module.exports = function (app) {
+module.exports = function (mongoose, db) {
 	var UserSchema = require ("./user.schema.js") (mongoose);
 	var UserModel = mongoose.model ("UserModel", UserSchema);
 
@@ -11,8 +12,10 @@ module.exports = function (app) {
 		findUserById : findUserById,
 		updateUser : updateUser,
 		deleteUser : deleteUser,
-		findUserByUsername: findUserByUsername,
 		findUserByCredentials : findUserByCredentials
+		/*,
+		findUserByUsername: findUserByUsername,
+		 */
 	};
 	return api;
 
@@ -66,6 +69,29 @@ module.exports = function (app) {
 		return deferred.promise;
 	}
 
+	function deleteUser (id) {
+		var deferred = q.defer ();
+
+		UserModel.remove (id, function (err, status) {
+			if (err)
+				deferred.reject (err);
+			else
+				deferred.resolve (status);
+		});
+		return deferred.promise;
+	}
+
+	function findUserByCredentials (credentials) {
+		var deferred = q.defer ();
+
+		UserModel.find ({username : credentials.username}, {password : credentials.password}, function (err, user) {
+			if (err)
+				deferred.reject (err);
+			else
+				deferred.resolve (user);
+		});
+		return deferred.promise;
+	}
 
 	/*
 	function createUser (newuser) {
