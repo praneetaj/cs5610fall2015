@@ -53,13 +53,11 @@
         }
 
         function updateForm() {
-            FormService.updateFormById(model.newForm.id, model.newForm).then(initiateUpdate);
+            FormService.updateFormById(model.newForm._id, model.newForm).then(initiateUpdate);
 
             function initiateUpdate (response) {
-                FormService.findAllFormsForUser($rootScope.user.id).then(function (allFormsForUser) {
-                    model.forms = allFormsForUser;
-                    model.newForm = null;
-                });
+                model.newForm.title = "";
+                init ();
             }
         }
 

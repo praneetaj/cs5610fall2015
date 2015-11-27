@@ -9,9 +9,10 @@ module.exports = function (mongoose, db) {
 		findAllForms : findAllForms,
 		findAllFormsForUserId : findAllFormsForUserId,
 		deleteFormById : deleteFormById,
-		findFormByFormId : findFormByFormId
-/*		
-		updateForm : updateForm,
+		findFormByFormId : findFormByFormId,
+		updateFormByFormId : updateFormByFormId
+/*
+		,
 
 		findFormByTitle : findFormByTitle,
 		,
@@ -86,24 +87,23 @@ module.exports = function (mongoose, db) {
 		return deferred.promise;
 	}
 
+	function updateFormByFormId (id, updatedForm) {
+		var deferred = q.defer ();
+
+		//updatedUser.delete ("_id");
+
+		FormModel.update ({"_id" : id}, {$set: updatedForm}, function (err, form) {
+			if (err)
+				deferred.reject (err);
+			else
+				deferred.resolve (form);
+		});
+		return deferred.promise;
+	}
+
 
 	/*
-
-        function updateForm (id, updatedForm) {
-            for (var index = 0; index < forms.length; index++) {
-                if (forms[index].id == id) {
-                    forms[index].title = updatedForm.title;
-                    forms[index].userId = updatedForm.userId;
-                    forms[index].fields = updatedForm.fields;
-                    break;
-                }
-            }
-            return forms;
-        }
-
-
-
-        function findFormByTitle (title) {
+	    function findFormByTitle (title) {
             var toReturn = null;
             for (var i = 0; i < forms.length; i++) {
                 if (forms[i].title == title) {
