@@ -13,37 +13,43 @@
         model.selectForm = selectForm;
         model.updateForm = updateForm;
 
-        if ($rootScope.user != null) {
-            FormService.findAllFormsForUser($rootScope.user.id).then(initiateGetAllFormsForUser);
-
-            function initiateGetAllFormsForUser (response) {
-                model.forms = response;
+        function init () {
+            FormService.findAllForms().then(function (response) {
+                console.log (response);
+            });
+            if ($rootScope.user != null) {
+                console.log ($rootScope.user._id);
+                FormService.findAllFormsForUserId($rootScope.user._id).then(initiateGetAllFormsForUser);
             }
         }
 
+        function initiateGetAllFormsForUser (forms) {
+            model.forms = forms;
+            console.log (forms);
+        }
+
+        init();
+
         function addForm () {
             var newForm = {
-                id : null,
                 title : model.newForm.title,
-                userId : $rootScope.user.id,
+                userId : $rootScope.user._id,
                 fields : []
             };
-            FormService.createFormForUser($rootScope.user.id, newForm).then(initiateFormCreation);
+            console.log (newForm);
+            FormService.createFormForUser($rootScope.user._id, newForm).then(initiateFormCreation);
 
-            function initiateFormCreation(response) {
-                model.forms = response;
+            function initiateFormCreation (response) {
+                init();
                 model.newForm.title = "";
             }
         }
 
         function deleteForm (formId) {
-            FormService.deleteFormById(formId).then(initiateDelete);
-
-            function initiateDelete (response) {
-                FormService.findAllFormsForUser($rootScope.user.id).then(function (allFormsForUser) {
-                    model.forms = allFormsForUser;
-                });
-            }
+            console.log (formId);
+            FormService.deleteFormById(formId).then(function () {
+                init();
+            });
         }
 
         function updateForm() {
@@ -62,6 +68,7 @@
 
             function initiateFindFormById (response) {
                 model.newForm = response;
+                init ();
             }
         }
     }

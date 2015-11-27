@@ -1,6 +1,5 @@
 //var users = require("./user.mock.json");
 var q = require ("q");
-var uuid = require('node-uuid');
 
 module.exports = function (mongoose, db) {
 	var UserSchema = require ("./user.schema.js") (mongoose);
@@ -70,7 +69,7 @@ module.exports = function (mongoose, db) {
 	function deleteUser (id) {
 		var deferred = q.defer ();
 
-		UserModel.remove (id, function (err, status) {
+		UserModel.remove ({"_id" : id}, function (err, status) {
 			if (err)
 				deferred.reject (err);
 			else

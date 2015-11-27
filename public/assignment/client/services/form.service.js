@@ -8,14 +8,16 @@
 
         var api = {
             createFormForUser : createFormForUser,
-            findAllFormsForUser : findAllFormsForUser,
+            findAllFormsForUserId : findAllFormsForUserId,
             deleteFormById : deleteFormById,
             updateFormById : updateFormById,
-            findFormByFormId : findFormByFormId
+            findFormByFormId : findFormByFormId,
+            findAllForms : findAllForms
         };
         return api;
 
         function createFormForUser(userId, form) {
+            console.log (form);
             var deferred = $q.defer();
             $http
                 .post("/api/assignment/user/" + userId + "/form", form)
@@ -25,7 +27,7 @@
             return deferred.promise;
         }
 
-        function findAllFormsForUser (userId) {
+        function findAllFormsForUserId (userId) {
             var deferred = $q.defer();
             $http
                 .get("/api/assignment/user/" + userId + "/form")
@@ -59,6 +61,16 @@
             var deferred = $q.defer();
             $http
                 .get("/api/assignment/form/" + formId)
+                .success(function (response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
+        function findAllForms () {
+            var deferred = $q.defer();
+            $http
+                .get("/api/assignment/form")
                 .success(function (response) {
                     deferred.resolve(response);
                 });

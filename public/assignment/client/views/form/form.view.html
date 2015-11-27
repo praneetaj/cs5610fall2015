@@ -25,8 +25,8 @@
                               <a href="#/user/{{model.user.id}}/form/{{entry.id}}/fields">{{entry.title}}</a>
                         </td>
                         <td>
-                              <button ng-click="model.deleteForm(entry.id)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
-                              <button ng-click="model.selectForm(entry.id)" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button>
+                              <button ng-click="model.deleteForm(entry._id)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                              <button ng-click="model.selectForm(entry._id)" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button>
                         </td>
                   </tr>
             </tbody>

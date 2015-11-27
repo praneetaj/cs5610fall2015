@@ -16,8 +16,16 @@
             UserService.findUserByUsernameAndPassword(model.username, model.password).then(initiateLogin);
 
             function initiateLogin (response) {
-                $rootScope.user = response[0];
-                $location.url("/profile");
+                var users = response;
+                if (users.length != 0) {
+                    $rootScope.user = users[0];
+                    console.log(users);
+                    $location.url("/profile");
+                } else {
+                    alert("Please enter valid username and password!");
+                    model.username = "";
+                    model.password = "";
+                }
             }
         }
     }
