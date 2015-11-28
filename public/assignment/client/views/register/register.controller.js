@@ -11,7 +11,6 @@
 
         function register() {
             var newuser = {
-                _id : null,
                 username : model.user.username,
                 password : model.user.password,
                 email : model.user.email,
