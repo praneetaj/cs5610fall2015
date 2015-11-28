@@ -15,11 +15,6 @@ module.exports = function (mongoose, db) {
 		createNewFieldForFormId : createNewFieldForFormId,
 		deleteFieldByFieldAndFormId : deleteFieldByFieldAndFormId
 /*
-		,
-
-		findFormByTitle : findFormByTitle,
-		,
-		createFormForUserId : createFormForUserId,
 
 		findFieldByFieldAndFormId : findFieldByFieldAndFormId,
 		,
@@ -148,6 +143,23 @@ module.exports = function (mongoose, db) {
 		return deferred.promise;
 	}
 
+	function findFieldByFieldAndFormId (formId, fieldId) {
+		var deferred = q.defer ();
+
+		FormModel.find ({$and : [{"_id" : formId}, {}]}, function (err, form) {
+			if (err)
+				deferred.reject (err);
+			else {
+				form.fields.splice (fieldIndex, 1);
+				form.save (function (err, form) {
+					deferred.resolve(form);
+				});
+			}
+		});
+		return deferred.promise;
+	}
+
+
 
 	/*
 	    function findFormByTitle (title) {
@@ -161,33 +173,6 @@ module.exports = function (mongoose, db) {
             return toReturn;
         }
 
-
-
-        function createFormForUserId (userId, newform) {
-            var form = {
-                id : uuid.v1(),
-                title : newform.title,
-                userId : userId,
-                fields : newform.fields
-            };
-            forms.push(form);
-            return findAllFormsForUserId(userId);
-        }
-
-
-
-        function findFieldByFieldAndFormId (formId, fieldId) {
-            for (var i = 0; i < forms.length; i++) {
-                if (forms[i].id == formId) {
-                    var fields = forms[i].fields;
-                    for (var j = 0; j < fields.length; j++) {
-                        if (fields[j].id == fieldId)
-                            return fields[j];
-                    }
-                }
-            }
-            return null;
-        }
 
 
 

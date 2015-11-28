@@ -30,11 +30,13 @@ module.exports = function(app, model) {
                 res.json (field);
             });
     }
-
+/*
     function findFieldByFieldAndFormId (req, res) {
-        var formId = req.params.formId;
-        var fieldId = req.params.fieldId;
-        res.json(model.findFieldByFieldAndFormId(formId, fieldId));
+        model
+            .findFieldByFieldAndFormId (req.params.formId, req.params.fieldId)
+                .then (function (field) {
+                res.json (field);
+        });
     }
 
     function updateFieldByFieldAndFormId (req, res) {
@@ -42,5 +44,5 @@ module.exports = function(app, model) {
         var fieldId = req.params.fieldId;
         var updatedField = req.body;
         res.json(model.updateFieldByFieldAndFormId(formId, fieldId, updatedField));
-    }
+    }  */
 };
