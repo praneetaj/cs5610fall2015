@@ -22,7 +22,7 @@
             <tbody>
                   <tr ng-repeat="entry in model.forms">
                         <td>
-                              <a href="#/user/{{model.user.id}}/form/{{entry.id}}/fields">{{entry.title}}</a>
+                              <a href="#/user/{{model.user._id}}/form/{{entry._id}}/fields">{{entry.title}}</a>
                         </td>
                         <td>
                               <button ng-click="model.deleteForm(entry._id)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>

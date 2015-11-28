@@ -20,14 +20,15 @@
         loadFields();
 
         function loadFields () {
-            FieldService.getFieldsForForm(formId).then(initiateGetFieldsForForm);
+            FieldService.findAllFieldsForFormId(formId).then(initiateGetFieldsForForm);
             function initiateGetFieldsForForm (response) {
-                model.fields = response;
+                console.log (response.fields);
+                model.fields = response.fields;
             }
         }
 
-        function removeField (field) {
-            FieldService.deleteFieldFromForm(formId, field.id).then(initiateDelete);
+        function removeField (index) {
+            FieldService.deleteFieldFromForm(formId, index).then(initiateDelete);
             function initiateDelete (response) {
                 loadFields();
             }
@@ -38,60 +39,61 @@
             switch (fieldType) {
                 case "Single Line Text" :
                     newField = {
-                        "id" : null,
                         "label" : "New Text Field",
-                        "type" : "TEXT",
+                        "fieldType" : "TEXT",
+                        "options" : null,
                         "placeholder" : "New Field"
                     };
                     break;
                 case "Date" :
                     newField = {
-                        "id" : null,
                         "label" : "New Date Field",
-                        "type" : "DATE"
+                        "fieldType" : "DATE",
+                        "options" : null,
+                        "placeholder" : "New Field"
                     };
                     break;
                 case "Dropdown" :
                     newField = {
-                        "id" : null,
                         "label" : "New Dropdown",
-                        "type" : "OPTIONS",
+                        "fieldType" : "OPTIONS",
                         "options" : [
                             {"label": "Option 1", "value": "OPTION_1"},
                             {"label": "Option 2", "value": "OPTION_2"},
                             {"label": "Option 3", "value": "OPTION_3"}
-                        ]
+                        ],
+                        "placeholder" : null
                     };
                     break;
                 case "Checkboxes" :
                     newField = {
-                        "id" : null,
                         "label" : "New Checkboxes",
-                        "type" : "CHECKBOXES",
+                        "fieldType" : "CHECKBOXES",
                         "options" : [
                             {"label": "Option A", "value": "OPTION_A"},
                             {"label": "Option B", "value": "OPTION_B"},
                             {"label": "Option C", "value": "OPTION_C"}
-                        ]
+                        ],
+                        "placeholder" : null
                     };
                     break;
                 case "Radio buttons" :
                     newField = {
-                        "id": null,
                         "label": "New Radio Buttons",
-                        "type": "RADIOS",
+                        "fieldType": "RADIOS",
                         "options": [
                             {"label": "Option X", "value": "OPTION_X"},
                             {"label": "Option Y", "value": "OPTION_Y"},
                             {"label": "Option Z", "value": "OPTION_Z"}
-                        ]
+                        ],
+                        "placeholder" : null
                     };
                     break;
                 case "Multi Line Text" :
                     newField = {
-                        "id" : null,
                         "label" : "New Text Field",
-                        "type" : "TEXTAREA",
+                        "fieldType" : "TEXTAREA",
+                        "options" : null,
                         "placeholder" : "New Field"
                     };
             }

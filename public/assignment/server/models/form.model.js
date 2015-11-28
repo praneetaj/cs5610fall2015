@@ -10,17 +10,20 @@ module.exports = function (mongoose, db) {
 		findAllFormsForUserId : findAllFormsForUserId,
 		deleteFormById : deleteFormById,
 		findFormByFormId : findFormByFormId,
-		updateFormByFormId : updateFormByFormId
+		updateFormByFormId : updateFormByFormId,
+		findAllFieldsForFormId : findAllFieldsForFormId,
+		createNewFieldForFormId : createNewFieldForFormId,
+		deleteFieldByFieldAndFormId : deleteFieldByFieldAndFormId
 /*
 		,
 
 		findFormByTitle : findFormByTitle,
 		,
 		createFormForUserId : createFormForUserId,
-		findAllFieldsForFormId : findAllFieldsForFormId,
+
 		findFieldByFieldAndFormId : findFieldByFieldAndFormId,
-		deleteFieldByFieldAndFormId : deleteFieldByFieldAndFormId,
-		createNewFieldForFormId : createNewFieldForFormId,
+		,
+		,
 		updateFieldByFieldAndFormId : updateFieldByFieldAndFormId */
 	};
 	return api;
@@ -101,6 +104,50 @@ module.exports = function (mongoose, db) {
 		return deferred.promise;
 	}
 
+	function findAllFieldsForFormId (formId) {
+		var deferred = q.defer ();
+
+		FormModel.findById (formId, {"fields" : 1, "_id" : 0}, function (err, fields) {
+			if (err)
+				deferred.reject (err);
+			else
+				deferred.resolve (fields);
+		});
+		return deferred.promise;
+	}
+
+	function createNewFieldForFormId (formId, newField) {
+		var deferred = q.defer ();
+
+		FormModel.findById (formId, function (err, form) {
+			if (err)
+				deferred.reject (err);
+			else {
+				form.fields.push (newField);
+				form.save (function (err, form) {
+					deferred.resolve(form);
+				});
+			}
+		});
+		return deferred.promise;
+	}
+
+	function deleteFieldByFieldAndFormId (formId, fieldIndex) {
+		var deferred = q.defer ();
+
+		FormModel.findById (formId, function (err, form) {
+			if (err)
+				deferred.reject (err);
+			else {
+				form.fields.splice (fieldIndex, 1);
+				form.save (function (err, form) {
+					deferred.resolve(form);
+				});
+			}
+		});
+		return deferred.promise;
+	}
+
 
 	/*
 	    function findFormByTitle (title) {
@@ -127,17 +174,7 @@ module.exports = function (mongoose, db) {
             return findAllFormsForUserId(userId);
         }
 
-        function findAllFieldsForFormId (formId) {
-            var fieldsToReturn = [];
-            for (var i = 0; i < forms.length; i++) {
-                if (forms[i].id == formId) {
-                    fieldsToReturn = forms[i].fields;
-                    break;
-                }
-            }
-            console.log(fieldsToReturn);
-            return fieldsToReturn;
-        }
+
 
         function findFieldByFieldAndFormId (formId, fieldId) {
             for (var i = 0; i < forms.length; i++) {
@@ -152,31 +189,9 @@ module.exports = function (mongoose, db) {
             return null;
         }
 
-        function deleteFieldByFieldAndFormId (formId, fieldId) {
-            for (var i = 0; i < forms.length; i++) {
-                if (forms[i].id == formId) {
-                    var fields = forms[i].fields;
-                    for (var j = 0; j < fields.length; j++) {
-                        if (fields[j].id == fieldId) {
-                            forms[i].fields.splice(j, 1);
-                            break;
-                        }
-                    }
-                }
-            }
-            return forms;
-        }
 
-        function createNewFieldForFormId (formId, newField) {
-            newField.id = uuid.v1();
-            for (var i = 0; i < forms.length; i++) {
-                if (forms[i].id == formId) {
-                    forms[i].fields.push(newField);
-                    break;
-                }
-            }
-            return forms;
-        }
+
+
 
         function updateFieldByFieldAndFormId (formId, fieldId, updatedField) {
             for (var i = 0; i < forms.length; i++) {
