@@ -77,6 +77,7 @@
             $http
                 .put("/api/assignment/user/"+id, user)
                 .success(function (user) {
+                    console.log ("after update:"+user);
                     deferred.resolve(user);
                 });
             return deferred.promise;
