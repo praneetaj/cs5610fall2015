@@ -88,7 +88,7 @@ module.exports = function (mongoose, db) {
 	function updateFormByFormId (id, updatedForm) {
 		var deferred = q.defer ();
 
-		delete updatedUser["_id"];
+		delete updatedForm["_id"];
 
 		FormModel.update ({"_id" : id}, {$set: updatedForm}, function (err, form) {
 			if (err)
