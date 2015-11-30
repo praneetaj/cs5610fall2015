@@ -11,15 +11,12 @@ module.exports = function (mongoose, db) {
 		deleteFormById : deleteFormById,
 		findFormByFormId : findFormByFormId,
 		updateFormByFormId : updateFormByFormId,
+		findFormByTitle : findFormByTitle,
 		findAllFieldsForFormId : findAllFieldsForFormId,
 		createNewFieldForFormId : createNewFieldForFormId,
-		deleteFieldByFieldAndFormId : deleteFieldByFieldAndFormId
-/*
-
-		findFieldByFieldAndFormId : findFieldByFieldAndFormId,
-		,
-		,
-		updateFieldByFieldAndFormId : updateFieldByFieldAndFormId */
+		deleteFieldByFieldAndFormId : deleteFieldByFieldAndFormId,
+		updateFieldByFormIdAndFieldIndex : updateFieldByFormIdAndFieldIndex,
+		findFieldByFormIdAndFieldIndex : findFieldByFormIdAndFieldIndex
 	};
 	return api;
 
@@ -143,56 +140,52 @@ module.exports = function (mongoose, db) {
 		return deferred.promise;
 	}
 
-	function findFieldByFieldAndFormId (formId, fieldId) {
+	function findFieldByFormIdAndFieldIndex (formId, fieldIndex) {
 		var deferred = q.defer ();
 
-		FormModel.find ({$and : [{"_id" : formId}, {}]}, function (err, form) {
+		FormModel.findById (formId, function (err, form) {
 			if (err)
 				deferred.reject (err);
 			else {
-				form.fields.splice (fieldIndex, 1);
-				form.save (function (err, form) {
-					deferred.resolve(form);
-				});
+				deferred.resolve(form.fields[fieldIndex]);
 			}
 		});
 		return deferred.promise;
 	}
 
+	function updateFieldByFormIdAndFieldIndex (formId, fieldIndex, field) {
+		var deferred = q.defer ();
 
+		FormModel.findById (formId, function (err, form) {
+			if (err) {
+				deferred.reject (err);
+			} else {
+				form.fields[fieldIndex].label = field.label;
+				form.fields[fieldIndex].fieldType = field.fieldType;
+				form.fields[fieldIndex].options = field.options;
+				form.fields[fieldIndex].placeholder = field.placeholder;
+				form.save(function (err, form) {
+					if (err) {
+						deferred.reject(err);
+					} else {
+						deferred.resolve(form);
+					}
+				});
+			}
+		});
 
-	/*
-	    function findFormByTitle (title) {
-            var toReturn = null;
-            for (var i = 0; i < forms.length; i++) {
-                if (forms[i].title == title) {
-                    toReturn = forms[i];
-                    break;
-                }
-            }
-            return toReturn;
-        }
+		return deferred.promise;
+	}
 
+	function findFormByTitle (title) {
+		var deferred = q.defer ();
 
-
-
-
-
-        function updateFieldByFieldAndFormId (formId, fieldId, updatedField) {
-            for (var i = 0; i < forms.length; i++) {
-                if (forms[i].id == formId) {
-                    var fields = forms[i].fields;
-                    for (var j = 0; j < fields.length; j++) {
-                        if (fields[j].id == fieldId) {
-                            forms[i].fields[j].id = fieldId;
-                            forms[i].fields[j].label = updatedField.label;
-                            forms[i].fields[j].type = updatedField.type;
-                            forms[i].fields[j].placeholder = updatedField.placeholder;
-                            break;
-                        }
-                    }
-                }
-            }
-            return forms;
-        }  */
+		FormModel.find ({"title" : title}, function (err, forms) {
+			if (err)
+				deferred.reject(err);
+			else
+				deferred.resolve(forms);
+		});
+		return deferred.promise;
+	}
 };

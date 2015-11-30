@@ -1,9 +1,9 @@
 module.exports = function(app, model) {
     app.delete("/api/assignment/form/:formId/field/:fieldIndex", deleteFieldByFormIdAndFieldIndex);
     app.get("/api/assignment/form/:formId/field", findAllFieldsForFormId);
-//    app.get("/api/assignment/form/:formId/field/:fieldId", findFieldByFieldAndFormId);
+    app.get("/api/assignment/form/:formId/field/:fieldIndex", findFieldByFormIdAndFieldIndex);
     app.post("/api/assignment/form/:formId/field", createNewFieldForFormId);
-//    app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldByFieldAndFormId);
+    app.put("/api/assignment/form/:formId/field/:fieldIndex", updateFieldByFormIdAndFieldIndex);
 
     function findAllFieldsForFormId (req, res) {
         model
@@ -30,19 +30,20 @@ module.exports = function(app, model) {
                 res.json (field);
             });
     }
-/*
-    function findFieldByFieldAndFormId (req, res) {
+
+    function findFieldByFormIdAndFieldIndex (req, res) {
         model
-            .findFieldByFieldAndFormId (req.params.formId, req.params.fieldId)
-                .then (function (field) {
+            .findFieldByFormIdAndFieldIndex (req.params.formId, req.params.fieldIndex)
+            .then (function (field) {
                 res.json (field);
-        });
+            });
     }
 
-    function updateFieldByFieldAndFormId (req, res) {
-        var formId = req.params.formId;
-        var fieldId = req.params.fieldId;
-        var updatedField = req.body;
-        res.json(model.updateFieldByFieldAndFormId(formId, fieldId, updatedField));
-    }  */
+    function updateFieldByFormIdAndFieldIndex (req, res) {
+        model
+            .updateFieldByFormIdAndFieldIndex (req.params.formId, req.params.fieldIndex, req.body)
+            .then (function (field) {
+                res.json (field);
+            });
+    }
 };
