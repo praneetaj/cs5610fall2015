@@ -10,6 +10,7 @@
             createUser : createUser,
             findAllUsers : findAllUsers,
             findUserByUsernameAndPassword : findUserByUsernameAndPassword,
+            findUserByUsername :findUserByUsername,
             deleteUserById : deleteUserById,
             updateUser : updateUser
         };
@@ -19,8 +20,8 @@
             var deferred = $q.defer();
             $http
                 .post("/api/assignment/user", newUser)
-                .success(function (response) {
-                    deferred.resolve(response);
+                .success(function (user) {
+                    deferred.resolve(user);
                 });
             return deferred.promise;
         }
@@ -28,9 +29,20 @@
         function findUserByUsernameAndPassword(username, password) {
             var deferred = $q.defer();
             $http
-                .get("/api/assignment/user/username=" + username + "&password=" + password)
-                .success(function(response){
-                    deferred.resolve(response);
+                .get("/api/assignment/user?username=" + username + "&password=" + password)
+                .success(function(user){
+                    deferred.resolve(user);
+                });
+
+            return deferred.promise;
+        }
+
+        function findUserByUsername (username) {
+            var deferred = $q.defer();
+            $http
+                .get("/api/assignment/user?username=" + username)
+                .success(function(user){
+                    deferred.resolve(user);
                 });
 
             return deferred.promise;
@@ -40,8 +52,8 @@
             var deferred = $q.defer();
             $http
                 .get("/api/assignment/user")
-                .success(function (response) {
-                    deferred.resolve(response);
+                .success(function (users) {
+                    deferred.resolve(users);
                 });
             return deferred.promise;
         }
@@ -52,8 +64,8 @@
             var deferred = $q.defer();
             $http
                 .delete("/api/assignment/user/"+id)
-                .success(function (response) {
-                    deferred.resolve(response);
+                .success(function (status) {
+                    deferred.resolve(status);
                 });
             return deferred.promise;
         }
@@ -64,8 +76,8 @@
             var deferred = $q.defer();
             $http
                 .put("/api/assignment/user/"+id, user)
-                .success(function (response) {
-                    deferred.resolve(response);
+                .success(function (user) {
+                    deferred.resolve(user);
                 });
             return deferred.promise;
         }

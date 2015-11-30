@@ -7,10 +7,10 @@
     function FormController ($scope, $rootScope, FormService) {
         if ($rootScope.user != null) {
             FormService.findAllFormsForUser($rootScope.user.id, initiateAllForms);
+        }
 
-            function initiateAllForms(forms) {
-                $scope.forms = forms;
-            }
+        function initiateAllForms(forms) {
+            $scope.forms = forms;
         }
 
         $scope.addForm = addForm;

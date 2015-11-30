@@ -47,9 +47,7 @@
 
         function deleteForm (formId) {
             console.log (formId);
-            FormService.deleteFormById(formId).then(function () {
-                init();
-            });
+            FormService.deleteFormById(formId).then(init());
         }
 
         function updateForm() {

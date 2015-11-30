@@ -1,11 +1,11 @@
 module.exports = function (app, model) {
-	app.get("/api/assignment/user/username=:username&password=:password", findUserByUsernameAndPassword);
+//	app.get("/api/assignment/user/username=:username&password=:password", findUserByUsernameAndPassword);
 	app.post("/api/assignment/user", createUser);
-	app.get("/api/assignment/user", findAllUsers);
+	app.get("/api/assignment/user", findUser);
 	app.get("/api/assignment/user/:userId", findUserById);
 	app.put("/api/assignment/user/:userId", updateUser);
 	app.delete("/api/assignment/user/:userId", deleteUser);
-	app.get("/api/assignment/user/username=:username", findUserByUsername);
+//	app.get("/api/assignment/user/username=:username", findUserByUsername);
 
 	function createUser (req, res) {
 		model
@@ -17,6 +17,37 @@ module.exports = function (app, model) {
 			});
 	}
 
+	function findUser (req, res) {
+		var username = req.query.username;
+		var password = req.query.password;
+
+		if (typeof username == "undefined" && typeof password == "undefined") {
+			model
+				.findAllUsers ()
+				.then (function (users) {
+					res.json (users);
+				});
+		} else if (typeof username != "undefined") {
+			if (typeof password == "undefined") {
+				model
+					.findUserByUsername (req.params.id)
+					.then (function (user) {
+					res.json (user);
+				});
+			} else {
+				var credentials = {
+					"username" : username,
+					"password" : password
+				};
+				model
+					.findUserByCredentials (credentials)
+					.then (function (user) {
+						res.json (user);
+					});
+			}
+		}
+	}
+/*
 	function findUserByUsernameAndPassword (req, res) {
 		var credentials = {
 			"username" : req.params.username,
@@ -37,7 +68,7 @@ module.exports = function (app, model) {
 				res.json (users);
 			});
 	}
-
+*/
 	function updateUser (req, res) {
 		var id = req.params.userId;
 		var updatedUser = req.body;
@@ -64,11 +95,12 @@ module.exports = function (app, model) {
 			});
 	}
 
+	/*
 	function findUserByUsername (req, res) {
 		model
 			.findUserByUsername (req.params.id)
 			.then (function (user) {
 				res.json (user);
 			});
-	}
+	} */
 };
