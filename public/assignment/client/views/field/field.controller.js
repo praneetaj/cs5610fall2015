@@ -22,7 +22,6 @@
         function loadFields () {
             FieldService.findAllFieldsForFormId(formId).then(initiateGetFieldsForForm);
             function initiateGetFieldsForForm (response) {
-                console.log (response.fields);
                 model.fields = response.fields;
             }
         }

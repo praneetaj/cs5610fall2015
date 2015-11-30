@@ -19,15 +19,14 @@ module.exports = function(app, model) {
         model
             .findAllForms ()
             .then (function (form) {
-            res.json (form);
-        });
+                res.json (form);
+            });
     }
 
     function findAllFormsForUserId (req, res) {
         model
             .findAllFormsForUserId (req.params.userId)
             .then (function (forms) {
-                console.log(forms);
                 res.json (forms);
             });
     }

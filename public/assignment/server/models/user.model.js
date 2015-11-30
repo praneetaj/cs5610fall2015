@@ -79,7 +79,6 @@ module.exports = function (mongoose, db) {
 	}
 
 	function findUserByCredentials (credentials) {
-		console.log (credentials);
 		var deferred = q.defer ();
 
 		UserModel.find ({$and : [{username : credentials.username}, {password : credentials.password}]}, function (err, user) {

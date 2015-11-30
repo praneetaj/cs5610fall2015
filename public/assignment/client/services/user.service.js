@@ -71,13 +71,10 @@
         }
 
         function updateUser (id, user) {
-            console.log (id);
-            console.log (user);
             var deferred = $q.defer();
             $http
                 .put("/api/assignment/user/"+id, user)
                 .success(function (user) {
-                    console.log ("after update:"+user);
                     deferred.resolve(user);
                 });
             return deferred.promise;

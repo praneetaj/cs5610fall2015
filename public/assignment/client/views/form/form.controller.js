@@ -14,18 +14,13 @@
         model.updateForm = updateForm;
 
         function init () {
-            FormService.findAllForms().then(function (response) {
-                console.log (response);
-            });
             if ($rootScope.user != null) {
-                console.log ($rootScope.user._id);
                 FormService.findAllFormsForUserId($rootScope.user._id).then(initiateGetAllFormsForUser);
             }
         }
 
         function initiateGetAllFormsForUser (forms) {
             model.forms = forms;
-            console.log (forms);
         }
 
         init();
@@ -36,7 +31,6 @@
                 userId : $rootScope.user._id,
                 fields : []
             };
-            console.log (newForm);
             FormService.createFormForUser($rootScope.user._id, newForm).then(initiateFormCreation);
 
             function initiateFormCreation (response) {
@@ -46,7 +40,6 @@
         }
 
         function deleteForm (formId) {
-            console.log (formId);
             FormService.deleteFormById(formId).then(init());
         }
 
