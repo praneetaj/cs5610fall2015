@@ -14,6 +14,11 @@
                 controller : "SearchCouponsController",
                 controllerAs : "model"
             })
+            .when ("/details/:dealId", {
+                templateUrl : "views/search-coupons/external-coupons.details.view.html",
+                controller : "ExternalCouponsDetailsController",
+                controllerAs : "model"
+            })
             .when ("/register", {
                 templateUrl : "views/register/register-user.view.html",
                 controller : "RegisterController",

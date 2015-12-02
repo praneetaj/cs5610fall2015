@@ -10,8 +10,6 @@
         function search () {
             ExternalCouponService.searchCouponsByZipcode (model.zipcode).then(function(coupons){
                 model.coupons = coupons;
-                console.log("back to the controller");
-                console.log (coupons);
             });
         }
     }
