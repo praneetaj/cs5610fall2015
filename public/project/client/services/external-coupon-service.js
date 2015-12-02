@@ -9,7 +9,8 @@
 
         var api = {
             searchCouponsByZipcode : searchCouponsByZipcode,
-            getDealDetailsById : getDealDetailsById
+            getDealDetailsById : getDealDetailsById,
+            searchFromLocu : searchFromLocu
         };
         return api;
 
@@ -32,6 +33,17 @@
                 .success(function(response) {
                     deferred.resolve(response);
                 });
+            return deferred.promise;
+        }
+
+        function searchFromLocu () {
+            var deferred = $q.defer();
+            $http
+                .get("/api/project/locu")
+                .success(function(user){
+                    deferred.resolve(user);
+                });
+
             return deferred.promise;
         }
     }

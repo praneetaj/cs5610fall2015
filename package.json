@@ -27,7 +27,8 @@
     "express": "~3.4.4",
     "mongoose": "^4.2.8",
     "node-uuid": "^1.4.7",
-    "q": "^1.4.1"
+    "q": "^1.4.1",
+    "request": "^2.67.0"
   },
   "devDependencies": {},
   "bundleDependencies": [],
