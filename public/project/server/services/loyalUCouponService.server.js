@@ -52,6 +52,10 @@ module.exports = function (app, model) {
     }
 
     function updateCouponByLocuIdAndCouponIndex (req, res) {
-        
+        model
+            .updateCouponByLocuIdAndCouponIndex (req.params.locuId, req.params.index, req.body)
+            .then(function (response) {
+                res.json(response);
+            });
     }
 };

@@ -67,12 +67,13 @@
         function selectCoupon (index) {
             LoyalUCouponService.getCouponByLocuIdAndCouponIndex ($rootScope.loggedInUser.restLocuId, index).then(function (response) {
                 model.newCoupon = response;
+                model.selectedIndex = index;
                 console.log(model.newCoupon);
             });
         }
 
         function updateCoupon () {
-            LoyalUCouponService.updateCouponByLocuIdAndCouponIndex ($rootScope.loggedInUser.restLocuId, index, updatedCoupon).then(function (response) {
+            LoyalUCouponService.updateCouponByLocuIdAndCouponIndex ($rootScope.loggedInUser.restLocuId, model.selectedIndex, model.newCoupon).then(function (response) {
                 initCoupons();
             });
         }
