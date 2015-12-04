@@ -1,0 +1,56 @@
+<h1 class="page-header">Search LoyalU Coupons</h1>
+<div class="form-horizontal">
+    <div class="form-group">
+        <div class="col-sm-12">
+            <input type="text" class="form-control" placeholder="Enter Zipcode or City" ng-model="model.inputSearch">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <button ng-click="model.search()" class="form-control btn btn-default">Search</button>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<h3 class="page-header">Search Results</h3>
+<!--
+<table class="table borderless">
+    <!--
+    <thead>
+        <tr>
+            <th>Store Name</th>
+            <th>Deal Title</th>
+            <th>Deal Price</th>
+            <th>Deal Savings</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="restaurant in model.restaurants">
+            <td>{{restaurant.name}}</td>
+            <td>{{restaurant.zipcode}}</td>
+            <td>{{restaurant.city}}</td>
+        </tr>
+    </tbody>
+</table>
+-->
+<h3>Quantity Coupons</h3>
+<div ng-repeat="restaurant in model.restaurants">
+    <h4>{{restaurant.name}}</h4>
+    <div ng-repeat="coupon in restaurant.restCoupons">
+        <div ng-if="coupon.couponType == 'QUANTITY'">
+            {{coupon.label}}{{coupon.itemName}}{{coupon.quantity}}
+        </div>
+    </div>
+</div>
+<br>
+<h3>Amount Coupons</h3>
+<div ng-repeat="restaurant in model.restaurants">
+    <h4>{{restaurant.name}}</h4>
+    <div ng-repeat="coupon in restaurant.restCoupons">
+        <div ng-if="coupon.couponType == 'AMOUNT'">
+            {{coupon.label}}{{coupon.amount}}
+        </div>
+    </div>
+</div>

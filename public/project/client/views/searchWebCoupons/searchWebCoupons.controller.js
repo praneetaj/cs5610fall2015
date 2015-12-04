@@ -1,22 +1,22 @@
 (function () {
     angular
         .module ("LoyalUApp")
-        .controller ("SearchCouponsController", SearchCouponsController);
+        .controller ("SearchWebCouponsController", SearchWebCouponsController);
 
-    function SearchCouponsController (ExternalCouponService, $http) {
+    function SearchWebCouponsController (WebCouponService, $http) {
         var model = this;
         model.search = search;
         model.search2 = search2;
 
         function search () {
-            ExternalCouponService.searchCouponsByZipcode (model.zipcode).then(function(coupons){
+            WebCouponService.searchCouponsByZipcode (model.zipcode).then(function(coupons){
                 model.coupons = coupons;
             });
         }
 
         function search2 () {
 
-            ExternalCouponService.searchFromLocu().then(function (response) {
+            WebCouponService.searchFromLocu().then(function (response) {
                 console.log(response);
             });
         }

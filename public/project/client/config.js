@@ -9,14 +9,19 @@
             .when ("/home", {
                 templateUrl : "views/home/home.view.html"
             })
-            .when ("/search-coupons", {
-                templateUrl : "views/search-coupons/search-coupons.view.html",
-                controller : "SearchCouponsController",
+            .when ("/searchWebCoupons", {
+                templateUrl : "views/searchWebCoupons/searchWebCoupons.view.html",
+                controller : "SearchWebCouponsController",
+                controllerAs : "model"
+            })
+            .when ("/searchLoyalUCoupons", {
+                templateUrl : "views/searchLoyalUCoupons/searchLoyalUCoupons.view.html",
+                controller : "SearchLoyalUCouponsController",
                 controllerAs : "model"
             })
             .when ("/details/:dealId", {
-                templateUrl : "views/search-coupons/external-coupons.details.view.html",
-                controller : "ExternalCouponsDetailsController",
+                templateUrl : "views/searchWebCoupons/searchWebCoupons.details.view.html",
+                controller : "SearchWebCouponsDetailsController",
                 controllerAs : "model"
             })
             .when ("/register", {

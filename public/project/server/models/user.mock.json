@@ -1,0 +1,5 @@
+{"loyalUUsername": "alice", "password": "alice", "email" : "alice@gmail.com", "role" : "CUSTOMER", "restLocuId" : ""}
+{"loyalUUsername": "bob", "password": "bob", "email" : "bob@gmail.com", "role" : "CUSTOMER", "restLocuId" : ""}
+{"loyalUUsername": "charlie", "password": "charlie", "email" : "charlie@gmail.com", "role" : "CUSTOMER", "restLocuId" : ""}
+{"loyalUUsername": "dan", "password": "dan", "email" : "dan@gmail.com", "role" : "ADMIN", "restLocuId" : "a66fb14ac60ce2e603dc"}
+{"loyalUUsername": "edward", "password": "ed", "email" : "ed@gmail.com", "role" : "ADMIN", "restLocuId" : "97ec11a6fb7f74d42b86"}

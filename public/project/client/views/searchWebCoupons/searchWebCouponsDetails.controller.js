@@ -1,13 +1,13 @@
 (function () {
     angular
         .module ("LoyalUApp")
-        .controller ("ExternalCouponsDetailsController", ExternalCouponsDetailsController);
+        .controller ("SearchWebCouponsDetailsController", SearchWebCouponsDetailsController);
 
-    function ExternalCouponsDetailsController (ExternalCouponService, $routeParams) {
+    function SearchWebCouponsDetailsController (WebCouponService, $routeParams) {
         var model = this;
         var dealId = $routeParams.dealId;
         function init () {
-            ExternalCouponService.getDealDetailsById(dealId).then(function (coupon) {
+            WebCouponService.getDealDetailsById(dealId).then(function (coupon) {
                 model.coupon = coupon[0];
                 model.imageUrl = model.coupon.URL;
                 console.log(model.coupon);

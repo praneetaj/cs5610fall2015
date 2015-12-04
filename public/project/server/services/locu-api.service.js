@@ -1,18 +1,19 @@
 var http = require('http');
 var request = require('request');
 var querystring = require('querystring');
+var locuApiKey = require("./locuApiKey.js");
 
 module.exports = function (app) {
     app.get("/api/project/locu", searchFromLocu);
 
     function searchFromLocu (req, res) {
         console.log("reached server");
-        var searchquery = {"api_key" : "729f5b92b7be3b4e9f4aacb019d3ce4d9e19788d","fields" : [ "name", "menus"],"venue_queries" : [{"name": "Lunchbox laboratory"}, {"location" : {"locality" : "Seattle"}}]};
+        var searchquery = {"api_key" : locuApiKey.apiKey,"fields" : [ "locu_id", "name", "menus"],"venue_queries" : [{"name": "Lunchbox laboratory"}, {"location" : {"locality" : "Seattle"}}]};
 
         request({
             url: "https://api.locu.com/v2/venue/search",
             method: "POST",
-            json: true,   // <--Very important!!!
+            json: true,
             body: searchquery
         }, function (error, response, body){
             console.log(response);
