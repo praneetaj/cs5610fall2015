@@ -6,10 +6,10 @@ module.exports = function (app, model) {
     app.put("/api/project/restaurant/:locuId/coupon/:index", updateCouponByLocuIdAndCouponIndex);
 
     function getRestaurant (req, res) {
-        console.log("inside loyal u search services server");
+        //console.log("inside loyal u search services server");
         var searchParam = req.query.search;
         var locuId = req.query.locuId;
-        console.log(searchParam);
+        //console.log(searchParam);
 
         if (typeof searchParam != "undefined") {
             console.log("inside search param");

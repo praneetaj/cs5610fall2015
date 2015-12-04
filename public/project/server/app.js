@@ -1,4 +1,4 @@
-module.exports = function (app, mongoose, db) {
+module.exports = function (app, mongoose, db, passport, LocalStrategy) {
 
     var RestaurantModel = require("./models/restaurant.model.js") (mongoose, db);
     var userModel = require("./models/user.model.js") (mongoose, db);

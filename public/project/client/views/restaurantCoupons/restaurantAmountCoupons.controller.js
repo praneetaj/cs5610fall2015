@@ -44,7 +44,7 @@
                 dateCreated : new Date(),
                 expiry : model.newCoupon.expiry
             };
-            LoyalUCouponService.addCouponForRest($rootScope.loggedInUser.restLocuId, newCoupon).then(function (response) {
+            LoyalUCouponService.addCouponForRest($rootScope.loggenodenUser.restLocuId, newCoupon).then(function (response) {
                 initCoupons();
                 model.newCoupon.label = "";
                 model.newCoupon.description = "";

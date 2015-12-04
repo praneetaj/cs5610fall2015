@@ -9,7 +9,6 @@
 
         function search () {
             LoyalUCouponService.getRestCouponsByZipcodeOrCity(model.inputSearch).then(function (response) {
-                console.log(response);
                 model.restaurants = response;
             });
         }

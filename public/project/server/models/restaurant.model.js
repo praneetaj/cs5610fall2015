@@ -36,8 +36,20 @@ module.exports = function (mongoose, db) {
         RestaurantModel.find ({$or : [{"zipcode" : searchParam}, {"city" : searchParam}]}, function (err, response) {
             if (err)
                 deferred.reject(err);
-            else
-                deferred.resolve (response);
+            else {
+                var result = [];
+                for (var i = 0; i < response.length; i++) {
+                    for (j = 0; j < response[i].coupons.length; j++) {
+                        var newObj = {
+                            restLocuId : response[i].restLocuId,
+                            name : response[i].name,
+                            coupon : response[i].coupons[j]
+                        };
+                        result.push(newObj);
+                    }
+                }
+                deferred.resolve(result);
+            }
         });
         return deferred.promise;
     }
