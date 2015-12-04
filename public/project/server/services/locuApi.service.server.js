@@ -4,7 +4,22 @@ var querystring = require('querystring');
 var locuApiKey = require("./locuApiKey.js");
 
 module.exports = function (app) {
-    app.get("/api/project/locu", searchFromLocu);
+    //app.get("/api/project/locu", searchFromLocu);
+    app.get("/api/project/locu/:locuId", searchFromLocuByLocuId);
+
+    function searchFromLocuByLocuId (req, res) {
+        var searchquery = {"api_key" : locuApiKey.apiKey,"fields" : [ "location", "name", "menus"],"venue_queries" : [{"locu_id" : req.params.locuId}]};
+
+        request({
+            url: "https://api.locu.com/v2/venue/search",
+            method: "POST",
+            json: true,
+            body: searchquery
+        }, function (error, response, body){
+            console.log(response);
+            res.json(response);
+        });
+    }
 
     function searchFromLocu (req, res) {
         console.log("reached server");
