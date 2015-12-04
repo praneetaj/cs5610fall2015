@@ -6,7 +6,8 @@
     function LocuApiService ($http, $q) {
         var api = {
             getMenuByLocuId : getMenuByLocuId,
-            extractMenuFromResponse : extractMenuFromResponse
+            extractMenuFromResponse : extractMenuFromResponse,
+            findRestaurantByNameAndCity : findRestaurantByNameAndCity
         };
         return api;
 
@@ -14,6 +15,17 @@
             var deferred = $q.defer();
             $http
                 .get("/api/project/locu/" + locuId)
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+
+            return deferred.promise;
+        }
+
+        function findRestaurantByNameAndCity (name, city) {
+            var deferred = $q.defer();
+            $http
+                .get("/api/project/locu?restaurantName=" + name + "&city=" + city)
                 .success(function(response){
                     deferred.resolve(response);
                 });

@@ -5,12 +5,12 @@ module.exports = function (mongoose, db) {
     var ProjectUserModel = mongoose.model ("ProjectUserModel", UserSchema);
 
     var api = {
-        createUser : createUser,
+        createUser : createUser,//p
         findAllUsers : findAllUsers,
         findUserById : findUserById,
         updateUser : updateUser,
         deleteUser : deleteUser,
-        findUserByCredentials : findUserByCredentials,
+        findUserByCredentials : findUserByCredentials,//p
         findUserByUsername: findUserByUsername
     };
     return api;

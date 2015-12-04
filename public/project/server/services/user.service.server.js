@@ -9,8 +9,8 @@ module.exports = function (app, model) {
         model
             .createUser (req.body)
             .then (function (user) {
-            res.json (user);
-        });
+                res.json (user);
+            });
     }
 
     function findUser (req, res) {

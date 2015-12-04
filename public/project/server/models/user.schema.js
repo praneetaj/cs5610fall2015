@@ -12,7 +12,9 @@ module.exports = function (mongoose) {
             type : String,
             enum : ["CUSTOMER", "ADMIN"]
         },
-        restLocuId : String
+        restLocuId : String,
+        firstName : String,
+        lastName : String
     }, {collection : "cs5610.project.user"});
 
     return userSchema;

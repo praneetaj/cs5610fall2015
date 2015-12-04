@@ -6,6 +6,7 @@ var locuApiKey = require("./locuApiKey.js");
 module.exports = function (app) {
     //app.get("/api/project/locu", searchFromLocu);
     app.get("/api/project/locu/:locuId", searchFromLocuByLocuId);
+    app.get("/api/project/locu", findRestaurantByNameAndCity);
 
     function searchFromLocuByLocuId (req, res) {
         var searchquery = {"api_key" : locuApiKey.apiKey,"fields" : [ "location", "name", "menus"],"venue_queries" : [{"locu_id" : req.params.locuId}]};
@@ -21,8 +22,23 @@ module.exports = function (app) {
         });
     }
 
+    function findRestaurantByNameAndCity (req, res) {
+        var name = req.query.restaurantName;
+        var city = req.query.city;
+        var searchQuery = {"api_key" : locuApiKey.apiKey, "fields" : [ "locu_id", "name", "location" ], "venue_queries" : [{"name" : name, "location" : {"locality": city}}]};
+
+        request({
+            url: "https://api.locu.com/v2/venue/search",
+            method: "POST",
+            json: true,
+            body: searchQuery
+        }, function (error, response, body){
+            console.log(response);
+            res.json(response);
+        });
+    }
+
     function searchFromLocu (req, res) {
-        console.log("reached server");
         var searchquery = {"api_key" : locuApiKey.apiKey,"fields" : [ "locu_id", "name", "menus"],"venue_queries" : [{"name": "Lunchbox laboratory"}, {"location" : {"locality" : "Seattle"}}]};
 
         request({
@@ -31,7 +47,6 @@ module.exports = function (app) {
             json: true,
             body: searchquery
         }, function (error, response, body){
-            console.log(response);
             res.json(response);
         });
 
