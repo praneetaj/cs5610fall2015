@@ -1,7 +1,7 @@
 <h1 class="page-header">{{model.restaurantCoupons.name}}</h1>
 <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#">Quantity Coupons</a></li>
-    <li role="presentation"><a href="#/restaurantAmountCoupons">Amount Coupons</a></li>
+    <li role="presentation"><a href="#/restaurantCoupons">Quantity Coupons</a></li>
+    <li role="presentation" class="active"><a href="#">Amount Coupons</a></li>
 </ul>
 <br>
 <div class="table-responsive">
@@ -10,8 +10,7 @@
         <tr>
             <th>Title</th>
             <th>Description</th>
-            <th>Item</th>
-            <th>Quantity</th>
+            <th>Amount</th>
             <th>Created</th>
             <th>Expiry</th>
             <!--<th>Valid</th>-->
@@ -19,11 +18,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="coupon in model.restaurantCoupons.coupons" ng-if="coupon.couponType=='QUANTITY'">
+        <tr ng-repeat="coupon in model.restaurantCoupons.coupons" ng-if="coupon.couponType=='AMOUNT'">
             <td>{{coupon.label}}</td>
             <td>{{coupon.description}}</td>
-            <td>{{coupon.itemName}}</td>
-            <td>{{coupon.quantity}}</td>
+            <td>{{coupon.amount}}</td>
             <td>{{coupon.dateCreated}}</td>
             <td>{{coupon.expiry}}</td>
             <!--<td>{{restaurant.coupon.isValid}}</td>-->
@@ -36,7 +34,7 @@
     </table>
 </div>
 <br>
-<h1 class="page-header">Create Coupons</h1>
+<h1 class="page-header">Update Coupons</h1>
 <div class="form-horizontal">
     <!--
     <div class="form-group">
@@ -62,17 +60,9 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="inputItemName" class="col-sm-2 control-label">Item Name</label>
-        <div class="input-group col-sm-10">
-            <select class="form-control" id="inputItemName" ng-model="model.newCoupon.itemName">
-                <option ng-repeat="currItem in model.menuItems" value="{{currItem}}">{{currItem}}</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="inputQuantity" class="col-sm-2 control-label">Quantity</label>
+        <label for="inputAmount" class="col-sm-2 control-label">Amount</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputQuantity" ng-model="model.newCoupon.quantity">
+            <input type="text" class="form-control" id="inputAmount" ng-model="model.newCoupon.amount">
         </div>
     </div>
     <!--
@@ -90,11 +80,6 @@
         <label for="inputValidUntil" class="col-sm-2 control-label">Expiry</label>
         <div class="col-sm-10">
             <input type="date" class="form-control" id="inputValidUntil" ng-model="model.newCoupon.expiry">
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button ng-click="model.addCoupon()" type="submit" class="form-control btn btn-default">Add Coupon</button>
         </div>
     </div>
     <div class="form-group">
