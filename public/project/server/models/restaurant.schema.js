@@ -19,7 +19,7 @@ module.exports = function (mongoose) {
         name : String,
         zipcode : String,
         city : String,
-        restCoupons : [RestCouponSchema]
+        coupon : RestCouponSchema
     }, {collection : "cs5610.project.restaurant"});
 
     return RestSchema;

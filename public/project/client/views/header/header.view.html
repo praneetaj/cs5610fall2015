@@ -10,12 +10,18 @@
             <a class="navbar-brand" href="#/home">LoyalU</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse" ng-controller="HeaderController">
-            <ul class="nav navbar-nav navbar-right">
-                <li ng-class="{'active' : $location.url().indexOf('register') != -1}"><a href="#/register">Register</a></li>
-                <li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>
-                <li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Userame</a></li>
-                <li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Logout</a></li>
-            </ul>
+            <span ng-show="!loggedInUser">
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-class="{'active' : $location.url().indexOf('register') != -1}"><a href="#/register">Register</a></li>
+                    <li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>
+                </ul>
+            </span>
+            <span ng-show="loggedInUser">
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Username</a></li>
+                    <li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Logout</a></li>
+                </ul>
+            </span>
         </div>
     </div>
 </nav>

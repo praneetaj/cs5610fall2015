@@ -14,43 +14,50 @@
 <br>
 <br>
 <h3 class="page-header">Search Results</h3>
-<!--
+<h4>Quantity Coupons</h4>
 <table class="table borderless">
-    <!--
     <thead>
         <tr>
-            <th>Store Name</th>
-            <th>Deal Title</th>
-            <th>Deal Price</th>
-            <th>Deal Savings</th>
+            <th>Restaurant Name</th>
+            <th>Coupon Title</th>
+            <th>Coupon Description</th>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Expiry Date</th>
         </tr>
     </thead>
-
     <tbody>
-        <tr ng-repeat="restaurant in model.restaurants">
-            <td>{{restaurant.name}}</td>
-            <td>{{restaurant.zipcode}}</td>
-            <td>{{restaurant.city}}</td>
+        <tr ng-repeat="restaurant in model.restaurants" ng-if="restaurant.coupon.couponType == 'QUANTITY'">
+                <td>{{restaurant.name}}</td>
+                <td>{{restaurant.coupon.label}}</td>
+                <td>{{restaurant.coupon.description}}</td>
+                <td>{{restaurant.coupon.itemName}}</td>
+                <td>{{restaurant.coupon.quantity}}</td>
+                <td>{{restaurant.coupon.expiry}}</td>
         </tr>
     </tbody>
 </table>
--->
-<h3>Quantity Coupons</h3>
-<div ng-repeat="restaurant in model.restaurants">
-    <h4>{{restaurant.name}}</h4>
-    <div ng-repeat="coupon in restaurant.restCoupons">
-        <div ng-if="coupon.couponType == 'QUANTITY'">
-            {{coupon.label}}{{coupon.itemName}}{{coupon.quantity}}
-        </div>
-    </div>
-</div>
 <br>
-<h3>Amount Coupons</h3>
-<div ng-repeat="restaurant in model.restaurants">
-    <h4>{{restaurant.name}}</h4>
-    <div ng-repeat="coupon in restaurant.restCoupons">
-        <div ng-if="coupon.couponType == 'AMOUNT'">
-            {{coupon.label}}{{coupon.amount}}
-        </div>
-    </div>
-</div>
+<h4>Amount Coupons</h4>
+<table class="table borderless">
+    <thead>
+        <tr>
+            <th>Picture</th>
+            <th>Restaurant Name</th>
+            <th>Coupon Title</th>
+            <th>Coupon Description</th>
+            <th>Amount</th>
+            <th>Expiry Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="restaurant in model.restaurants" ng-if="restaurant.coupon.couponType == 'AMOUNT'">
+            <td></td>
+            <td>{{restaurant.name}}</td>
+            <td>{{restaurant.coupon.label}}</td>
+            <td>{{restaurant.coupon.description}}</td>
+            <td>{{restaurant.coupon.amount}}</td>
+            <td>{{restaurant.coupon.expiry}}</td>
+        </tr>
+    </tbody>
+</table>

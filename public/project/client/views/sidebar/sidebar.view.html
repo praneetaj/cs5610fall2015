@@ -2,12 +2,57 @@
     <li ng-class="{'active' : $location.url().indexOf('home') != -1}"><a href="#/home">Home</a></li>
     <li ng-class="{'active' : $location.url().indexOf('search-coupons') != -1}"><a href="#/searchWebCoupons">Search Web Coupons</a></li>
     <li ng-class="{'active' : $location.url().indexOf('search-coupons') != -1}"><a href="#/searchLoyalUCoupons">Search LoyalU Coupons</a></li>
-    <hr>
-    <li role="presentation"><a href="restaurant-profile.html">Restaurant Profile</a></li>
-    <li role="presentation"><a href="create-quantity-coupon.html">Create Coupons</a></li>
-    <li role="presentation"><a href="record-transaction.html">Record Transaction</a></li>
-    <li role="presentation"><a href="restaurant-view-quantity-coupons.html">View Coupons</a></li>
-    <hr>
-    <li role="presentation"><a href="user-profile.html">User Profile</a></li>
-    <li role="presentation"><a href="user-view-quantity-coupons.html">View Coupons</a></li>
+    <span ng-show="loggedInUser">
+        <span ng-show="!admin">
+            <li role="presentation"><a href="user-view-quantity-coupons.html">View Coupons</a></li>
+        </span>
+    </span>
+
+    <span ng-show="loggedInUser">
+        <span ng-show="admin">
+            <li role="presentation"><a href="create-quantity-coupon.html">Restaurant Coupons</a></li>
+            <li role="presentation"><a href="record-transaction.html">Record Transaction</a></li>
+        </span>
+    </span>
 </ul>
+<!--
+<nav class="nav nav-sidebar" ng-controller="SidebarController">
+    <span ng-show="!loggedInUser">
+        <ul class="nav nav-sidebar">
+            <li ng-class="{'active' : $location.url().indexOf('home') != -1}"><a href="#/home">Home</a></li>
+            <li ng-class="{'active' : $location.url().indexOf('search-coupons') != -1}"><a href="#/searchWebCoupons">Search Web Coupons</a></li>
+            <li ng-class="{'active' : $location.url().indexOf('search-coupons') != -1}"><a href="#/searchLoyalUCoupons">Search LoyalU Coupons</a></li>
+        </ul>
+    </span>
+</nav>
+
+<nav class="nav nav-sidebar" ng-controller="SidebarController">
+    <span ng-show="loggedInUser">
+        <ul class="nav nav-sidebar">
+            <li ng-class="{'active' : $location.url().indexOf('home') != -1}"><a href="#/home">Home</a></li>
+            <li ng-class="{'active' : $location.url().indexOf('search-coupons') != -1}"><a href="#/searchWebCoupons">Search Web Coupons</a></li>
+            <li ng-class="{'active' : $location.url().indexOf('search-coupons') != -1}"><a href="#/searchLoyalUCoupons">Search LoyalU Coupons</a></li>
+        </ul>
+        <span ng-show="admin">
+            hello admin
+        </span>
+        <span ng-show="!admin">
+            hello customer
+        </span>
+    </span>
+</nav>
+-->
+<!--
+<span ng-show="!loggedInUser">
+    <ul class="nav nav-sidebar" ng-controller="SidebarController"><li ng-class="{'active' : $location.url().indexOf('home') != -1}"><a href="#/home">Home</a></li>
+        <li ng-class="{'active' : $location.url().indexOf('search-coupons') != -1}"><a href="#/searchWebCoupons">Search Web Coupons</a></li>
+        <li ng-class="{'active' : $location.url().indexOf('search-coupons') != -1}"><a href="#/searchLoyalUCoupons">Search LoyalU Coupons</a></li>
+    </ul>
+</span>
+<span ng-show="loggedInUser" ng-if="loggedInUser.role == 'CUSTOMER'">
+    <ul class="nav nav-sidebar" ng-controller="SidebarController"><li ng-class="{'active' : $location.url().indexOf('home') != -1}"><a href="#/home">Home</a></li>
+        <li ng-class="{'active' : $location.url().indexOf('search-coupons') != -1}"><a href="#/searchWebCoupons">Search Web Coupons</a></li>
+        <li ng-class="{'active' : $location.url().indexOf('search-coupons') != -1}"><a href="#/searchLoyalUCoupons">Search LoyalU Coupons</a></li>
+        <li ng-class="{'active' : $location.url().indexOf('search-coupons') != -1}"><a href="#/searchLoyalUCoupons">Search LoyalU Coupons</a></li>
+    </ul>
+</span>
