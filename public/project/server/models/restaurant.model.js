@@ -5,7 +5,8 @@ module.exports = function (mongoose, db) {
     var RestaurantModel = mongoose.model ("RestaurantModel", RestaurantSchema);
 
     var api = {
-        getRestCouponsByZipcodeOrCity : getRestCouponsByZipcodeOrCity
+        getRestCouponsByZipcodeOrCity : getRestCouponsByZipcodeOrCity,
+        getRestCouponsByLocuId : getRestCouponsByLocuId
     };
     return api;
 
@@ -13,6 +14,18 @@ module.exports = function (mongoose, db) {
         var deferred = q.defer ();
 
         RestaurantModel.find ({$or : [{"zipcode" : searchParam}, {"city" : searchParam}]}, function (err, response) {
+            if (err)
+                deferred.reject(err);
+            else
+                deferred.resolve (response);
+        });
+        return deferred.promise;
+    }
+
+    function getRestCouponsByLocuId (locuId) {
+        var deferred = q.defer ();
+
+        RestaurantModel.find ({"restLocuId" : locuId}, function (err, response) {
             if (err)
                 deferred.reject(err);
             else

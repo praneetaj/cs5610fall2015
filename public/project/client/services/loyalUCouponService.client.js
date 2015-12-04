@@ -7,14 +7,25 @@
 
         var api = {
             //getAllCoupons : getAllCoupons,
-            getRestCouponsByZipcodeOrCity : getRestCouponsByZipcodeOrCity
+            getRestCouponsByZipcodeOrCity : getRestCouponsByZipcodeOrCity,
+            getRestCouponsByLocuId : getRestCouponsByLocuId
         };
         return api;
 
         function getRestCouponsByZipcodeOrCity (searchParam) {
             var deferred = $q.defer();
             $http
-                .get("/api/project/restcoupon/" + searchParam)
+                .get("/api/project/restcoupon?search=" + searchParam)
+                .success(function (response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
+        function getRestCouponsByLocuId (locuId) {
+            var deferred = $q.defer();
+            $http
+                .get("/api/project/restcoupon?locuId=" + locuId)
                 .success(function (response) {
                     deferred.resolve(response);
                 });
