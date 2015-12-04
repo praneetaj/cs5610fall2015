@@ -1,11 +1,18 @@
 module.exports = function (app, model) {
-    app.get("/api/project/restcoupon", getRestaurantCoupons);
+    app.get("/api/project/restaurant", getRestaurant);
+    app.put("/api/project/restaurant/:locuId", addCouponForRest);
+    app.delete("/api/project/restaurant/:locuId/coupon/:index", removeCouponByLocuIdAndCouponIndex);
+    app.get("/api/project/restaurant/:locuId/coupon/:index", getCouponByLocuIdAndCouponIndex);
+    app.put("/api/project/restaurant/:locuId/coupon/:index", updateCouponByLocuIdAndCouponIndex);
 
-    function getRestaurantCoupons (req, res) {
-        var searchParam = req.query.searchParam;
+    function getRestaurant (req, res) {
+        console.log("inside loyal u search services server");
+        var searchParam = req.query.search;
         var locuId = req.query.locuId;
+        console.log(searchParam);
 
         if (typeof searchParam != "undefined") {
+            console.log("inside search param");
             model
                 .getRestCouponsByZipcodeOrCity (searchParam)
                 .then(function (response) {
@@ -13,10 +20,38 @@ module.exports = function (app, model) {
             });
         } else if (typeof locuId != "undefined") {
             model
-                .getRestCouponsByLocuId (locuId)
+                .getRestByLocuId (locuId)
                 .then(function (response) {
                     res.json(response);
                 });
         }
+    }
+
+    function addCouponForRest (req, res) {
+        model
+            .addCouponForRest (req.params.locuId, req.body)
+            .then(function (response) {
+                res.json(response);
+            });
+    }
+
+    function removeCouponByLocuIdAndCouponIndex (req, res) {
+        model
+            .removeCouponByLocuIdAndCouponIndex (req.params.locuId, req.params.index)
+            .then(function (response) {
+                res.json(response);
+            });
+    }
+
+    function getCouponByLocuIdAndCouponIndex (req, res) {
+        model
+            .getCouponByLocuIdAndCouponIndex (req.params.locuId, req.params.index)
+            .then(function (response) {
+                res.json(response);
+            });
+    }
+
+    function updateCouponByLocuIdAndCouponIndex (req, res) {
+        
     }
 };

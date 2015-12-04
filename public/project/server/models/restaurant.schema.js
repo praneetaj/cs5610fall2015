@@ -8,10 +8,14 @@ module.exports = function (mongoose) {
         },
         description : String,
         itemName : String,
-        quantity : String,
-        amount : String,
+        quantity : Number,
+        amount : Number,
         dateCreated : Date,
-        expiry : Date
+        expiry : Date,
+        isValid : {
+            type : Boolean,
+            default : true
+        }
     });
 
     var RestSchema = mongoose.Schema({
@@ -19,7 +23,8 @@ module.exports = function (mongoose) {
         name : String,
         zipcode : String,
         city : String,
-        coupon : RestCouponSchema
+        image_url : String,
+        coupons : [RestCouponSchema]
     }, {collection : "cs5610.project.restaurant"});
 
     return RestSchema;

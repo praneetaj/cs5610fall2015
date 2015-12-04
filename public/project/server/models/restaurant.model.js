@@ -6,9 +6,28 @@ module.exports = function (mongoose, db) {
 
     var api = {
         getRestCouponsByZipcodeOrCity : getRestCouponsByZipcodeOrCity,
-        getRestCouponsByLocuId : getRestCouponsByLocuId
+        getRestByLocuId : getRestByLocuId,
+        addCouponForRest : addCouponForRest,
+        removeCouponByLocuIdAndCouponIndex : removeCouponByLocuIdAndCouponIndex,
+        getCouponByLocuIdAndCouponIndex : getCouponByLocuIdAndCouponIndex
     };
     return api;
+
+    function addCouponForRest (locuId, newCoupon) {
+        var deferred = q.defer ();
+
+        RestaurantModel.findOne ({"restLocuId" : locuId}, function (err, restaurant) {
+            if (err)
+                deferred.reject(err);
+            else {
+                restaurant.coupons.push (newCoupon);
+                restaurant.save (function (err, restaurant) {
+                    deferred.resolve(restaurant);
+                });
+            }
+        });
+        return deferred.promise;
+    }
 
     function getRestCouponsByZipcodeOrCity (searchParam) {
         var deferred = q.defer ();
@@ -22,14 +41,42 @@ module.exports = function (mongoose, db) {
         return deferred.promise;
     }
 
-    function getRestCouponsByLocuId (locuId) {
+    function getRestByLocuId (locuId) {
         var deferred = q.defer ();
 
-        RestaurantModel.find ({"restLocuId" : locuId}, function (err, response) {
+        RestaurantModel.findOne ({"restLocuId" : locuId}, function (err, response) {
             if (err)
                 deferred.reject(err);
             else
                 deferred.resolve (response);
+        });
+        return deferred.promise;
+    }
+
+    function removeCouponByLocuIdAndCouponIndex (locuId, index) {
+        var deferred = q.defer ();
+
+        RestaurantModel.findOne ({"restLocuId" : locuId}, function (err, restaurant) {
+            if (err)
+                deferred.reject(err);
+            else {
+                restaurant.coupons.splice (index, 1);
+                restaurant.save (function (err, restaurant) {
+                    deferred.resolve (restaurant);
+                });
+            }
+        });
+        return deferred.promise;
+    }
+
+    function getCouponByLocuIdAndCouponIndex (locuId, index) {
+        var deferred = q.defer ();
+
+        RestaurantModel.findOne ({"restLocuId" : locuId}, function (err, restaurant) {
+            if (err)
+                deferred.reject(err);
+            else
+                deferred.resolve (restaurant.coupons[index]);
         });
         return deferred.promise;
     }
