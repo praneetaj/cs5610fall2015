@@ -5,16 +5,14 @@
 
     function RegisterController (UserService, LocuApiService, RestaurantService) {
         var model = this;
-        //model.addCustomerUser = createCustomerUser;
         model.search = searchRestaurantFromLocu;
-        //model.createAdminUser = createAdminUser;
         model.createUser = createUser;
         model.change = change;
         model.searchUsername = searchUsername;
-        //model.newuser.role = "CUSTOMER";
 
         function change () {
             var role = model.newuser.role;
+            model.pageLoad = true;
             if (role == "CUSTOMER")
                 model.newrole = false;
             else
@@ -89,7 +87,7 @@
 
         function searchRestaurantFromLocu () {
             LocuApiService.findRestaurantByNameAndCity(model.restaurantName, model.city).then(function (response) {
-                console.log(response.body.venues);
+                console.log(response);
                 model.restaurants = response.body.venues;
             });
         }
