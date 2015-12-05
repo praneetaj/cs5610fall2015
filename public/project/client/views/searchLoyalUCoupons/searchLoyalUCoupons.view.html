@@ -33,7 +33,7 @@
                 <td>{{restaurant.coupon.description}}</td>
                 <td>{{restaurant.coupon.itemName}}</td>
                 <td>{{restaurant.coupon.quantity}}</td>
-                <td>{{restaurant.coupon.expiry}}</td>
+                <td>{{restaurant.coupon.expiry | date}}</td>
         </tr>
     </tbody>
 </table>
@@ -47,6 +47,7 @@
             <th>Coupon Title</th>
             <th>Coupon Description</th>
             <th>Amount</th>
+            <th>Discount</th>
             <th>Expiry Date</th>
         </tr>
     </thead>
@@ -57,7 +58,8 @@
             <td>{{restaurant.coupon.label}}</td>
             <td>{{restaurant.coupon.description}}</td>
             <td>{{restaurant.coupon.amount}}</td>
-            <td>{{restaurant.coupon.expiry}}</td>
+            <td>{{restaurant.coupon.discount}}</td>
+            <td>{{restaurant.coupon.expiry | date}}</td>
         </tr>
     </tbody>
 </table>

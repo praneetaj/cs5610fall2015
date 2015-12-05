@@ -53,6 +53,11 @@
                 controller : "CreateCouponController",
                 controllerAs : "model"
             })
+            .when ("/recordTransaction", {
+                templateUrl : "views/recordTransaction/recordTransaction.view.html",
+                controller : "RecordTransactionController",
+                controllerAs : "model"
+            })
             .when ("/login", {
                 templateUrl : "views/login/login.view.html",
                 controller : "LoginController",
