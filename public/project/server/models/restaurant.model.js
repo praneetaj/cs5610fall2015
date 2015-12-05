@@ -29,6 +29,8 @@ module.exports = function (mongoose, db) {
 
     function addCouponForRest (locuId, newCoupon) {
         var deferred = q.defer ();
+        console.log(locuId);
+        console.log(newCoupon);
 
         RestaurantModel.findOne ({"restLocuId" : locuId}, function (err, restaurant) {
             if (err)

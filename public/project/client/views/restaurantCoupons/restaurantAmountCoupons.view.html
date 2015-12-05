@@ -2,6 +2,7 @@
 <ul class="nav nav-tabs">
     <li role="presentation"><a href="#/restaurantCoupons">Quantity Coupons</a></li>
     <li role="presentation" class="active"><a href="#">Amount Coupons</a></li>
+    <li role="presentation"><a href="#/createCoupons">Create Coupons</a></li>
 </ul>
 <br>
 <div class="table-responsive">
@@ -11,6 +12,7 @@
             <th>Title</th>
             <th>Description</th>
             <th>Amount</th>
+            <th>Discount</th>
             <th>Created</th>
             <th>Expiry</th>
             <!--<th>Valid</th>-->
@@ -22,8 +24,9 @@
             <td>{{coupon.label}}</td>
             <td>{{coupon.description}}</td>
             <td>{{coupon.amount}}</td>
-            <td>{{coupon.dateCreated}}</td>
-            <td>{{coupon.expiry}}</td>
+            <td>{{coupon.discount}}</td>
+            <td>{{coupon.dateCreated | date}}</td>
+            <td>{{coupon.expiry | date}}</td>
             <!--<td>{{restaurant.coupon.isValid}}</td>-->
             <td>
                 <button ng-click="model.removeCoupon($index)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
@@ -34,19 +37,8 @@
     </table>
 </div>
 <br>
-<h1 class="page-header">Update Coupons</h1>
-<div class="form-horizontal">
-    <!--
-    <div class="form-group">
-        <label for="inputCouponType" class="col-sm-2 control-label">Coupon Type</label>
-        <div class="input-group col-sm-10">
-            <select type="select" class="form-control" id="inputCouponType" ng-model="model.newCoupon.couponType">
-                <option value="QUANTITY">QUANTITY</option>
-                <option value="AMOUNT">AMOUNT</option>
-            </select>
-        </div>
-    </div>
-    -->
+<h3 class="page-header" ng-show="model.updateFields == true">Update Coupon</h3>
+<div class="form-horizontal" ng-show="model.updateFields == true">
     <div class="form-group">
         <label for="inputTitle" class="col-sm-2 control-label">Title</label>
         <div class="col-sm-10">

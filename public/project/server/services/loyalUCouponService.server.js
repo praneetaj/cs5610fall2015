@@ -31,6 +31,7 @@ module.exports = function (app, model) {
         model
             .addCouponForRest (req.params.locuId, req.body)
             .then(function (response) {
+                console.log("coupon create server:" + response);
                 res.json(response);
             });
     }

@@ -10,6 +10,7 @@ module.exports = function (mongoose) {
         itemName : String,
         quantity : Number,
         amount : Number,
+        discount : Number,
         dateCreated : Date,
         expiry : Date,
         isValid : {

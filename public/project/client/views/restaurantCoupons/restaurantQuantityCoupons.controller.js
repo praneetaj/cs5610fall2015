@@ -7,7 +7,6 @@
     function RestaurantQuantityCouponsController ($scope, $rootScope, LoyalUCouponService, LocuApiService) {
 
         var model = this;
-        model.addCoupon = addCoupon;
         model.removeCoupon = removeCoupon;
         model.selectCoupon = selectCoupon;
         model.updateCoupon = updateCoupon;
@@ -34,29 +33,6 @@
         }
 
         initCoupons();
-        initMenu();
-
-        function addCoupon () {
-            var newCoupon = {
-                label : model.newCoupon.label,
-                couponType : "QUANTITY",
-                description : model.newCoupon.description,
-                itemName : model.newCoupon.itemName,
-                quantity : model.newCoupon.quantity,
-                amount : null,
-                dateCreated : new Date(),
-                expiry : model.newCoupon.expiry
-            };
-            LoyalUCouponService.addCouponForRest($rootScope.loggedInUser.restLocuId, newCoupon).then(function (response) {
-                initCoupons();
-                model.newCoupon.label = "";
-                model.newCoupon.description = "";
-                model.newCoupon.itemName = "";
-                model.newCoupon.quantity = "";
-                model.newCoupon.expiry = "";
-                model.menuItems = LocuApiService.extractMenuFromResponse (model.response);
-            });
-        }
 
         function removeCoupon (index) {
             LoyalUCouponService.removeCouponByLocuIdAndCouponIndex ($rootScope.loggedInUser.restLocuId, index).then(function (response) {
@@ -65,6 +41,8 @@
         }
 
         function selectCoupon (index) {
+            model.updateCouponFields = true;
+            initMenu();
             LoyalUCouponService.getCouponByLocuIdAndCouponIndex ($rootScope.loggedInUser.restLocuId, index).then(function (response) {
                 model.newCoupon = response;
                 model.selectedIndex = index;
@@ -75,6 +53,7 @@
         function updateCoupon () {
             LoyalUCouponService.updateCouponByLocuIdAndCouponIndex ($rootScope.loggedInUser.restLocuId, model.selectedIndex, model.newCoupon).then(function (response) {
                 initCoupons();
+                model.updateCouponFields = false;
             });
         }
     }

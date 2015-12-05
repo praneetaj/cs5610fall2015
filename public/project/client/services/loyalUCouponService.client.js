@@ -38,6 +38,8 @@
         }
 
         function addCouponForRest (locuId, newCoupon) {
+            console.log(locuId);
+            console.log(newCoupon);
             var deferred = $q.defer();
             $http
                 .put("/api/project/restaurant/" + locuId, newCoupon)
