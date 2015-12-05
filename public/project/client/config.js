@@ -35,12 +35,14 @@
                 controllerAs : "model"
             })
             .when ("/register", {
-                templateUrl : "views/register/register-user.view.html",
+                //templateUrl : "views/register/register-user.view.html",
+                templateUrl : "views/register/register.view.html",
                 controller : "RegisterController",
                 controllerAs : "model"
             })
             .when ("/register-restaurant", {
-                templateUrl : "views/register/register-restaurant.view.html",
+                //templateUrl : "views/register/register-restaurant.view.html",
+                templateUrl : "views/register/register.view.html",
                 controller : "RegisterController",
                 controllerAs : "model"
             })

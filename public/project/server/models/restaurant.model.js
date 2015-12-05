@@ -5,6 +5,7 @@ module.exports = function (mongoose, db) {
     var RestaurantModel = mongoose.model ("RestaurantModel", RestaurantSchema);
 
     var api = {
+        createRestaurant : createRestaurant,
         getRestCouponsByZipcodeOrCity : getRestCouponsByZipcodeOrCity,
         getRestByLocuId : getRestByLocuId,
         addCouponForRest : addCouponForRest,
@@ -13,6 +14,18 @@ module.exports = function (mongoose, db) {
         updateCouponByLocuIdAndCouponIndex : updateCouponByLocuIdAndCouponIndex
     };
     return api;
+
+    function createRestaurant (restaurant) {
+        var deferred = q.defer ();
+
+        RestaurantModel.create (restaurant, function (err, restaurant) {
+            if (err)
+                deferred.reject(err);
+            else
+                deferred.resolve (restaurant);
+        });
+        return deferred.promise;
+    }
 
     function addCouponForRest (locuId, newCoupon) {
         var deferred = q.defer ();

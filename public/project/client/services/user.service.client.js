@@ -8,7 +8,8 @@
 
         var api = {
             createUser : createUser,
-            findUserByUsernameAndPassword : findUserByUsernameAndPassword
+            findUserByUsernameAndPassword : findUserByUsernameAndPassword,
+            findUserByUsername : findUserByUsername
         };
         return api;
 
@@ -27,6 +28,17 @@
             var deferred = $q.defer();
             $http
                 .get("/api/project/user?username=" + username + "&password=" + password)
+                .success(function(user){
+                    deferred.resolve(user);
+                });
+
+            return deferred.promise;
+        }
+
+        function findUserByUsername (username) {
+            var deferred = $q.defer();
+            $http
+                .get("/api/project/user?username=" + username)
                 .success(function(user){
                     deferred.resolve(user);
                 });

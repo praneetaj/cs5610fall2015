@@ -26,10 +26,11 @@ module.exports = function (app, model) {
         } else if (typeof username != "undefined") {
             if (typeof password == "undefined") {
                 model
-                    .findUserByUsername (req.params.id)
+                    .findUserByUsername (username)
                     .then (function (user) {
-                    res.json (user);
-                });
+                        console.log(user);
+                        res.json (user);
+                    });
             } else {
                 var credentials = {
                     "username" : username,
