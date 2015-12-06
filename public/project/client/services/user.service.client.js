@@ -11,7 +11,11 @@
             findUserByUsernameAndPassword : findUserByUsernameAndPassword,
             findUserByUsername : findUserByUsername,
             findAllUsers : findAllUsers,
-            findAllCustomers : findAllCustomers
+            findAllCustomers : findAllCustomers,
+            findUserById : findUserById,
+            logout : logout,
+            removeUser : removeUser,
+            updateUser : updateUser
         };
         return api;
 
@@ -51,8 +55,12 @@
 
         function findUserByUsernameAndPassword (username, password) {
             var deferred = $q.defer();
+            var user = {
+                "loyalUUsername" : username,
+                "password" : password
+            };
             $http
-                .get("/api/project/user?username=" + username + "&password=" + password)
+                .post("/api/project/login", user)
                 .success(function(user){
                     deferred.resolve(user);
                 });
@@ -64,6 +72,50 @@
             var deferred = $q.defer();
             $http
                 .get("/api/project/user?username=" + username)
+                .success(function(user){
+                    deferred.resolve(user);
+                });
+
+            return deferred.promise;
+        }
+
+        function logout () {
+            var deferred = $q.defer();
+            $http
+                .post("/api/project/logout")
+                .success(function(user){
+                    deferred.resolve(user);
+                });
+
+            return deferred.promise;
+        }
+
+        function findUserById (id) {
+            var deferred = $q.defer();
+            $http
+                .get("/api/project/user/" + id)
+                .success(function(user){
+                    deferred.resolve(user);
+                });
+
+            return deferred.promise;
+        }
+
+        function removeUser (id) {
+            var deferred = $q.defer();
+            $http
+                .delete("/api/project/user/" + id)
+                .success(function(user){
+                    deferred.resolve(user);
+                });
+
+            return deferred.promise;
+        }
+
+        function updateUser (id, user) {
+            var deferred = $q.defer();
+            $http
+                .put("/api/project/user/" + id, user)
                 .success(function(user){
                     deferred.resolve(user);
                 });

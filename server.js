@@ -4,7 +4,7 @@ var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 var passport      = require('passport');
-//var LocalStrategy = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 var cookieParser  = require('cookie-parser');
 var session       = require('express-session');
 
@@ -43,7 +43,7 @@ var db = mongoose.connection; */
 
 require("./public/experiments/mongo/server/app.js")(app, mongoose, db);
 require("./public/assignment/server/app.js")(app, mongoose, db);
-require("./public/project/server/app.js")(app, mongoose, db, passport);
+require("./public/project/server/app.js")(app, mongoose, db, passport, LocalStrategy);
 
 app.listen(port, ipaddress);
 

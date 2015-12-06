@@ -13,6 +13,7 @@
             UserService.findUserByUsernameAndPassword(model.username, model.password).then(initiateLogin);
 
             function initiateLogin (response) {
+                console.log(response.statusCode);
                 $rootScope.loggedInUser = response;
                 console.log($rootScope.loggedInUser);
                 console.log($rootScope.loggedInUser.role);

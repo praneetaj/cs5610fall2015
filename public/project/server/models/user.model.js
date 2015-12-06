@@ -1,6 +1,6 @@
 var q = require ("q");
 
-module.exports = function (mongoose, db) {
+module.exports = function (mongoose, db, passport, LocalStrategy) {
     var UserSchema = require ("./user.schema.js") (mongoose);
     var ProjectUserModel = mongoose.model ("ProjectUserModel", UserSchema);
 
@@ -14,6 +14,34 @@ module.exports = function (mongoose, db) {
         findUserByCredentials : findUserByCredentials,//p
         findUserByUsername: findUserByUsername
     };
+
+    passport.use(new LocalStrategy( {
+            usernameField: 'loyalUUsername',
+            passwordField: 'password',
+    },
+        function(loyalUUsername, password, done)
+        {
+            ProjectUserModel.findOne({loyalUUsername: loyalUUsername, password: password}, function(err, user)
+            {
+                if (err) { return done(err); }
+                if (!user) { return done(null, false); }
+                return done(null, user);
+            })
+        }));
+
+    passport.serializeUser(function(user, done)
+    {
+        done(null, user);
+    });
+
+    passport.deserializeUser(function(user, done)
+    {
+        ProjectUserModel.findById(user._id, function(err, user)
+        {
+            done(err, user);
+        });
+    });
+
     return api;
 
     function createUser (newuser) {

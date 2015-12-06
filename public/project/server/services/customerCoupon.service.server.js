@@ -20,6 +20,7 @@ module.exports = function (app, model) {
     }
 
     function getAllCustCouponsByCustId (req, res) {
+        //console.log("zzzzzz"+req.session.passport.user);
         model
             .getAllCustCouponsByCustId (req.params.customerId)
             .then (function (response) {

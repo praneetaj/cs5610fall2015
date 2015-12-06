@@ -19,7 +19,7 @@
             <span ng-show="loggedInUser">
                 <ul class="nav navbar-nav navbar-right">
                     <li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Username</a></li>
-                    <li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Logout</a></li>
+                    <li ng-click="logout()" ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/logout">Logout</a></li>
                 </ul>
             </span>
         </div>

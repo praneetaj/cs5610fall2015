@@ -1,10 +1,43 @@
-module.exports = function (app, model) {
+module.exports = function (app, model, passport) {
+    app.post("/api/project/login", passport.authenticate('local'), findUserByCredentials);
+    app.post("/api/project/logout", logout);
     app.post("/api/project/user", createUser);
     app.get("/api/project/user", findUser);
     app.get("/api/project/customer", findAllCustomers);
     app.get("/api/project/user/:userId", findUserById);
     app.put("/api/project/user/:userId", updateUser);
     app.delete("/api/project/user/:userId", deleteUser);
+    app.get('/api/project/loggedin', getLoggedIn);
+
+    var auth = function(req, res, next)
+    {
+        if (!req.isAuthenticated())
+            res.send(401);
+        else
+            next();
+    };
+
+    function getLoggedIn (req, res) {
+        res.send(req.isAuthenticated() ? req.user : '0');
+    }
+
+    function findUserByCredentials (req, res) {
+        var credentials = {
+            username : req.body.loyalUUsername,
+            password : req.body.password
+        };
+        model
+            .findUserByCredentials (credentials)
+            .then (function (user) {
+                res.json (user);
+            });
+    }
+
+    function logout (req, res) {
+        console.log("logging out");
+        req.logOut();
+        res.send(200);
+    }
 
     function createUser (req, res) {
         model
