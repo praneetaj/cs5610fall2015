@@ -7,22 +7,34 @@
     function Configure ($routeProvider) {
         $routeProvider
             .when ("/home", {
-                templateUrl : "views/home/home.view.html"
+                templateUrl : "views/home/home.view.html",
+                resolve : {
+                    loggedIn : checkLoggedInGeneral
+                }
             })
             .when ("/searchWebCoupons", {
                 templateUrl : "views/searchWebCoupons/searchWebCoupons.view.html",
                 controller : "SearchWebCouponsController",
-                controllerAs : "model"
+                controllerAs : "model",
+                resolve : {
+                    loggedIn : checkLoggedInGeneral
+                }
             })
             .when ("/searchLoyalUCoupons", {
                 templateUrl : "views/searchLoyalUCoupons/searchLoyalUCoupons.view.html",
                 controller : "SearchLoyalUCouponsController",
-                controllerAs : "model"
+                controllerAs : "model",
+                resolve : {
+                    loggedIn : checkLoggedInGeneral
+                }
             })
             .when ("/details/:dealId", {
                 templateUrl : "views/searchWebCoupons/searchWebCoupons.details.view.html",
                 controller : "SearchWebCouponsDetailsController",
-                controllerAs : "model"
+                controllerAs : "model",
+                resolve : {
+                    loggedIn : checkLoggedInGeneral
+                }
             })
             .when ("/restaurantCoupons", {
                 templateUrl : "views/restaurantCoupons/restaurantQuantityCoupons.view.html",
@@ -106,11 +118,6 @@ var checkLoggedIn = function($q, $timeout, $http, $location, $rootScope)
         if (user != '0')
         {
             $rootScope.loggedInUser = user;
-            if ($rootScope.loggedInUser.role == 'ADMIN') {
-                $rootScope.admin = true;
-            } else if ($rootScope.loggedInUser.role == 'CUSTOMER') {
-                $rootScope.admin = false;
-            }
             deferred.resolve();
         }
         else
@@ -119,6 +126,29 @@ var checkLoggedIn = function($q, $timeout, $http, $location, $rootScope)
             deferred.reject();
             $location.url('/login');
         }
+    });
+
+    return deferred.promise;
+};
+
+var checkLoggedInGeneral = function($q, $timeout, $http, $location, $rootScope)
+{
+    var deferred = $q.defer();
+
+    $http.get('/api/project/loggedin').success(function(user)
+    {
+        if (user != '0')
+        {
+            $rootScope.loggedInUser = user;
+            deferred.resolve();
+        }
+        /*
+        else
+        {
+            $rootScope.errorMessage = 'You need to log in.';
+            deferred.reject();
+            $location.url('/login');
+        }*/
     });
 
     return deferred.promise;
