@@ -3,7 +3,7 @@
         .module ("LoyalUApp")
         .controller ("RegisterController", RegisterController);
 
-    function RegisterController (UserService, LocuApiService, RestaurantService, customerCouponService) {
+    function RegisterController (UserService, LocuApiService, RestaurantService, customerCouponService, PlacePhotoService) {
         var model = this;
         model.search = searchRestaurantFromLocu;
         model.createUser = createUser;
@@ -114,19 +114,24 @@
                 firstName : model.newuser.firstName,
                 lastName : model.newuser.password
             };
-            var restEntry = {
-                restLocuId : model.restaurants[index].locu_id,
-                name : model.restaurants[index].name,
-                zipcode : model.restaurants[index].location.postal_code,
-                city : model.restaurants[index].location.locality,
-                image_url : "",
-                coupons : []
-            };
+            PlacePhotoService.getPictureUrlFromGoogle (model.restaurants[index].name, model.restaurants[index].location.locality)
+                .then (function (place) {
+                //console.log(place.data);
+                //model.restImage = place.data;
+                    var restEntry = {
+                        restLocuId : model.restaurants[index].locu_id,
+                        name : model.restaurants[index].name,
+                        zipcode : model.restaurants[index].location.postal_code,
+                        city : model.restaurants[index].location.locality,
+                        image_url : place.data,
+                        coupons : []
+                    };
+                    RestaurantService.createRestaurant(restEntry).then(function (response) {
+                        console.log(response);
+                    });
+            });
 
             UserService.createUser(newuser).then(function (response) {
-                console.log(response);
-            });
-            RestaurantService.createRestaurant(restEntry).then(function (response) {
                 console.log(response);
             });
         }
