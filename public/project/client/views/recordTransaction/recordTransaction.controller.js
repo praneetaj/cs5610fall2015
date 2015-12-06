@@ -10,6 +10,7 @@
         model.record = record;
 
         function loadAllCustomers() {
+            console.log($rootScope.loggedInUser);
             console.log("loading customers");
             UserService.findAllCustomers().then(function (response) {
                 model.users = response;

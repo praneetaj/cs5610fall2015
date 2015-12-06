@@ -1,14 +1,4 @@
 module.exports = function (app, model, passport) {
-    app.post("/api/project/login", passport.authenticate('local'), findUserByCredentials);
-    app.post("/api/project/logout", logout);
-    app.post("/api/project/user", createUser);
-    app.get("/api/project/user", findUser);
-    app.get("/api/project/customer", findAllCustomers);
-    app.get("/api/project/user/:userId", findUserById);
-    app.put("/api/project/user/:userId", updateUser);
-    app.delete("/api/project/user/:userId", deleteUser);
-    app.get('/api/project/loggedin', getLoggedIn);
-
     var auth = function(req, res, next)
     {
         if (!req.isAuthenticated())
@@ -16,6 +6,16 @@ module.exports = function (app, model, passport) {
         else
             next();
     };
+
+    app.post("/api/project/login", passport.authenticate('local'), findUserByCredentials);
+    app.post("/api/project/logout", logout);
+    app.post("/api/project/user", createUser);
+    app.get("/api/project/user", auth, findUser);
+    app.get("/api/project/customer", auth, findAllCustomers);
+    app.get("/api/project/user/:userId", findUserById);
+    app.put("/api/project/user/:userId", updateUser);
+    app.delete("/api/project/user/:userId", auth, deleteUser);
+    app.get('/api/project/loggedin', getLoggedIn);
 
     function getLoggedIn (req, res) {
         res.send(req.isAuthenticated() ? req.user : '0');

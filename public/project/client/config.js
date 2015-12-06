@@ -27,22 +27,34 @@
             .when ("/restaurantCoupons", {
                 templateUrl : "views/restaurantCoupons/restaurantQuantityCoupons.view.html",
                 controller : "RestaurantQuantityCouponsController",
-                controllerAs : "model"
+                controllerAs : "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when ("/restaurantAmountCoupons", {
                 templateUrl : "views/restaurantCoupons/restaurantAmountCoupons.view.html",
                 controller : "RestaurantAmountCouponsController",
-                controllerAs : "model"
+                controllerAs : "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when ("/customerAmountCoupons", {
                 templateUrl : "views/customerCoupons/customerAmountCoupons.view.html",
                 controller : "CustomerAmountCouponsController",
-                controllerAs : "model"
+                controllerAs : "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when ("/customerQuantityCoupons", {
                 templateUrl : "views/customerCoupons/customerQuantityCoupons.view.html",
                 controller : "CustomerQuantityCouponsController",
-                controllerAs : "model"
+                controllerAs : "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when ("/register", {
                 //templateUrl : "views/register/register-user.view.html",
@@ -61,12 +73,18 @@
             .when ("/createCoupons", {
                 templateUrl : "views/restaurantCoupons/createCoupon.view.html",
                 controller : "CreateCouponController",
-                controllerAs : "model"
+                controllerAs : "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when ("/recordTransaction", {
                 templateUrl : "views/recordTransaction/recordTransaction.view.html",
                 controller : "RecordTransactionController",
-                controllerAs : "model"
+                controllerAs : "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
             })
             .when ("/login", {
                 templateUrl : "views/login/login.view.html",
@@ -78,3 +96,30 @@
             });
     }
 } )();
+
+var checkLoggedIn = function($q, $timeout, $http, $location, $rootScope)
+{
+    var deferred = $q.defer();
+
+    $http.get('/api/project/loggedin').success(function(user)
+    {
+        if (user != '0')
+        {
+            $rootScope.loggedInUser = user;
+            if ($rootScope.loggedInUser.role == 'ADMIN') {
+                $rootScope.admin = true;
+            } else if ($rootScope.loggedInUser.role == 'CUSTOMER') {
+                $rootScope.admin = false;
+            }
+            deferred.resolve();
+        }
+        else
+        {
+            $rootScope.errorMessage = 'You need to log in.';
+            deferred.reject();
+            $location.url('/login');
+        }
+    });
+
+    return deferred.promise;
+};
