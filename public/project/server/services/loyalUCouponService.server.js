@@ -3,6 +3,7 @@ module.exports = function (app, model) {
     app.put("/api/project/restaurant/:locuId", addCouponForRest);
     app.delete("/api/project/restaurant/:locuId/coupon/:index", removeCouponByLocuIdAndCouponIndex);
     app.get("/api/project/restaurant/:locuId/coupon/:index", getCouponByLocuIdAndCouponIndex);
+    app.get("/api/project/restaurant/:locuId/coupon", getAllCouponsByLocuId);
     app.put("/api/project/restaurant/:locuId/coupon/:index", updateCouponByLocuIdAndCouponIndex);
 
     function getRestaurant (req, res) {
@@ -55,6 +56,14 @@ module.exports = function (app, model) {
     function updateCouponByLocuIdAndCouponIndex (req, res) {
         model
             .updateCouponByLocuIdAndCouponIndex (req.params.locuId, req.params.index, req.body)
+            .then(function (response) {
+                res.json(response);
+            });
+    }
+
+    function getAllCouponsByLocuId (req, res) {
+        model
+            .getAllCouponsByLocuId (req.params.locuId)
             .then(function (response) {
                 res.json(response);
             });

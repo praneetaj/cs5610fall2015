@@ -32,7 +32,8 @@
     "passport": "^0.3.2",
     "q": "^1.4.1",
     "request": "^2.67.0",
-    "requirejs": "^2.1.22"
+    "requirejs": "^2.1.22",
+    "yelp": "^1.0.1"
   },
   "devDependencies": {},
   "bundleDependencies": [],

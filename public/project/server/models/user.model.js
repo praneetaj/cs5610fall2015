@@ -6,7 +6,8 @@ module.exports = function (mongoose, db) {
 
     var api = {
         createUser : createUser,//p
-        findAllUsers : findAllUsers,
+        findAllUsers : findAllUsers,//p
+        findAllCustomers : findAllCustomers,
         findUserById : findUserById,
         updateUser : updateUser,
         deleteUser : deleteUser,
@@ -33,8 +34,29 @@ module.exports = function (mongoose, db) {
         ProjectUserModel.find (function (err, users) {
             if (err)
                 deferred.reject (err);
-            else
-                deferred.resolve (users);
+            else {
+                for (var i = 0; i < users.length; i++) {
+                    users[i].password = null;
+                }
+                deferred.resolve(users);
+            }
+        });
+        return deferred.promise;
+    }
+
+    function findAllCustomers () {
+        var deferred = q.defer ();
+
+        ProjectUserModel.find ({"role" : "CUSTOMER"}, function (err, users) {
+            if (err)
+                deferred.reject (err);
+            else {
+                for (var i = 0; i < users.length; i++) {
+                    users[i].password = null;
+                }
+                console.log(users);
+                deferred.resolve(users);
+            }
         });
         return deferred.promise;
     }

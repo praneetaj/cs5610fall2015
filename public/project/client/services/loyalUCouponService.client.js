@@ -12,7 +12,8 @@
             addCouponForRest : addCouponForRest,
             removeCouponByLocuIdAndCouponIndex : removeCouponByLocuIdAndCouponIndex,
             getCouponByLocuIdAndCouponIndex : getCouponByLocuIdAndCouponIndex,
-            updateCouponByLocuIdAndCouponIndex : updateCouponByLocuIdAndCouponIndex
+            updateCouponByLocuIdAndCouponIndex : updateCouponByLocuIdAndCouponIndex,
+            getAllCouponsByLocuId : getAllCouponsByLocuId
         };
         return api;
 
@@ -73,6 +74,16 @@
             var deferred = $q.defer();
             $http
                 .put("/api/project/restaurant/" + locuId + "/coupon/" + index, updatedCoupon)
+                .success(function (response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
+        function getAllCouponsByLocuId (locuId) {
+            var deferred = $q.defer();
+            $http
+                .get("/api/project/restaurant/" + locuId + "/coupon")
                 .success(function (response) {
                     deferred.resolve(response);
                 });

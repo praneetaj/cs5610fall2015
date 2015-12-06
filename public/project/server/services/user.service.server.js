@@ -1,6 +1,7 @@
 module.exports = function (app, model) {
     app.post("/api/project/user", createUser);
     app.get("/api/project/user", findUser);
+    app.get("/api/project/customer", findAllCustomers);
     app.get("/api/project/user/:userId", findUserById);
     app.put("/api/project/user/:userId", updateUser);
     app.delete("/api/project/user/:userId", deleteUser);
@@ -43,6 +44,16 @@ module.exports = function (app, model) {
                 });
             }
         }
+    }
+
+    function findAllCustomers (req, res) {
+        console.log("find all customers");
+        model
+            .findAllCustomers ()
+            .then (function (user) {
+                console.log(user);
+                res.json (user);
+            });
     }
 
 

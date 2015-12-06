@@ -11,7 +11,8 @@ module.exports = function (mongoose, db) {
         addCouponForRest : addCouponForRest,
         removeCouponByLocuIdAndCouponIndex : removeCouponByLocuIdAndCouponIndex,
         getCouponByLocuIdAndCouponIndex : getCouponByLocuIdAndCouponIndex,
-        updateCouponByLocuIdAndCouponIndex : updateCouponByLocuIdAndCouponIndex
+        updateCouponByLocuIdAndCouponIndex : updateCouponByLocuIdAndCouponIndex,
+        getAllCouponsByLocuId : getAllCouponsByLocuId
     };
     return api;
 
@@ -105,6 +106,18 @@ module.exports = function (mongoose, db) {
                 deferred.reject(err);
             else
                 deferred.resolve (restaurant.coupons[index]);
+        });
+        return deferred.promise;
+    }
+
+    function getAllCouponsByLocuId (locuId) {
+        var deferred = q.defer ();
+
+        RestaurantModel.findOne ({"restLocuId" : locuId}, function (err, restaurant) {
+            if (err)
+                deferred.reject(err);
+            else
+                deferred.resolve (restaurant);
         });
         return deferred.promise;
     }
