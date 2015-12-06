@@ -12,7 +12,8 @@ module.exports = function (mongoose, db) {
         removeCouponByLocuIdAndCouponIndex : removeCouponByLocuIdAndCouponIndex,
         getCouponByLocuIdAndCouponIndex : getCouponByLocuIdAndCouponIndex,
         updateCouponByLocuIdAndCouponIndex : updateCouponByLocuIdAndCouponIndex,
-        getAllCouponsByLocuId : getAllCouponsByLocuId
+        getAllCouponsByLocuId : getAllCouponsByLocuId,
+        getAllRestaurantsAndCoupons : getAllRestaurantsAndCoupons
     };
     return api;
 
@@ -142,6 +143,18 @@ module.exports = function (mongoose, db) {
                     deferred.resolve (restaurant);
                 });
             }
+        });
+        return deferred.promise;
+    }
+
+    function getAllRestaurantsAndCoupons () {
+        var deferred = q.defer ();
+
+        RestaurantModel.find (function (err, response) {
+            if (err)
+                deferred.reject(err);
+            else
+                deferred.resolve (response);
         });
         return deferred.promise;
     }

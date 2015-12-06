@@ -34,6 +34,16 @@
                 controller : "RestaurantAmountCouponsController",
                 controllerAs : "model"
             })
+            .when ("/customerAmountCoupons", {
+                templateUrl : "views/customerCoupons/customerAmountCoupons.view.html",
+                controller : "CustomerAmountCouponsController",
+                controllerAs : "model"
+            })
+            .when ("/customerQuantityCoupons", {
+                templateUrl : "views/customerCoupons/customerQuantityCoupons.view.html",
+                controller : "CustomerQuantityCouponsController",
+                controllerAs : "model"
+            })
             .when ("/register", {
                 //templateUrl : "views/register/register-user.view.html",
                 templateUrl : "views/register/register.view.html",

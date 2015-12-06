@@ -3,7 +3,7 @@
         .module ("LoyalUApp")
         .controller ("RegisterController", RegisterController);
 
-    function RegisterController (UserService, LocuApiService, RestaurantService) {
+    function RegisterController (UserService, LocuApiService, RestaurantService, customerCouponService) {
         var model = this;
         model.search = searchRestaurantFromLocu;
         model.createUser = createUser;
@@ -82,6 +82,15 @@
             };
             UserService.createUser(newuser).then(function (response) {
                 console.log(response);
+                /*
+                var customerId = response._id;
+                var customerEntry = {
+                    customerId : customerId,
+                    cust_coupons : []
+                };
+                customerCouponService.createCustomerCouponEntryById(customerId, customerEntry).then(function (response) {
+                    console.log(response);
+                }); */
             });
         }
 

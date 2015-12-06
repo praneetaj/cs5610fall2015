@@ -25,18 +25,18 @@
     <div class="form-group" ng-show="model.amountType == false">
         <label for="inputQuantity" class="col-sm-2 control-label">Quantity</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputQuantity" placeholder="Quantity" ng-model="quantity">
+            <input type="text" class="form-control" id="inputQuantity" placeholder="Quantity" ng-model="model.quantity">
         </div>
     </div>
     <div class="form-group" ng-show="model.amountType == true">
         <label for="inputAmount" class="col-sm-2 control-label">Amount</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputAmount" placeholder="Amount" ng-model="amount">
+            <input type="text" class="form-control" id="inputAmount" placeholder="Amount" ng-model="model.amount">
         </div>
     </div>
     <div class="form-group" ng-show="model.couponTypeLoad == true">
         <div class="col-sm-offset-2 col-sm-10">
-            <button class="form-control btn btn-default">Record Transaction</button>
+            <button ng-click="model.record()" class="form-control btn btn-default">Record Transaction</button>
         </div>
     </div>
 </div>

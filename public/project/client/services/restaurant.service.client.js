@@ -7,7 +7,8 @@
     function RestaurantService ($http, $q) {
 
         var api = {
-            createRestaurant : createRestaurant
+            createRestaurant : createRestaurant,
+            getAllRestaurantsAndCoupons : getAllRestaurantsAndCoupons
         };
         return api;
 
@@ -15,6 +16,17 @@
             var deferred = $q.defer();
             $http
                 .post("/api/project/restaurant", restaurant)
+                .then(function(restaurant){
+                    deferred.resolve(restaurant);
+                });
+
+            return deferred.promise;
+        }
+
+        function getAllRestaurantsAndCoupons () {
+            var deferred = $q.defer();
+            $http
+                .get("/api/project/restaurant")
                 .then(function(restaurant){
                     deferred.resolve(restaurant);
                 });

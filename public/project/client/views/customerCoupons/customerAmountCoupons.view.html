@@ -1,0 +1,32 @@
+<ul class="nav nav-tabs">
+    <li role="presentation"><a href="#/customerQuantityCoupons">Quantity Coupons</a></li>
+    <li role="presentation" class="active"><a href="#/customerAmountCoupons">Amount Coupons</a></li>
+</ul>
+<br>
+<h1 class="page-header">Amount Coupons</h1>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Restaurant Name</th>
+                <th>Description</th>
+                <th>Current Amount</th>
+                <th>Threshold Amount</th>
+                <th>Discount</th>
+                <th>Expiry</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="coupon in model.coupons" ng-if="coupon.couponType=='AMOUNT'">
+                <td>{{coupon.couponLabel}}</td>
+                <td>{{coupon.restName}}</td>
+                <td>{{coupon.description}}</td>
+                <td>{{coupon.userAmount}}</td>
+                <td>{{coupon.restAmount}}</td>
+                <td>{{coupon.restDiscount}}</td>
+                <td>{{coupon.expiry | date}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

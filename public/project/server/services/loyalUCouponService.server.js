@@ -12,7 +12,13 @@ module.exports = function (app, model) {
         var locuId = req.query.locuId;
         //console.log(searchParam);
 
-        if (typeof searchParam != "undefined") {
+        if (typeof searchParam == "undefined" && typeof locuId == "undefined") {
+            model
+                .getAllRestaurantsAndCoupons ()
+                .then(function (response) {
+                    res.json(response);
+                });
+        } else if (typeof searchParam != "undefined") {
             console.log("inside search param");
             model
                 .getRestCouponsByZipcodeOrCity (searchParam)
