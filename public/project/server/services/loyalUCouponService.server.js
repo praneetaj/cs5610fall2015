@@ -19,7 +19,6 @@ module.exports = function (app, model) {
                     res.json(response);
                 });
         } else if (typeof searchParam != "undefined") {
-            console.log("inside search param");
             model
                 .getRestCouponsByZipcodeOrCity (searchParam)
                 .then(function (response) {

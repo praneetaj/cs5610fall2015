@@ -70,6 +70,7 @@
                 .createOrUpdateCustCouponByCustId(model.users[model.selectedUser]._id, customerCoupon)
                 .then(function(response){
                     console.log(response);
+                    $('#myModal').modal();
                     displayDiscount (response);
             });
         }

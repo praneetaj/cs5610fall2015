@@ -102,8 +102,8 @@ a:focus {
 
 .center h2{
   font-size: 36px;
-  margin-top: 0;
-  margin-bottom: 20px;
+  margin-top: 30px;
+  margin-bottom: 0px;
 }
 
 .media>.pull-left{
@@ -120,7 +120,7 @@ body > section {
 
 .center {
   text-align: center;
-  padding-bottom: 55px;
+  padding-bottom: 35px;
 }
 
 .scaleIn {

@@ -14,6 +14,14 @@
                     loggedIn : checkLoggedInGeneral
                 }
             })
+            .when ("/search/:zipcode", {
+                templateUrl : "views/search/search.view.html",
+                controller : "SearchController",
+                controllerAs : "model",
+                resolve : {
+                    loggedIn : checkLoggedInGeneral
+                }
+            })
             .when ("/searchWebCoupons", {
                 templateUrl : "views/searchWebCoupons/searchWebCoupons.view.html",
                 controller : "SearchWebCouponsController",

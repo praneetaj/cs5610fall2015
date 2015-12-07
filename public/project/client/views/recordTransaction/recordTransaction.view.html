@@ -1,48 +1,127 @@
-<h1 class="page-header">Record Transaction</h1>
-<div class="form-horizontal">
-    <div class="form-group">
-        <label for="inputUsers" class="col-sm-2 control-label">Select User</label>
-        <div class="col-sm-10">
-            <select class="form-control" id="inputUsers" ng-model="model.selectedUser">
-                <option ng-repeat="user in model.users" value="{{$index}}">{{user.loyalUUsername}}</option>
-            </select>
+<section id="contact-page">
+    <div class="container">
+        <div class="center">
+            <h2>Record Transaction</h2>
+        </div>
+        <div class="row contact-wrap">
+        <form class="contact-form form-horizontal" name="contact-form">
+            <div>
+                <div class="form-group">
+                    <label for="inputUsers" class="col-sm-2 control-label">Select User</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="inputUsers" ng-model="model.selectedUser">
+                            <option ng-repeat="user in model.users" value="{{$index}}">{{user.loyalUUsername}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputCouponLabel" class="col-sm-2 control-label">Select Coupon</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="inputCouponLabel" ng-model="model.selectedCoupon" ng-change="model.couponChange()">
+                            <option ng-repeat="coupon in model.restaurant.coupons" value="{{$index}}">{{coupon.label}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="model.amountType == false">
+                    <label for="inputQuantity" class="col-sm-2 control-label">Quantity</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputQuantity" placeholder="Quantity" ng-model="model.quantity">
+                    </div>
+                </div>
+                <div class="form-group" ng-show="model.amountType == true">
+                    <label for="inputAmount" class="col-sm-2 control-label">Amount</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputAmount" placeholder="Amount" ng-model="model.amount">
+                    </div>
+                </div>
+                <div class="form-group" ng-show="model.couponTypeLoad == true">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button ng-click="model.record()" class="btn btn-primary btn-lg">Submit</button>
+                    </div>
+                </div>
+                </div>
+            </form>
         </div>
     </div>
-    <div class="form-group">
-        <label for="inputCouponLabel" class="col-sm-2 control-label">Select Coupon</label>
-        <div class="col-sm-10">
-            <select class="form-control" id="inputCouponLabel" ng-model="model.selectedCoupon" ng-change="model.couponChange()">
-                <option ng-repeat="coupon in model.restaurant.coupons" value="{{$index}}">{{coupon.label}}</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-group" ng-show="model.amountType == false">
-        <label for="inputQuantity" class="col-sm-2 control-label">Quantity</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputQuantity" placeholder="Quantity" ng-model="model.quantity">
-        </div>
-    </div>
-    <div class="form-group" ng-show="model.amountType == true">
-        <label for="inputAmount" class="col-sm-2 control-label">Amount</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputAmount" placeholder="Amount" ng-model="model.amount">
-        </div>
-    </div>
-    <div class="form-group" ng-show="model.couponTypeLoad == true">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button ng-click="model.record()" class="form-control btn btn-default">Record Transaction</button>
+</section>
+
+<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Savings</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Discount: </label>
+                    <label>{{model.displayResult.discount}}%</label>
+                </div>
+                <div class="form-group">
+                    <label>Free Items: </label>
+                    <label>{{model.displayResult.freeItems}}</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
 </div>
-<br>
-<h3 class="page-header" ng-show="model.displayDiscount == true">Coupon Redemption</h3>
-<div class="form-horizontal" ng-show="model.displayDiscount == true">
-    <div class="form-group">
-        <label class="col-sm-4">Discount Applicable</label>
-        <label class="col-sm-8">{{model.displayResult.discount}}%</label>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-4">Free Items</label>
-        <label class="col-sm-8">{{model.displayResult.freeItems}}</label>
-    </div>
-</div>
+
+
+<!--<section id="section2" class="service-item">-->
+    <!--<div class="container">-->
+        <!--<div class="center wow fadeInDown">-->
+<!--<h2>Record Transaction</h2>-->
+<!--<div class="form-horizontal">-->
+    <!--<div class="form-group">-->
+        <!--<label for="inputUsers" class="col-sm-2 control-label">Select User</label>-->
+        <!--<div class="col-sm-10">-->
+            <!--<select class="form-control" id="inputUsers" ng-model="model.selectedUser">-->
+                <!--<option ng-repeat="user in model.users" value="{{$index}}">{{user.loyalUUsername}}</option>-->
+            <!--</select>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+        <!--<label for="inputCouponLabel" class="col-sm-2 control-label">Select Coupon</label>-->
+        <!--<div class="col-sm-10">-->
+            <!--<select class="form-control" id="inputCouponLabel" ng-model="model.selectedCoupon" ng-change="model.couponChange()">-->
+                <!--<option ng-repeat="coupon in model.restaurant.coupons" value="{{$index}}">{{coupon.label}}</option>-->
+            <!--</select>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group" ng-show="model.amountType == false">-->
+        <!--<label for="inputQuantity" class="col-sm-2 control-label">Quantity</label>-->
+        <!--<div class="col-sm-10">-->
+            <!--<input type="text" class="form-control" id="inputQuantity" placeholder="Quantity" ng-model="model.quantity">-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group" ng-show="model.amountType == true">-->
+        <!--<label for="inputAmount" class="col-sm-2 control-label">Amount</label>-->
+        <!--<div class="col-sm-10">-->
+            <!--<input type="text" class="form-control" id="inputAmount" placeholder="Amount" ng-model="model.amount">-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group" ng-show="model.couponTypeLoad == true">-->
+        <!--<div class="col-sm-offset-2 col-sm-10">-->
+            <!--<button ng-click="model.record()" class="btn btn-default btn-lg">Record Transaction</button>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<br>-->
+<!--<h3 class="page-header" ng-show="model.displayDiscount == true">Coupon Redemption</h3>-->
+<!--<div class="form-horizontal" ng-show="model.displayDiscount == true">-->
+    <!--<div class="form-group">-->
+        <!--<label class="col-sm-4">Discount Applicable</label>-->
+        <!--<label class="col-sm-8">{{model.displayResult.discount}}%</label>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+        <!--<label class="col-sm-4">Free Items</label>-->
+        <!--<label class="col-sm-8">{{model.displayResult.freeItems}}</label>-->
+    <!--</div>-->
+<!--</div>-->
+
+            <!--</div>-->
+        <!--</div>-->
+    <!--</section>-->

@@ -9,7 +9,7 @@ module.exports = function (app, model, passport) {
 
     app.post("/api/project/login", passport.authenticate('local'), findUserByCredentials);
     app.post("/api/project/logout", logout);
-    app.post("/api/project/user", auth, createUser);
+    app.post("/api/project/user", createUser);
     app.get("/api/project/user", auth, findUser);
     app.get("/api/project/customer", auth, findAllCustomers);
     app.get("/api/project/user/:userId", auth, findUserById);

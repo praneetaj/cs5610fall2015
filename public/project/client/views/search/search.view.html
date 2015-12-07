@@ -1,0 +1,62 @@
+<section id="section2" class="service-item">
+    <div class="container">
+        <div class="center wow fadeInDown">
+            <h2>LoyalU Coupons</h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-4" ng-repeat="coupon in model.coupons">
+                <div class="media services-wrap wow fadeInDown">
+                    <div class="pull-left">
+                        <img class="img-responsive" id="your-img" src="{{coupon.image_url}}"/>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{coupon.name}}, {{coupon.city}}</h4>
+                        <p ng-if="coupon.coupon.couponType == 'QUANTITY'">
+                            Coupon Type: "Quantity"
+                            <br>
+                            Item Name: {{coupon.coupon.itemName}}
+                            <br>
+                            {{coupon.coupon.description}}
+                            <br>
+                            Valid until: {{coupon.coupon.expiry | date}}
+                        </p>
+                        <p ng-if="coupon.coupon.couponType == 'AMOUNT'">
+                            Coupon Type: "Amount"
+                            <br>
+                            Spend {{coupon.coupon.amount}}, get {{coupon.coupon.discount}}% off
+                            <br>
+                            {{coupon.coupon.description}}
+                            <br>
+                            Valid until: {{coupon.coupon.expiry | date}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="center wow fadeInDown">
+            <h2>Other coupons from web</h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-4" ng-repeat="coupon in model.webCoupons">
+                <div class="media services-wrap wow fadeInDown">
+                    <div class="pull-left">
+                        <img class="img-responsive" id="img-fixed" src="{{coupon.showImageStandardBig}}"/>
+                    </div>
+                    <div class="media-body">
+                        <p>{{coupon.name}}, {{coupon.city}}</p>
+                        <p>
+                            coupon.dealTitle
+                            <br>
+                            New Price: {{dealPrice}}, Original Price: {{coupon.dealOriginalPrice}}
+                            <br>
+                            Savings: {{coupon.dealSavings}}, Discount: {{coupon.dealDiscountPercent}}%
+                            <br>
+                            Valid until: {{coupon.expirationDate | date}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

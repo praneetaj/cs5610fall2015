@@ -1,4 +1,9 @@
-<h1 class="page-header">{{model.restaurantCoupons.name}}</h1>
+<section id="contact-page">
+    <div class="container">
+        <div class="center">
+            <h2>{{model.restaurantCoupons.name}}</h2>
+        </div>
+<!--<h1 class="page-header">{{model.restaurantCoupons.name}}</h1>-->
 <ul class="nav nav-tabs">
     <li role="presentation"><a href="#/restaurantCoupons">Quantity Coupons</a></li>
     <li role="presentation" class="active"><a href="#">Amount Coupons</a></li>
@@ -36,7 +41,7 @@
         </tbody>
     </table>
 </div>
-<br>
+        <br>
 <h3 class="page-header" ng-show="model.updateFields == true">Update Coupon</h3>
 <div class="form-horizontal" ng-show="model.updateFields == true">
     <div class="form-group">
@@ -80,3 +85,5 @@
         </div>
     </div>
 </div>
+        </div>
+    </section>

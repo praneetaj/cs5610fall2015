@@ -1,20 +1,52 @@
-<h1 class="page-header">Login</h1>
-<div class="form-horizontal">
-    <div class="form-group">
-        <label for="inputUsername" class="col-sm-2 control-label">Username</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputUsername" placeholder="Username" ng-model="model.username">
+<section id="contact-page">
+    <div class="container">
+        <div class="center">
+            <h2>Login</h2>
         </div>
+        <form class="contact-form">
+            <div class="col-sm-8 col-sm-offset-2">
+            <div class="form-group">
+                <label for="inputUsername" class="col-sm-2">Username *</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputUsername"
+                           placeholder="Username" ng-model="model.username" required="required">
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="inputPassword" class="col-sm-2 control-label">Password *</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="inputPassword"
+                           placeholder="Password" ng-model="model.password" required="required">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button ng-click="model.login()" class="form-control btn btn-primary">Login</button>
+                </div>
+            </div>
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <label for="inputPassword" class="col-sm-2 control-label">Password</label>
-        <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="model.password">
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button ng-click="model.login()" class="form-control btn btn-default">Login</button>
-        </div>
-    </div>
-</div>
+</section>
+
+<!--<h1 class="page-header">Login</h1>-->
+<!--<div class="form-horizontal">-->
+    <!--<div class="form-group">-->
+        <!--<label for="inputUsername" class="col-sm-2 control-label">Username</label>-->
+        <!--<div class="col-sm-10">-->
+            <!--<input type="text" class="form-control" id="inputUsername" placeholder="Username" ng-model="model.username">-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+        <!--<label for="inputPassword" class="col-sm-2 control-label">Password</label>-->
+        <!--<div class="col-sm-10">-->
+            <!--<input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="model.password">-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+        <!--<div class="col-sm-offset-2 col-sm-10">-->
+            <!--<button ng-click="model.login()" class="form-control btn btn-default">Login</button>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->

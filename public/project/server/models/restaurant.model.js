@@ -60,7 +60,10 @@ module.exports = function (mongoose, db) {
                         var newObj = {
                             restLocuId : response[i].restLocuId,
                             name : response[i].name,
-                            coupon : response[i].coupons[j]
+                            coupon : response[i].coupons[j],
+                            zipcode : response[i].zipcode,
+                            city : response[i].city,
+                            image_url : response[i].image_url
                         };
                         result.push(newObj);
                     }

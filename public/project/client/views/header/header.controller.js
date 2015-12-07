@@ -1,3 +1,4 @@
+"use strict";
 (function () {
     angular
         .module ("LoyalUApp")
@@ -5,19 +6,19 @@
 
     function HeaderController ($scope, $location, $rootScope, UserService) {
         $scope.$location = $location;
-        $scope.logout = function()
+        $scope.logout = logout;
+        $scope.search = search;
+
+        function search (zipcode) {
+            $location.url("/search/" + zipcode);
+        }
+
+        function logout()
         {
             UserService.logout().then(function () {
                 $rootScope.loggedInUser = null;
                 $location.url("/home");
             });
-            /*
-            $http.post("/logout")
-                .success(function()
-                {
-                    $rootScope.currentUser = null;
-                    $location.url("/home");
-                }); */
         }
     }
 })();
