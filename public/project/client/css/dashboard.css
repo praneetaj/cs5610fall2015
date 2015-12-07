@@ -29,6 +29,12 @@ body {
  * Sidebar
  */
 
+#section2 {
+  background: #f2f2f2;
+  padding-bottom: 40px;
+  padding-top: 100px;
+}
+
 /* Hide for mobile, show later */
 .sidebar {
   display: none;

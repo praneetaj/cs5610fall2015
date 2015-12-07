@@ -8,6 +8,8 @@
         $routeProvider
             .when ("/home", {
                 templateUrl : "views/home/home.view.html",
+                controller : "HomeController",
+                controllerAs : "model",
                 resolve : {
                     loggedIn : checkLoggedInGeneral
                 }
@@ -143,13 +145,6 @@ var checkLoggedInGeneral = function($q, $timeout, $http, $location, $rootScope)
             deferred.resolve();
         } else
             deferred.resolve();
-        /*
-        else
-        {
-            $rootScope.errorMessage = 'You need to log in.';
-            deferred.reject();
-            $location.url('/login');
-        }*/
     });
 
     return deferred.promise;

@@ -1,5 +1,30 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
+<header id="header">
+    <div class="top-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-8" style="float : right">
+                    <div class="social">
+                        <ul class="social-share">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/praneetajhanwar"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                        <div class="search">
+                            <form role="form">
+                                <input type="text" autocomplete="off" placeholder="Search">
+                                <input type="text" autocomplete="off" placeholder="Search">
+                                <!--<input type="text" class="search-form" autocomplete="off" placeholder="Search">-->
+                                <i class="fa fa-search"></i>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<nav class="navbar navbar-inverse" role="banner">
+    <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -9,19 +34,95 @@
             </button>
             <a class="navbar-brand" href="#/home">LoyalU</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse" ng-controller="HeaderController">
-            <span ng-show="!loggedInUser">
-                <ul class="nav navbar-nav navbar-right">
-                    <li ng-class="{'active' : $location.url().indexOf('register') != -1}"><a href="#/register">Register</a></li>
-                    <li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>
-                </ul>
-            </span>
-            <span ng-show="loggedInUser">
-                <ul class="nav navbar-nav navbar-right">
-                    <li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Username</a></li>
-                    <li ng-click="logout()" ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/logout">Logout</a></li>
-                </ul>
-            </span>
+        <div id="navbar" class="navbar-collapse navbar-right collapse" style="float : right" ng-controller="HeaderController">
+
+            <ul ng-show="!loggedInUser" class="nav navbar-nav navbar-right">
+                <li ng-class="{'active' : $location.url().indexOf('register') != -1}"><a href="#/register">Register</a></li>
+                <li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>
+            </ul>
+
+            <ul ng-show="loggedInUser" class="nav navbar-nav navbar-right">
+
+                <li ng-show="loggedInUser && loggedInUser.role == 'CUSTOMER'"
+                    role="presentation"
+                    ng-class="{'active' : $location.url().indexOf('customerQuantityCoupons') != -1}">
+                    <a href="#/customerQuantityCoupons">View Coupons</a>
+                </li>
+
+                <li ng-show="loggedInUser && loggedInUser.role == 'ADMIN'"
+                    role="presentation"
+                    ng-class="{'active' : $location.url().indexOf('restaurantCoupons') != -1}">
+                    <a href="#/restaurantCoupons">Restaurant Coupons</a>
+                </li>
+                <li ng-show="loggedInUser && loggedInUser.role == 'ADMIN'"
+                    role="presentation"
+                    ng-class="{'active' : $location.url().indexOf('recordTransaction') != -1}">
+                    <a href="#/recordTransaction">Record Transaction</a>
+                </li>
+
+                <li ng-class="{'active' : $location.url().indexOf('login') != -1}">
+                    <a href="#/login">Profile</a>
+                </li>
+                <li ng-click="logout()" ng-class="{'active' : $location.url().indexOf('login') != -1}">
+                    <a href="#/logout">Logout</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
+
+<!--<nav class="navbar navbar-inverse navbar-fixed-top">-->
+    <!--<div class="container">-->
+        <!--<div class="navbar-header">-->
+            <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <!--<a class="navbar-brand" href="#/home">LoyalU</a>-->
+        <!--</div>-->
+        <!--<div id="navbar" class="navbar-collapse navbar-right collapse" style="float : left" ng-controller="HeaderController">-->
+            <!--<div class="search">-->
+                <!--<form role="form">-->
+                    <!--<input type="text" autocomplete="off" placeholde    r="Search">-->
+                    <!--<input type="text" autocomplete="off" placeholder="Search">-->
+                    <!--&lt;!&ndash;<input type="text" class="search-form" autocomplete="off" placeholder="Search">&ndash;&gt;-->
+                    <!--<i class="fa fa-search"></i>-->
+                <!--</form>-->
+            <!--</div>-->
+
+            <!--<ul ng-show="!loggedInUser" class="nav navbar-nav navbar-right">-->
+                <!--<li ng-class="{'active' : $location.url().indexOf('register') != -1}"><a href="#/register">Register</a></li>-->
+                <!--<li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>-->
+            <!--</ul>-->
+
+            <!--<ul ng-show="loggedInUser" class="nav navbar-nav navbar-right">-->
+
+                <!--<li ng-show="loggedInUser && loggedInUser.role == 'CUSTOMER'"-->
+                    <!--role="presentation"-->
+                    <!--ng-class="{'active' : $location.url().indexOf('customerQuantityCoupons') != -1}">-->
+                    <!--<a href="#/customerQuantityCoupons">View Coupons</a>-->
+                <!--</li>-->
+
+                <!--<li ng-show="loggedInUser && loggedInUser.role == 'ADMIN'"-->
+                    <!--role="presentation"-->
+                    <!--ng-class="{'active' : $location.url().indexOf('restaurantCoupons') != -1}">-->
+                    <!--<a href="#/restaurantCoupons">Restaurant Coupons</a>-->
+                <!--</li>-->
+                <!--<li ng-show="loggedInUser && loggedInUser.role == 'ADMIN'"-->
+                    <!--role="presentation"-->
+                    <!--ng-class="{'active' : $location.url().indexOf('recordTransaction') != -1}">-->
+                    <!--<a href="#/recordTransaction">Record Transaction</a>-->
+                <!--</li>-->
+
+                <!--<li ng-class="{'active' : $location.url().indexOf('login') != -1}">-->
+                    <!--<a href="#/login">Profile</a>-->
+                <!--</li>-->
+                <!--<li ng-click="logout()" ng-class="{'active' : $location.url().indexOf('login') != -1}">-->
+                    <!--<a href="#/logout">Logout</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</nav>-->

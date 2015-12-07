@@ -3,7 +3,7 @@ var q = require ("q");
 module.exports = function (mongoose, db) {
     var CustomerCouponSchema = require ("./customerCoupon.schema.js") (mongoose);
     var CustomerCouponModel = mongoose.model ("CustomerCouponModel", CustomerCouponSchema);
-    
+
     var api = {
         createCustomerCouponByCustId : createCustomerCouponByCustId,
         createCustomerCoupon : createCustomerCoupon,

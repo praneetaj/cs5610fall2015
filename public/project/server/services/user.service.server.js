@@ -9,11 +9,11 @@ module.exports = function (app, model, passport) {
 
     app.post("/api/project/login", passport.authenticate('local'), findUserByCredentials);
     app.post("/api/project/logout", logout);
-    app.post("/api/project/user", createUser);
+    app.post("/api/project/user", auth, createUser);
     app.get("/api/project/user", auth, findUser);
     app.get("/api/project/customer", auth, findAllCustomers);
-    app.get("/api/project/user/:userId", findUserById);
-    app.put("/api/project/user/:userId", updateUser);
+    app.get("/api/project/user/:userId", auth, findUserById);
+    app.put("/api/project/user/:userId", auth, updateUser);
     app.delete("/api/project/user/:userId", auth, deleteUser);
     app.get('/api/project/loggedin', getLoggedIn);
 

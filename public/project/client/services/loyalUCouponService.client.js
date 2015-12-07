@@ -6,14 +6,15 @@
     function LoyalUCouponService ($http, $q) {
 
         var api = {
-            //getAllCoupons : getAllCoupons,
+            getAllCoupons : getAllCoupons,
             getRestCouponsByZipcodeOrCity : getRestCouponsByZipcodeOrCity,
             getRestByLocuId : getRestByLocuId,
             addCouponForRest : addCouponForRest,
             removeCouponByLocuIdAndCouponIndex : removeCouponByLocuIdAndCouponIndex,
             getCouponByLocuIdAndCouponIndex : getCouponByLocuIdAndCouponIndex,
             updateCouponByLocuIdAndCouponIndex : updateCouponByLocuIdAndCouponIndex,
-            getAllCouponsByLocuId : getAllCouponsByLocuId
+            getAllCouponsByLocuId : getAllCouponsByLocuId,
+            getFirst6Coupons : getFirst6Coupons
         };
         return api;
 

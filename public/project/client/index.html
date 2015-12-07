@@ -5,6 +5,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/dashboard.css"/>
     <link rel="stylesheer" href="css/styles.css"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/prettyPhoto.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-route.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -26,6 +32,7 @@
     <script src="views/restaurantCoupons/restaurantAmountCoupons.controller.js"></script>
     <script src="views/customerCoupons/customerAmountCoupons.controller.js"></script>
     <script src="views/customerCoupons/customerQuantityCoupons.controller.js"></script>
+    <script src="views/home/home.controller.js"></script>
     <script src="services/loyalUCouponService.client.js"></script>
     <script src="services/user.service.client.js"></script>
     <script src="services/locuApi.service.client.js"></script>
@@ -38,19 +45,25 @@
 
     <title>LoyalU</title>
 </head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div ng-include = "'views/header/header.view.html'"></div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class= "col-sm-3 col-md-2 sidebar">
-                <div ng-include = "'views/sidebar/sidebar.view.html'"></div>
-            </div>
-            <div class = "col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view></div>
-        </div>
-    </div>
+<body class="homepage">
+    <div ng-include = "'views/header/header.view.html'"></div>
+    <!--<header id="header">-->
+        <!--<div class="top-bar">-->
+            <!--<div class="container">-->
+                <!--<div class="row">-->
+                    <!--<div ng-include = "'views/header/header.view.html'"></div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</header>-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class= "col-sm-3 col-md-2 sidebar">-->
+                <!--<div ng-include = "'views/sidebar/sidebar.view.html'"></div>-->
+            <!--</div>-->
+            <!--<div class = "col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view></div>-->
+            <div ng-view></div>
+        <!--</div>-->
+    <!--</div>-->
 </body>
 </html>
