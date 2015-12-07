@@ -1,25 +1,22 @@
 <section>
     <div class="container">
         <div class="center wow fadeInDown">
-            <h2>{{model.restaurant.name}}</h2>
+            <h2>{{model.locuRest.name}}</h2>
             <h3>
-                City: {{model.restaurant.city}}
-                <br>
-                Zipcode: {{model.restaurant.zipcode}}
+                {{model.locuRest.location.address1}},
+                {{model.locuRest.location.locality}},
+                {{model.locuRest.location.postal_code}},
+                {{model.locuRest.location.region}}
+                <p>
+                    {{model.locuRest.contact.phone}}
+                </p>
+                <p>
+                    <a href="{{model.locuRest.website_url}}">{{model.locuRest.website_url}}</a>
+                </p>
             </h3>
         </div>
     </div>
 </section>
-<!--<section>-->
-    <!--<div class="container">-->
-        <!--<div class="row">-->
-                <!--<p>-->
-                    <!--City: {{model.restaurant.city}}-->
-                    <!--Zipcode: {{model.restaurant.zipcode}}-->
-                <!--</p>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</section>-->
 <section id="recent-works">
     <div class="container">
         <div class="row">
@@ -48,7 +45,6 @@
                                 <br>
                                 Valid until: {{coupon.expiry | date}}
                             </p>
-                            <!--<a class="preview" href="{{model.restaurant.image_url}}" rel="prettyPhoto">View</a>-->
                         </div>
                     </div>
                 </div>

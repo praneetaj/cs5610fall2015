@@ -9,7 +9,7 @@ module.exports = function (app) {
     app.get("/api/project/locu", findRestaurantByNameAndCity);
 
     function searchFromLocuByLocuId (req, res) {
-        var searchquery = {"api_key" : locuApiKey.apiKey,"fields" : [ "location", "name", "menus"],"venue_queries" : [{"locu_id" : req.params.locuId}]};
+        var searchquery = {"api_key" : locuApiKey.apiKey,"fields" : [ "description", "website_url", "contact", "location", "name", "menus"],"venue_queries" : [{"locu_id" : req.params.locuId}]};
 
         request({
             url: "https://api.locu.com/v2/venue/search",

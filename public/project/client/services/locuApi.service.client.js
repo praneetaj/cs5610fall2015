@@ -5,13 +5,13 @@
 
     function LocuApiService ($http, $q) {
         var api = {
-            getMenuByLocuId : getMenuByLocuId,
+            getLocuDetailsByLocuId : getLocuDetailsByLocuId,
             extractMenuFromResponse : extractMenuFromResponse,
             findRestaurantByNameAndCity : findRestaurantByNameAndCity
         };
         return api;
 
-        function getMenuByLocuId (locuId) {
+        function getLocuDetailsByLocuId (locuId) {
             var deferred = $q.defer();
             $http
                 .get("/api/project/locu/" + locuId)

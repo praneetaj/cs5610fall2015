@@ -22,7 +22,7 @@
 
         function initMenu () {
             if ($rootScope.loggedInUser) {
-                LocuApiService.getMenuByLocuId ($rootScope.loggedInUser.restLocuId).then(function (response) {
+                LocuApiService.getLocuDetailsByLocuId ($rootScope.loggedInUser.restLocuId).then(function (response) {
                     var menuItems = LocuApiService.extractMenuFromResponse (response);
                     console.log(menuItems);
                     model.menuItems = menuItems;

@@ -7,7 +7,7 @@
             <div class="col-sm-6 col-md-4" ng-repeat="coupon in model.coupons">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" id="your-img" src="{{coupon.image_url}}"/>
+                        <img class="img-responsive" id="image-fixed-search1" src="{{coupon.image_url}}"/>
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">{{coupon.name}}, {{coupon.city}}</h4>
@@ -41,19 +41,14 @@
             <div class="col-sm-6 col-md-4" ng-repeat="coupon in model.webCoupons">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" id="img-fixed" src="{{coupon.showImageStandardBig}}"/>
+                        <img class="img-responsive" id="img-fixed-search" src="{{coupon.showImageStandardBig}}"/>
                     </div>
                     <div class="media-body">
-                        <p>{{coupon.name}}, {{coupon.city}}</p>
-                        <p>
-                            coupon.dealTitle
-                            <br>
-                            New Price: {{dealPrice}}, Original Price: {{coupon.dealOriginalPrice}}
-                            <br>
-                            Savings: {{coupon.dealSavings}}, Discount: {{coupon.dealDiscountPercent}}%
-                            <br>
-                            Valid until: {{coupon.expirationDate | date}}
-                        </p>
+                        <p class="truncate expandable">{{coupon.name}}, {{coupon.city}}</p>
+                        <p class="truncate expandable">{{coupon.dealTitle}}</p>
+                        <p class="truncate expandable">New Price: ${{coupon.dealPrice}}, Original Price: ${{coupon.dealOriginalPrice}}</p>
+                        <p class="truncate expandable">Savings: ${{coupon.dealSavings}}, Discount: {{coupon.dealDiscountPercent}}%</p>
+                        <p class="truncate expandable">Valid until: {{coupon.expirationDate | date}}</p>
                     </div>
                 </div>
             </div>
