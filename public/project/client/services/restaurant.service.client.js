@@ -8,7 +8,8 @@
 
         var api = {
             createRestaurant : createRestaurant,
-            getAllRestaurantsAndCoupons : getAllRestaurantsAndCoupons
+            getAllRestaurantsAndCoupons : getAllRestaurantsAndCoupons,
+            getRestaurantByLocuId : getRestaurantByLocuId
         };
         return api;
 
@@ -27,6 +28,17 @@
             var deferred = $q.defer();
             $http
                 .get("/api/project/restaurant")
+                .then(function(restaurant){
+                    deferred.resolve(restaurant);
+                });
+
+            return deferred.promise;
+        }
+
+        function getRestaurantByLocuId (restLocuId) {
+            var deferred = $q.defer();
+            $http
+                .get("/api/project/restaurant?locuId=" + restLocuId)
                 .then(function(restaurant){
                     deferred.resolve(restaurant);
                 });

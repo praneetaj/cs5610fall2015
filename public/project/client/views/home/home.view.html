@@ -12,7 +12,8 @@
             <!--&lt;!&ndash;<p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>&ndash;&gt;-->
         <!--</div>-->
         <div class="row">
-            <div class="col-sm-6 col-md-4" ng-repeat="coupon in model.coupons">
+            <div class="col-sm-4 col-md-3" ng-repeat="coupon in model.coupons">
+                <a href="#/loyalUDetails/{{coupon.restLocuId}}">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
                         <img class="img-responsive" id="your-img" src="{{coupon.image_url}}"/>
@@ -23,6 +24,7 @@
                         <p>{{coupon.coupons[0].description}}</p>
                     </div>
                 </div>
+                </a>
             </div>
         </div>
 

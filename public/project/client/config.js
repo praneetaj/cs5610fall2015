@@ -22,6 +22,14 @@
                     loggedIn : checkLoggedInGeneral
                 }
             })
+            .when ("/loyalUDetails/:restLocuId", {
+                templateUrl : "views/restDetails/restDetails.view.html",
+                controller : "RestDetailsController",
+                controllerAs : "model",
+                resolve : {
+                    loggedIn : checkLoggedInGeneral
+                }
+            })
             .when ("/searchWebCoupons", {
                 templateUrl : "views/searchWebCoupons/searchWebCoupons.view.html",
                 controller : "SearchWebCouponsController",

@@ -1,0 +1,58 @@
+<section>
+    <div class="container">
+        <div class="center wow fadeInDown">
+            <h2>{{model.restaurant.name}}</h2>
+            <h3>
+                City: {{model.restaurant.city}}
+                <br>
+                Zipcode: {{model.restaurant.zipcode}}
+            </h3>
+        </div>
+    </div>
+</section>
+<!--<section>-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+                <!--<p>-->
+                    <!--City: {{model.restaurant.city}}-->
+                    <!--Zipcode: {{model.restaurant.zipcode}}-->
+                <!--</p>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</section>-->
+<section id="recent-works">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="coupon in model.restaurant.coupons">
+                <div class="recent-work-wrap">
+                    <img class="img-responsive" src="{{model.restaurant.image_url}}" alt="">
+                    <div class="overlay">
+                        <div class="recent-work-inner">
+                            <p>{{coupon.label}}</p>
+                            <br>
+                            <p ng-if="coupon.couponType == 'QUANTITY'">
+                                Coupon Type: "Quantity"
+                                <br>
+                                Item Name: {{coupon.itemName}}
+                                <br>
+                                {{coupon.description}}
+                                <br>
+                                Valid until: {{coupon.expiry | date}}
+                            </p>
+                            <p ng-if="coupon.couponType == 'AMOUNT'">
+                                Coupon Type: "Amount"
+                                <br>
+                                Spend {{coupon.amount}}, get {{coupon.discount}}% off
+                                <br>
+                                {{coupon.description}}
+                                <br>
+                                Valid until: {{coupon.expiry | date}}
+                            </p>
+                            <!--<a class="preview" href="{{model.restaurant.image_url}}" rel="prettyPhoto">View</a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
