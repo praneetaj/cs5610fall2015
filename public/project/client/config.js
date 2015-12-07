@@ -141,7 +141,8 @@ var checkLoggedInGeneral = function($q, $timeout, $http, $location, $rootScope)
         {
             $rootScope.loggedInUser = user;
             deferred.resolve();
-        }
+        } else
+            deferred.resolve();
         /*
         else
         {

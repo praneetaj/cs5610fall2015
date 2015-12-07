@@ -43,13 +43,19 @@
         function record () {
             console.log(model.users[model.selectedUser]._id);
             var index = model.selectedCoupon;
-            var currQuantity, totalQuantity, amount;
+            var currQuantity, totalQuantity, amount, thresholdAmount, thresholdQuantity, couponType;
             if (model.restaurant.coupons[index].couponType == "AMOUNT") {
-                currQuantity = 0;
+                currQuantity = null;
                 amount = model.amount;
+                //thresholdAmount = restaurant.coupons[index].amount;
+                //thresholdQuantity = null;
+                //couponType = "AMOUNT";
             } else {
                 currQuantity = model.quantity;
-                amount = 0;
+                amount = null;
+                //thresholdAmount = null;
+                //thresholdQuantity = model.restaurant.coupons[index].quantity;
+                //couponType = "QUANTITY";
             }
             var customerCoupon = {
                 customerId : model.users[model.selectedUser]._id,
@@ -57,13 +63,20 @@
                 couponId : model.restaurant.coupons[index]._id,
                 couponLabel : model.restaurant.coupons[index].label,
                 currQuantity : currQuantity,
-                amount : amount
+                amount : amount,
+                restCoupon : model.restaurant.coupons[index]
             };
             customerCouponService
                 .createOrUpdateCustCouponByCustId(model.users[model.selectedUser]._id, customerCoupon)
                 .then(function(response){
                     console.log(response);
+                    displayDiscount (response);
             });
+        }
+
+        function displayDiscount (response) {
+            model.displayDiscount = true;
+            model.displayResult = response.data;
         }
     }
 })();

@@ -3,10 +3,7 @@ var q = require ("q");
 module.exports = function (mongoose, db) {
     var CustomerCouponSchema = require ("./customerCoupon.schema.js") (mongoose);
     var CustomerCouponModel = mongoose.model ("CustomerCouponModel", CustomerCouponSchema);
-
-    //var RestaurantSchema = require ("./restaurant.schema.js") (mongoose);
-    //var RestaurantModel = mongoose.model ("RestaurantModel", RestaurantSchema);
-
+    
     var api = {
         createCustomerCouponByCustId : createCustomerCouponByCustId,
         createCustomerCoupon : createCustomerCoupon,
@@ -16,14 +13,53 @@ module.exports = function (mongoose, db) {
     };
     return api;
 
-    function createCustomerCoupon (customerEntry) {
+    function createCustomerCoupon (customerCoupon) {
         var deferred = q.defer ();
 
-        CustomerCouponModel.create (customerEntry, function (err, entry) {
+        var newCoupon, result;
+        if (customerCoupon.restCoupon.couponType == "QUANTITY") {
+            var qty = parseInt(customerCoupon.currQuantity) % parseInt(customerCoupon.restCoupon.quantity);
+            var freeItems = Math.floor(parseInt(customerCoupon.currQuantity) / parseInt(customerCoupon.restCoupon.quantity));
+            newCoupon = {
+                customerId: customerCoupon.customerId,
+                restLocuId: customerCoupon.restLocuId,
+                couponId: customerCoupon.couponId,
+                //couponLabel: customerCoupon.restCoupon.label,
+                currQuantity: qty,
+                totalQuantity: customerCoupon.currQuantity,
+                amount: null
+            };
+            result = {
+                "discount" : null,
+                "freeItems" : freeItems
+            };
+        } else {
+            var discount = null;
+            if (parseInt(customerCoupon.amount) > parseInt(customerCoupon.restCoupon.amount))
+                discount = parseInt(customerCoupon.customerCoupon.discount);
+            newCoupon = {
+                customerId: customerCoupon.customerId,
+                restLocuId: customerCoupon.restLocuId,
+                couponId: customerCoupon.couponId,
+                //couponLabel: customerCoupon.couponLabel,
+                currQuantity: null,
+                totalQuantity: null,
+                amount: customerCoupon.amount
+            };
+            result = {
+                "discount" : discount,
+                "freeItems" : null
+            };
+        }
+
+        CustomerCouponModel.create (newCoupon, function (err, entry) {
             if (err)
                 deferred.reject(err);
-            else
-                deferred.resolve (entry);
+            else {
+                console.log("created an entry for coupon");
+                console.log(result);
+                deferred.resolve(result);
+            }
         });
         return deferred.promise;
     }
@@ -60,21 +96,38 @@ module.exports = function (mongoose, db) {
                 deferred.reject(err);
             else {
                 var flag = false;
+                var result;
                 for (var i = 0; i < coupons.length; i++) {
                     if (coupons[i].couponId == customerCoupon.couponId) {
-                        coupons[i].amount = parseInt(coupons[i].amount) + parseInt(customerCoupon.amount);
-                        coupons[i].currQuantity = parseInt(coupons[i].currQuantity) + parseInt(customerCoupon.currQuantity);
-                        coupons[i].totalQuantity = parseInt(coupons[i].totalQuantity) +  parseInt(customerCoupon.currQuantity);
+                        if (customerCoupon.restCoupon.couponType == "AMOUNT") {
+                            coupons[i].amount = parseInt(coupons[i].amount) + parseInt(customerCoupon.amount);
+                            var discount = null;
+                            if (parseInt(coupons[i].amount) > parseInt(customerCoupon.restCoupon.amount)) {
+                                discount = parseInt(customerCoupon.restCoupon.discount);
+                            }
+                            result = {
+                                "discount" : discount,
+                                "freeItems" : null
+                            };
+                        } else {
+                            coupons[i].currQuantity = parseInt(coupons[i].currQuantity) + parseInt(customerCoupon.currQuantity);
+                            coupons[i].totalQuantity = parseInt(coupons[i].totalQuantity) +  parseInt(customerCoupon.currQuantity);
+                            var freeItems = Math.floor(parseInt(coupons[i].currQuantity) / parseInt(customerCoupon.restCoupon.quantity));
+                            coupons[i].currQuantity = parseInt(coupons[i].currQuantity) % parseInt(customerCoupon.restCoupon.quantity);
+                            result = {
+                                "discount" : null,
+                                "freeItems" : freeItems
+                            };
+                        }
                         coupons[i].save (function (err, response) {
-                            deferred.resolve(response);
+                            deferred.resolve(result);
                         });
                         flag = true;
                         break;
                     }
                 }
-                if (!flag) {
-                    createCustomerCoupon (customerCoupon);
-                }
+                if (!flag)
+                    deferred.resolve("0");
             }
         });
         return deferred.promise;

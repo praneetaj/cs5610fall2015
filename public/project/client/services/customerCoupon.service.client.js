@@ -28,6 +28,7 @@
             $http
                 .put("/api/project/customer/" + custId + "/coupon", customerCoupon)
                 .then(function(response){
+                    console.log("returning from recording transaction");
                     deferred.resolve(response);
                 });
 
