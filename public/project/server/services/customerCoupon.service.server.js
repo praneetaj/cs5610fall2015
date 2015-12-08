@@ -2,6 +2,7 @@ module.exports = function (app, model) {
     //app.post("/api/project/customer/:customerId/coupon", createCustomerCouponEntryById);
     app.put("/api/project/customer/:customerId/coupon", createOrUpdateCustCouponByCustId);
     app.get("/api/project/customer/:customerId/coupon", getAllCustCouponsByCustId);
+    app.delete("/api/project/customer/couponId/:couponId", deleteCustCouponsByCouponId);
 
     //function createCustomerCouponEntryById (req, res) {
     //    model
@@ -10,6 +11,14 @@ module.exports = function (app, model) {
     //            res.json (response);
     //        });
     //}
+
+    function deleteCustCouponsByCouponId (req, res) {
+        model
+            .deleteCouponsByCouponId (req.params.couponId)
+            .then (function (response) {
+                res.json (response);
+            });
+    }
 
     function createOrUpdateCustCouponByCustId (req, res) {
         model

@@ -8,7 +8,8 @@ module.exports = function (mongoose, db) {
         createCustomerCouponByCustId : createCustomerCouponByCustId,
         createCustomerCoupon : createCustomerCoupon,
         createOrUpdateCustCouponByCustId : createOrUpdateCustCouponByCustId,
-        getAllCustCouponsByCustId : getAllCustCouponsByCustId
+        getAllCustCouponsByCustId : getAllCustCouponsByCustId,
+        deleteCustCouponsByCouponId : deleteCustCouponsByCouponId
         //getCustCouponsByCustIdDetailed : getCustCouponsByCustIdDetailed
     };
     return api;
@@ -172,6 +173,18 @@ module.exports = function (mongoose, db) {
                     deferred.resolve (result);
                 });
             }
+        });
+        return deferred.promise;
+    }
+
+    function deleteCustCouponsByCouponId (restLocuId, couponId) {
+        var deferred = q.defer ();
+
+        CustomerCouponModel.remove ({"couponId" : couponId}, function (err, coupons) {
+            if (err)
+                deferred.reject(err);
+            else
+                deferred.resolve (coupons);
         });
         return deferred.promise;
     }
