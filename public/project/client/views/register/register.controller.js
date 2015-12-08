@@ -105,8 +105,8 @@
                 email : "",
                 role : "ADMIN",
                 restLocuId : model.restaurants[index].locu_id,
-                firstName : model.newuser.firstName,
-                lastName : model.newuser.password
+                firstName : "",
+                lastName : ""
             };
             PlacePhotoService.getPictureUrlFromGoogle (model.restaurants[index].name, model.restaurants[index].location.locality)
                 .then (function (place) {
