@@ -37,6 +37,7 @@
 
         function init () {
             RestaurantService.getAllRestaurantsAndCoupons().then(function (response) {
+                console.log(response.data.length);
                 model.coupons = response.data;
             });
         }

@@ -20,12 +20,27 @@ module.exports = function (mongoose, db) {
     function createRestaurant (restaurant) {
         var deferred = q.defer ();
 
-        RestaurantModel.create (restaurant, function (err, restaurant) {
+        RestaurantModel.find ({"restLocuId" : restaurant.restLocuId}, function (err, res) {
             if (err)
                 deferred.reject(err);
-            else
-                deferred.resolve (restaurant);
+            else {
+                if (res.length == 0) {
+                    RestaurantModel.create (restaurant, function (err1, restaurant) {
+                        if (err1)
+                            deferred.reject(err1);
+                        else
+                            deferred.resolve (restaurant);
+                    });
+                } else
+                    deferred.resolve ('0');
+            }
         });
+        //RestaurantModel.create (restaurant, function (err, restaurant) {
+        //    if (err)
+        //        deferred.reject(err);
+        //    else
+        //        deferred.resolve (restaurant);
+        //});
         return deferred.promise;
     }
 
