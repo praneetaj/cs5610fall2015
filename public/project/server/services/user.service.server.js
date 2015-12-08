@@ -52,7 +52,11 @@ module.exports = function (app, model, passport) {
         model
             .createUser (req.body)
             .then (function (user) {
-                res.json (user);
+                req.login(user, function(err)
+                {
+                    if(err) { return next(err); }
+                    res.json(user);
+                });
             });
     }
 
@@ -102,6 +106,7 @@ module.exports = function (app, model, passport) {
     function updateUser (req, res) {
         var id = req.params.userId;
         var updatedUser = req.body;
+        console.log("updating only user");
         model
             .updateUser (id, updatedUser)
             .then (function (user) {
@@ -119,9 +124,9 @@ module.exports = function (app, model, passport) {
 
     function deleteUser (req, res) {
         model
-            .deleteUser (req.params.id)
+            .deleteUser (req.params.userId)
             .then (function (status) {
-            res.json (status);
-        });
+                res.json (status);
+            });
     }
 };

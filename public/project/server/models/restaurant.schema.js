@@ -9,6 +9,7 @@ module.exports = function (mongoose) {
         description : String,
         itemName : String,
         quantity : Number,
+        freeQty : Number,
         amount : Number,
         discount : Number,
         dateCreated : Date,

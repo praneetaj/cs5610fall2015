@@ -14,7 +14,7 @@
             findAllCustomers : findAllCustomers,
             findUserById : findUserById,
             logout : logout,
-            removeUser : removeUser,
+            deleteUser : deleteUser,
             updateUser : updateUser,
             updatePassword : updatePassword
         };
@@ -113,7 +113,7 @@
             return deferred.promise;
         }
 
-        function removeUser (id) {
+        function deleteUser (id) {
             var deferred = $q.defer();
             $http
                 .delete("/api/project/user/" + id)

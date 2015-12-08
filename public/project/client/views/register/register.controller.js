@@ -3,9 +3,8 @@
         .module ("LoyalUApp")
         .controller ("RegisterController", RegisterController);
 
-    function RegisterController (UserService, LocuApiService,
-                                 RestaurantService, customerCouponService,
-                                 PlacePhotoService, $location) {
+    function RegisterController ($rootScope, $location, UserService, LocuApiService,
+                                 RestaurantService, PlacePhotoService) {
         var model = this;
         model.search = searchRestaurantFromLocu;
         model.createUser = createUser;
@@ -76,7 +75,7 @@
                 password : model.newuser.password,
                 googleUsername : null, //not sure if google api returns this
                 googleId : null,
-                email : null,
+                email : "",
                 role : "CUSTOMER",
                 restLocuId : null,
                 firstName : "",
@@ -86,15 +85,6 @@
                 console.log(response);
                 $rootScope.loggedInUser = response;
                 $location.url("/profile");
-                /*
-                var customerId = response._id;
-                var customerEntry = {
-                    customerId : customerId,
-                    cust_coupons : []
-                };
-                customerCouponService.createCustomerCouponEntryById(customerId, customerEntry).then(function (response) {
-                    console.log(response);
-                }); */
             });
         }
 
@@ -112,7 +102,7 @@
                 password : model.newuser.password,
                 googleUsername : null, //not sure if google api returns this
                 googleId : null,
-                email : model.newuser.email,
+                email : "",
                 role : "ADMIN",
                 restLocuId : model.restaurants[index].locu_id,
                 firstName : model.newuser.firstName,

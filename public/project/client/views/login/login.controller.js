@@ -6,6 +6,7 @@
 
     function LoginController ($rootScope, $location, UserService) {
         console.log("LoginController");
+        //console.log($rootScope.loggedInUser);
         var model = this;
         model.login = login;
 
