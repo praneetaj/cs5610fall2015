@@ -11,6 +11,7 @@ module.exports = function (mongoose, db, passport, LocalStrategy) {
         findUserById : findUserById,
         updateUser : updateUser,
         deleteUser : deleteUser,
+        updatePassword : updatePassword,
         findUserByCredentials : findUserByCredentials,//p
         findUserByUsername: findUserByUsername
     };
@@ -43,6 +44,29 @@ module.exports = function (mongoose, db, passport, LocalStrategy) {
     });
 
     return api;
+
+    function updatePassword (id, updateUser) {
+        var deferred = q.defer ();
+
+        ProjectUserModel.findById (id, function (err, user) {
+            if (err)
+                deferred.reject (err);
+            else {
+                if (user.password == updateUser.old) {
+                    delete user["_id"];
+                    user.password = updateUser.new;
+                    ProjectUserModel.update ({"_id" : id}, {$set: user}, function (err, res) {
+                        if (err)
+                            deferred.reject (err);
+                        else
+                            deferred.resolve (res);
+                    });
+                } else
+                    deferred.resolve('0');
+            }
+        });
+        return deferred.promise;
+    }
 
     function createUser (newuser) {
         var deferred = q.defer ();

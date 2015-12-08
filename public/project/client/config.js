@@ -119,7 +119,34 @@
             .when ("/login", {
                 templateUrl : "views/login/login.view.html",
                 controller : "LoginController",
-                controllerAs : "model"
+                controllerAs : "model",
+                resolve : {
+                    loggedIn : checkLoggedInGeneral
+                }
+            })
+            .when ("/logout", {
+                templateUrl : "views/logout/logout.view.html",
+                controller : "LogoutController",
+                controllerAs : "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
+            })
+            .when ("/profile", {
+                templateUrl : "views/profile/profile.view.html",
+                controller : "ProfileController",
+                controllerAs : "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
+            })
+            .when ("/changePassword", {
+                templateUrl : "views/profile/changePassword.view.html",
+                controller : "ProfileController",
+                controllerAs : "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
             })
             .otherwise({
                 redirectTo : "/home"

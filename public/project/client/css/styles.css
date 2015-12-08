@@ -26,3 +26,7 @@
     align: middle;
     padding: 10px;
 }
+
+.profile-name-text {
+    text-transform:capitalize;
+}

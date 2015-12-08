@@ -21,6 +21,10 @@ body {
   max-height: 200px;
 }
 
+.profile-name-text {
+  text-transform:capitalize;
+}
+
 /*
  * Global add-ons
  */

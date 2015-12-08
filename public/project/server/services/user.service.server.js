@@ -14,11 +14,20 @@ module.exports = function (app, model, passport) {
     app.get("/api/project/customer", auth, findAllCustomers);
     app.get("/api/project/user/:userId", auth, findUserById);
     app.put("/api/project/user/:userId", auth, updateUser);
+    app.put("/api/project/user/:userId/password", auth, updatePassword);
     app.delete("/api/project/user/:userId", auth, deleteUser);
     app.get('/api/project/loggedin', getLoggedIn);
 
     function getLoggedIn (req, res) {
         res.send(req.isAuthenticated() ? req.user : '0');
+    }
+
+    function updatePassword (req, res) {
+        model
+            .updatePassword (req.params.userId, req.body)
+            .then (function (user) {
+                res.json (user);
+            });
     }
 
     function findUserByCredentials (req, res) {

@@ -15,9 +15,21 @@
             findUserById : findUserById,
             logout : logout,
             removeUser : removeUser,
-            updateUser : updateUser
+            updateUser : updateUser,
+            updatePassword : updatePassword
         };
         return api;
+
+        function updatePassword (id, user) {
+            var deferred = $q.defer();
+            $http
+                .put("/api/project/user/" + id + "/password", user)
+                .success(function(users){
+                    deferred.resolve(users);
+                });
+
+            return deferred.promise;
+        }
 
         function findAllUsers () {
             var deferred = $q.defer();

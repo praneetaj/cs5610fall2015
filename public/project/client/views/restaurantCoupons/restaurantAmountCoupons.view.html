@@ -3,12 +3,12 @@
         <div class="center">
             <h2>{{model.restaurantCoupons.name}}</h2>
         </div>
-<!--<h1 class="page-header">{{model.restaurantCoupons.name}}</h1>-->
-<ul class="nav nav-tabs">
-    <li role="presentation"><a href="#/restaurantCoupons">Quantity Coupons</a></li>
-    <li role="presentation" class="active"><a href="#">Amount Coupons</a></li>
-    <li role="presentation"><a href="#/createCoupons">Create Coupons</a></li>
-</ul>
+
+        <ul class="portfolio-filter text-center">
+            <li><a class="btn btn-default" href="#/restaurantCoupons" data-filter="*">Quantity Coupons</a></li>
+            <li><a class="btn btn-default active" href="#/restaurantAmountCoupons" data-filter=".bootstrap">Amount Coupons</a></li>
+            <li><a class="btn btn-default" href="#/createCoupons" data-filter=".html">Create Coupons</a></li>
+        </ul>
 <br>
 <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover">
