@@ -5,6 +5,7 @@
         </div>
         <div class="row">
             <div class="col-sm-6 col-md-4" ng-repeat="coupon in model.coupons">
+                <a href="#/loyalUDetails/{{coupon.restLocuId}}">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
                         <img class="img-responsive" id="image-fixed-search1" src="{{coupon.image_url}}"/>
@@ -31,6 +32,7 @@
                         </p>
                     </div>
                 </div>
+                </a>
             </div>
         </div>
 
@@ -39,6 +41,7 @@
         </div>
         <div class="row">
             <div class="col-sm-6 col-md-4" ng-repeat="coupon in model.webCoupons">
+                <a href="#/store/{{coupon.storeID}}/coupon/{{coupon.ID}}">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
                         <img class="img-responsive" id="img-fixed-search" src="{{coupon.showImageStandardBig}}"/>
@@ -51,6 +54,7 @@
                         <p class="truncate expandable">Valid until: {{coupon.expirationDate | date}}</p>
                     </div>
                 </div>
+                </a>
             </div>
         </div>
     </div>

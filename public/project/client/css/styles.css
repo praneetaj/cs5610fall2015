@@ -6,12 +6,7 @@
 /*}*/
 
 
-.truncate {
-    max-width: 250px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+
 
 #image-fixed-search1 {
     height: 200px;
@@ -25,4 +20,9 @@
     width: 250px;
     max-width: 200px;
     max-height: 200px;
+}
+
+.pull-middle {
+    align: middle;
+    padding: 10px;
 }

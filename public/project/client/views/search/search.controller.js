@@ -15,6 +15,7 @@
             });
             WebCouponService.searchCouponsByZipcode (zipcode).then(function(webCoupons){
                 model.webCoupons = webCoupons;
+                console.log(webCoupons);
             });
         }
 

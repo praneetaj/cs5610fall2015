@@ -7,94 +7,44 @@
 <!--</section>-->
 <section id="section2" class="service-item">
     <div class="container">
-        <!--<div class="center wow fadeInDown">-->
-            <!--<h2>Our Coupons</h2>-->
-            <!--&lt;!&ndash;<p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>&ndash;&gt;-->
-        <!--</div>-->
+        <div class="center wow fadeInDown">
+            <h2>Some of our first coupons</h2>
+        </div>
         <div class="row">
-            <div class="col-sm-6 col-md-4" ng-repeat="coupon in model.coupons">
+            <div class="col-sm-6 col-md-3" ng-repeat="coupon in model.coupons">
                 <a href="#/loyalUDetails/{{coupon.restLocuId}}">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" id="your-img" src="{{coupon.image_url}}"/>
+                        <img class="img-responsive" id="img-fixed" src="{{coupon.image_url}}"/>
                     </div>
                     <div class="media-body">
-                        <h3 class="media-heading truncate">{{coupon.name}}</h3>
-                        <p class="truncate">{{coupon.coupons[0].description}}</p>
+                        <a href="#/loyalUDetails/{{coupon.restLocuId}}">
+                            <!--<span class="glyphicon glyphicon-map-marker">-->
+                            <!--</span>-->
+                            <h3 class="media-heading truncate">
+                                {{coupon.name}}
+                            </h3>
+                        </a>
+                        <p class="truncate media-text-color">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                            {{coupon.coupons[0].description}}
+                        </p>
+                        <p class="truncate media-text-color" ng-if="coupon.coupons[0].couponType == 'QUANTITY'">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                            {{coupon.coupons[0].itemName}}
+                        </p>
+                        <p class="truncate media-text-color" ng-if="coupon.coupons[0].couponType == 'AMOUNT'">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                            {{coupon.coupons[0].discount}}%
+                        </p>
+                        <p class="truncate media-text-color">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                            {{coupon.coupons[0].expiry | date}}
+                        </p>
                     </div>
                 </div>
                 </a>
             </div>
         </div>
-
-        <!--<div class="row">-->
-            <!--<div class="col-sm-6 col-md-4">-->
-                <!--<div class="media services-wrap wow fadeInDown">-->
-                    <!--<div class="pull-left">-->
-                        <!--<img class="img-responsive" src="images/services/services1.png">-->
-                    <!--</div>-->
-                    <!--<div class="media-body">-->
-                        <!--<h3 class="media-heading">SEO Marketing</h3>-->
-                        <!--<p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-sm-6 col-md-4">-->
-                <!--<div class="media services-wrap wow fadeInDown">-->
-                    <!--<div class="pull-left">-->
-                        <!--<img class="img-responsive" src="images/services/services2.png">-->
-                    <!--</div>-->
-                    <!--<div class="media-body">-->
-                        <!--<h3 class="media-heading">SEO Marketing</h3>-->
-                        <!--<p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-sm-6 col-md-4">-->
-                <!--<div class="media services-wrap wow fadeInDown">-->
-                    <!--<div class="pull-left">-->
-                        <!--<img class="img-responsive" src="images/services/services3.png">-->
-                    <!--</div>-->
-                    <!--<div class="media-body">-->
-                        <!--<h3 class="media-heading">SEO Marketing</h3>-->
-                        <!--<p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-sm-6 col-md-4">-->
-                <!--<div class="media services-wrap wow fadeInDown">-->
-                    <!--<div class="pull-left">-->
-                        <!--<img class="img-responsive" src="images/services/services4.png">-->
-                    <!--</div>-->
-                    <!--<div class="media-body">-->
-                        <!--<h3 class="media-heading">SEO Marketing</h3>-->
-                        <!--<p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-sm-6 col-md-4">-->
-                <!--<div class="media services-wrap wow fadeInDown">-->
-                    <!--<div class="pull-left">-->
-                        <!--<img class="img-responsive" src="images/services/services5.png">-->
-                    <!--</div>-->
-                    <!--<div class="media-body">-->
-                        <!--<h3 class="media-heading">SEO Marketing</h3>-->
-                        <!--<p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-sm-6 col-md-4">-->
-                <!--<div class="media services-wrap wow fadeInDown">-->
-                    <!--<div class="pull-left">-->
-                        <!--<img class="img-responsive" src="images/services/services6.png">-->
-                    <!--</div>-->
-                    <!--<div class="media-body">-->
-                        <!--<h3 class="media-heading">SEO Marketing</h3>-->
-                        <!--<p>Lorem ipsum dolor sit ame consectetur adipisicing elit</p>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
     </div>
 </section>
-<!--<h1></h1>-->

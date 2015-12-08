@@ -46,7 +46,7 @@
                     loggedIn : checkLoggedInGeneral
                 }
             })
-            .when ("/details/:dealId", {
+            .when ("/store/:storeId/coupon/:dealId", {
                 templateUrl : "views/searchWebCoupons/searchWebCoupons.details.view.html",
                 controller : "SearchWebCouponsDetailsController",
                 controllerAs : "model",
