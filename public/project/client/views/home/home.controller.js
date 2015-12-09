@@ -37,14 +37,14 @@
 
         function init () {
             RestaurantService.getAllRestaurantsAndCoupons().then(function (response) {
-                console.log(response.data.length);
+                //console.log(response.data.length);
                 var result = [];
                 var cnt = 0;
                 for (var i = 0; i < response.data.length; i++) {
                     if (response.data[i].coupons.length > 0) {
                         result.push(response.data[i]);
                         cnt++;
-                        if (cnt == 5)
+                        if (cnt == 3)
                             break;
                     }
                 }

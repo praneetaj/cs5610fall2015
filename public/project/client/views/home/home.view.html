@@ -9,12 +9,12 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="coupon in model.coupons">
+                <a href="#/loyalUDetails/{{coupon.restLocuId}}">
                 <div class="recent-work-wrap">
-                    <!--<img class="img-responsive" src="{{coupon.image_url}}" alt="">-->
                     <img id="img-fixed" src="{{coupon.image_url}}" alt>
                     <div class="overlay">
                         <div class="recent-work-inner">
-                            <p  style="text-align: center">{{coupon.name}}</p>
+                            <p  style="text-align: center">{{coupon.name}}, {{coupon.city}}</p>
                             <br>
                             <p class="truncate">
                                 <span class="glyphicon glyphicon-star"></span>
@@ -39,6 +39,7 @@
                         </div>
                     </div>
                 </div>
+                </a>
             </div>
         </div>
     </div>

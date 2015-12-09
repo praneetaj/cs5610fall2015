@@ -17,34 +17,52 @@
         </div>
     </div>
 </section>
+
 <section id="recent-works">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="coupon in model.restaurant.coupons">
                 <div class="recent-work-wrap">
-                    <img class="img-responsive" src="{{model.restaurant.image_url}}" alt="">
+                    <img id="img-fixed" src="{{model.restaurant.image_url}}">
                     <div class="overlay">
                         <div class="recent-work-inner">
-                            <p>{{coupon.label}}</p>
-                            <br>
-                            <p ng-if="coupon.couponType == 'QUANTITY'">
-                                Coupon Type: "Quantity"
-                                <br>
-                                Item Name: {{coupon.itemName}}
-                                <br>
-                                {{coupon.description}}
-                                <br>
-                                Valid until: {{coupon.expiry | date}}
-                            </p>
-                            <p ng-if="coupon.couponType == 'AMOUNT'">
-                                Coupon Type: "Amount"
-                                <br>
-                                Spend {{coupon.amount}}, get {{coupon.discount}}% off
-                                <br>
-                                {{coupon.description}}
-                                <br>
-                                Valid until: {{coupon.expiry | date}}
-                            </p>
+                            <p class="center fa-2x">{{coupon.label}}</p>
+                            <div ng-if="coupon.couponType == 'QUANTITY'">
+                                <p>
+                                    <span class="glyphicon glyphicon-tag"></span>
+                                    Coupon Type: "Quantity"
+                                </p>
+                                <p>
+                                    <span class="glyphicon glyphicon-cutlery"></span>
+                                    {{coupon.itemName}}
+                                </p>
+                                <p>
+                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                    {{coupon.description}}
+                                </p>
+                                <p>
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                    Valid until: {{coupon.expiry | date}}
+                                </p>
+                            </div>
+                            <div ng-if="coupon.couponType == 'AMOUNT'">
+                                <p>
+                                    <span class="glyphicon glyphicon-tag"></span>
+                                    Coupon Type: "Amount"
+                                </p>
+                                <p>
+                                    <span class="glyphicon glyphicon-usd"></span>
+                                    Spend {{coupon.amount}}, get {{coupon.discount}}% off
+                                </p>
+                                <p>
+                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                    {{coupon.description}}
+                                </p>
+                                <p>
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                    Valid until: {{coupon.expiry | date}}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
