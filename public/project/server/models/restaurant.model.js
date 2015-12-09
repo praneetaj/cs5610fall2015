@@ -156,6 +156,7 @@ module.exports = function (mongoose, db) {
                 restaurant.coupons[index].quantity = updatedCoupon.quantity;
                 restaurant.coupons[index].freeQuantity = updatedCoupon.freeQuantity;
                 restaurant.coupons[index].amount = updatedCoupon.amount;
+                restaurant.coupons[index].discount = updatedCoupon.discount;
                 restaurant.coupons[index].dateCreated = updatedCoupon.dateCreated;
                 restaurant.coupons[index].expiry = updatedCoupon.expiry;
                 //restaurant.coupons[index].isValid = updatedCoupon.isValid;
