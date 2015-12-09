@@ -5,8 +5,7 @@
         .controller("RestaurantAmountCouponsController", RestaurantAmountCouponsController);
 
     function RestaurantAmountCouponsController ($scope, $rootScope,
-                                                LoyalUCouponService, LocuApiService,
-                                                customerCouponService) {
+                                                LoyalUCouponService, customerCouponService) {
 
         var model = this;
         model.removeCoupon = removeCoupon;
@@ -28,7 +27,6 @@
                 initCoupons();
                 customerCouponService.deleteCustCouponsByCouponId (model.restaurantCoupons.coupons[index]._id)
                     .then (function (response) {
-
                 });
             });
         }

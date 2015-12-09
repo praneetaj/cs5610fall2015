@@ -25,6 +25,7 @@
         }
 
         function createOrUpdateCustCouponByCustId (custId, customerCoupon) {
+            console.log("about to send record request");
             var deferred = $q.defer();
             $http
                 .put("/api/project/customer/" + custId + "/coupon", customerCoupon)

@@ -67,10 +67,19 @@ module.exports = function (app, model) {
     }
 
     function getAllCouponsByLocuId (req, res) {
-        model
-            .getAllCouponsByLocuId (req.params.locuId)
-            .then(function (response) {
-                res.json(response);
-            });
+        var expired = req.query.expired;
+        if (typeof expired=="undefined" || expired == "1") {
+            model
+                .getAllCouponsByLocuId(req.params.locuId)
+                .then(function (response) {
+                    res.json(response);
+                });
+        } else if (expired == "0") {
+            model
+                .getAllUnexpiredCouponsByLocuId(req.params.locuId)
+                .then(function (response) {
+                    res.json(response);
+                });
+        }
     }
 };

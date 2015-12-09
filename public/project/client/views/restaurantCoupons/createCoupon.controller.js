@@ -47,6 +47,7 @@
             model.newCoupon.amount = "";
             model.newCoupon.itemName = "";
             model.newCoupon.quantity = "";
+            model.newCoupon.freeQuantity = "";
             model.newCoupon.expiry = "";
             model.newCoupon.discount = "";
         }
@@ -72,11 +73,13 @@
                 typeof model.newCoupon.description == "undefined" ||
                 typeof model.newCoupon.itemName == "undefined" ||
                 typeof model.newCoupon.quantity == "undefined" ||
+                typeof model.newCoupon.freeQuantity == "undefined" ||
                 typeof model.newCoupon.expiry == "undefined" ||
                 model.newCoupon.label == "" ||
                 model.newCoupon.description == "" ||
                 model.newCoupon.itemName == "" ||
                 model.newCoupon.quantity == "" ||
+                model.newCoupon.freeQuantity == "" ||
                 model.newCoupon.expiry == "")
                 return false;
             else
@@ -91,6 +94,7 @@
                     description : model.newCoupon.description,
                     itemName : null,
                     quantity : null,
+                    freeQuantity : null,
                     amount : model.newCoupon.amount,
                     discount : model.newCoupon.discount,
                     dateCreated : new Date(),
@@ -115,6 +119,7 @@
                     description : model.newCoupon.description,
                     itemName : model.newCoupon.itemName,
                     quantity : model.newCoupon.quantity,
+                    freeQuantity : model.newCoupon.freeQuantity,
                     amount : null,
                     discount : null,
                     dateCreated : new Date(),

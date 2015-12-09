@@ -80,10 +80,10 @@
             return deferred.promise;
         }
 
-        function getAllCouponsByLocuId (locuId) {
+        function getAllCouponsByLocuId (locuId, expired) {
             var deferred = $q.defer();
             $http
-                .get("/api/project/restaurant/" + locuId + "/coupon")
+                .get("/api/project/restaurant/" + locuId + "/coupon?expired=" + expired)
                 .success(function (response) {
                     deferred.resolve(response);
                 });

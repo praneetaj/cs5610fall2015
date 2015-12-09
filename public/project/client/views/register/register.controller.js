@@ -110,8 +110,6 @@
             };
             PlacePhotoService.getPictureUrlFromGoogle (model.restaurants[index].name, model.restaurants[index].location.locality)
                 .then (function (place) {
-                //console.log(place.data);
-                //model.restImage = place.data;
                     var restEntry = {
                         restLocuId : model.restaurants[index].locu_id,
                         name : model.restaurants[index].name,
@@ -122,13 +120,12 @@
                     };
                     RestaurantService.createRestaurant(restEntry).then(function (response) {
                         console.log(response);
+                        UserService.createUser(newuser).then(function (response) {
+                            console.log(response);
+                            $rootScope.loggedInUser = response;
+                            $location.url("/profile");
+                        });
                     });
-            });
-
-            UserService.createUser(newuser).then(function (response) {
-                console.log(response);
-                $rootScope.loggedInUser = response;
-                $location.url("/profile");
             });
         }
     }

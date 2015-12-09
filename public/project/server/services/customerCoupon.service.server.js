@@ -21,18 +21,24 @@ module.exports = function (app, model) {
     }
 
     function createOrUpdateCustCouponByCustId (req, res) {
+        console.log("server side, about to record transaction");
         model
             .createOrUpdateCustCouponByCustId (req.params.customerId, req.body)
             .then (function (response) {
+                console.log(response);
                 if (response == "0") {
+                    console.log("service: response was 0");
                     model
                         .createCustomerCoupon (req.body)
                         .then (function (response) {
+                            console.log("created customer record");
                             res.json(response);
                     })
                 }
-                else
-                    res.json (response);
+                else {
+                    console.log("updated customer record");
+                    res.json(response);
+                }
             });
     }
 

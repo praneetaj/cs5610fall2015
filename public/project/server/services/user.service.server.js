@@ -52,9 +52,16 @@ module.exports = function (app, model, passport) {
         model
             .createUser (req.body)
             .then (function (user) {
+                console.log("created user");
+                console.log(user);
                 req.login(user, function(err)
                 {
-                    if(err) { return next(err); }
+                    if(err) {
+                        console.log("error in login");
+                        return next(err);
+                    }
+                    console.log("logged in");
+                    console.log(user);
                     res.json(user);
                 });
             });

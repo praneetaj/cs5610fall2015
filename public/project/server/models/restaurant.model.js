@@ -13,6 +13,7 @@ module.exports = function (mongoose, db) {
         getCouponByLocuIdAndCouponIndex : getCouponByLocuIdAndCouponIndex,
         updateCouponByLocuIdAndCouponIndex : updateCouponByLocuIdAndCouponIndex,
         getAllCouponsByLocuId : getAllCouponsByLocuId,
+        getAllUnexpiredCouponsByLocuId : getAllUnexpiredCouponsByLocuId,
         getAllRestaurantsAndCoupons : getAllRestaurantsAndCoupons
     };
     return api;
@@ -153,6 +154,7 @@ module.exports = function (mongoose, db) {
                 restaurant.coupons[index].description = updatedCoupon.description;
                 restaurant.coupons[index].itemName = updatedCoupon.itemName;
                 restaurant.coupons[index].quantity = updatedCoupon.quantity;
+                restaurant.coupons[index].freeQuantity = updatedCoupon.freeQuantity;
                 restaurant.coupons[index].amount = updatedCoupon.amount;
                 restaurant.coupons[index].dateCreated = updatedCoupon.dateCreated;
                 restaurant.coupons[index].expiry = updatedCoupon.expiry;
@@ -173,6 +175,24 @@ module.exports = function (mongoose, db) {
                 deferred.reject(err);
             else
                 deferred.resolve (response);
+        });
+        return deferred.promise;
+    }
+
+    function getAllUnexpiredCouponsByLocuId (restLocuId) {
+        var deferred = q.defer ();
+
+        RestaurantModel.findOne ({"restLocuId" : restLocuId}, function (err, restaurant) {
+            if (err)
+                deferred.reject(err);
+            else {
+                var result = [];
+                for (var i = 0; i < restaurant.coupons.length; i++) {
+                    if (restaurant.coupons[i].expiry > new Date())
+                        result.push(restaurant.coupons[i]);
+                }
+                deferred.resolve(result);
+            }
         });
         return deferred.promise;
     }

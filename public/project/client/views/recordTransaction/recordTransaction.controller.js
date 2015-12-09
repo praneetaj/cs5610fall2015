@@ -18,22 +18,26 @@
             });
         }
 
-        function loadAllCoupons () {
+        function loadAllUnexpiredCoupons () {
             if ($rootScope.loggedInUser) {
-                LoyalUCouponService.getRestByLocuId($rootScope.loggedInUser.restLocuId).then(function (response) {
-                    model.restaurant = response;
-                    console.log(response);
+                LoyalUCouponService.getAllCouponsByLocuId ($rootScope.loggedInUser.restLocuId, 0)
+                    .then (function (res) {
+                        model.coupons = res;
                 });
+                //LoyalUCouponService.getRestByLocuId($rootScope.loggedInUser.restLocuId).then(function (response) {
+                //    model.restaurant = response;
+                //    console.log(response);
+                //});
             }
         }
 
         loadAllCustomers();
-        loadAllCoupons();
+        loadAllUnexpiredCoupons();
 
         function couponChange () {
             model.couponTypeLoad = true;
             var index = model.selectedCoupon;
-            if (model.restaurant.coupons[index].couponType == "AMOUNT") {
+            if (model.coupons[index].couponType == "AMOUNT") {
                 model.amountType = true;
             } else {
                 model.amountType = false;
@@ -44,7 +48,7 @@
             console.log(model.users[model.selectedUser]._id);
             var index = model.selectedCoupon;
             var currQuantity, totalQuantity, amount, thresholdAmount, thresholdQuantity, couponType;
-            if (model.restaurant.coupons[index].couponType == "AMOUNT") {
+            if (model.coupons[index].couponType == "AMOUNT") {
                 currQuantity = null;
                 amount = model.amount;
                 //thresholdAmount = restaurant.coupons[index].amount;
@@ -60,12 +64,12 @@
             var customerCoupon = {
                 customerId : model.users[model.selectedUser]._id,
                 restLocuId : $rootScope.loggedInUser.restLocuId,
-                couponId : model.restaurant.coupons[index]._id,
-                couponLabel : model.restaurant.coupons[index].label,
+                couponId : model.coupons[index]._id,
                 currQuantity : currQuantity,
                 amount : amount,
-                restCoupon : model.restaurant.coupons[index]
+                restCoupon : model.coupons[index]
             };
+            console.log(customerCoupon);
             customerCouponService
                 .createOrUpdateCustCouponByCustId(model.users[model.selectedUser]._id, customerCoupon)
                 .then(function(response){

@@ -4,7 +4,8 @@
         .module("LoyalUApp")
         .controller("RestaurantQuantityCouponsController", RestaurantQuantityCouponsController);
 
-    function RestaurantQuantityCouponsController ($scope, $rootScope, LoyalUCouponService, LocuApiService) {
+    function RestaurantQuantityCouponsController ($scope, $rootScope, LoyalUCouponService,
+                                                  LocuApiService, customerCouponService) {
 
         var model = this;
         model.removeCoupon = removeCoupon;
@@ -37,6 +38,9 @@
         function removeCoupon (index) {
             LoyalUCouponService.removeCouponByLocuIdAndCouponIndex ($rootScope.loggedInUser.restLocuId, index).then(function (response) {
                 initCoupons();
+                customerCouponService.deleteCustCouponsByCouponId (model.restaurantCoupons.coupons[index]._id)
+                    .then (function (response) {
+                });
             });
         }
 
