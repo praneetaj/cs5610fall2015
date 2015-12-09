@@ -74,15 +74,17 @@ module.exports = function (mongoose, db) {
                 var result = [];
                 for (var i = 0; i < response.length; i++) {
                     for (j = 0; j < response[i].coupons.length; j++) {
-                        var newObj = {
-                            restLocuId : response[i].restLocuId,
-                            name : response[i].name,
-                            coupon : response[i].coupons[j],
-                            zipcode : response[i].zipcode,
-                            city : response[i].city,
-                            image_url : response[i].image_url
-                        };
-                        result.push(newObj);
+                        if (response[i].coupons[j].expiry > new Date()) {
+                            var newObj = {
+                                restLocuId: response[i].restLocuId,
+                                name: response[i].name,
+                                coupon: response[i].coupons[j],
+                                zipcode: response[i].zipcode,
+                                city: response[i].city,
+                                image_url: response[i].image_url
+                            };
+                            result.push(newObj);
+                        }
                     }
                 }
                 deferred.resolve(result);

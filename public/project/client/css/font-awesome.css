@@ -26,6 +26,13 @@
   line-height: 0.75em;
   vertical-align: -15%;
 }
+
+.fa-sm {
+  font-size: 0.25em;
+  line-height: 2em;
+  vertical-align: -15%;
+}
+
 .fa-2x {
   font-size: 2em;
 }

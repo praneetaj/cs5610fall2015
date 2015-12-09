@@ -7,6 +7,7 @@
     function HomeController (RestaurantService) {
         var model = this;
 
+        /*
         function objectifyCoupons (restaurants) {
             var result = [];
             var count = 0;
@@ -33,7 +34,7 @@
                     break;
             }
             return result;
-        }
+        }*/
 
         function init () {
             RestaurantService.getAllRestaurantsAndCoupons().then(function (response) {
@@ -44,7 +45,7 @@
                     if (response.data[i].coupons.length > 0) {
                         result.push(response.data[i]);
                         cnt++;
-                        if (cnt == 3)
+                        if (cnt == 4)
                             break;
                     }
                 }
