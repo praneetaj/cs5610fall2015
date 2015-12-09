@@ -5,13 +5,13 @@
     <!--</div>-->
 <!--</div>-->
 <!--</section>-->
-<section id="section2" class="service-item">
+<section id="services" class="service-item">
     <div class="container">
         <div class="center wow fadeInDown">
             <h2>Some of our first coupons</h2>
         </div>
         <div class="row">
-            <div class="col-sm-6 col-md-3" ng-repeat="coupon in model.coupons">
+            <div class="col-sm-6 col-md-4" ng-repeat="coupon in model.coupons">
                 <a href="#/loyalUDetails/{{coupon.restLocuId}}">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
@@ -21,9 +21,9 @@
                         <a href="#/loyalUDetails/{{coupon.restLocuId}}">
                             <!--<span class="glyphicon glyphicon-map-marker">-->
                             <!--</span>-->
-                            <h3 class="media-heading truncate">
+                            <p class="truncate media-heading">
                                 {{coupon.name}}
-                            </h3>
+                            </p>
                         </a>
                         <p class="truncate media-text-color">
                             <span class="glyphicon glyphicon-info-sign"></span>
