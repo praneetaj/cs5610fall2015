@@ -21,6 +21,13 @@ body {
   max-height: 300px;
 }
 
+#img-fixed-details {
+  height: 250px;
+  width: 400px;
+  max-width: 300px;
+  max-height: 250px;
+}
+
 .profile-name-text {
   text-transform:capitalize;
 }

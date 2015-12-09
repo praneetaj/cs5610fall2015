@@ -1,25 +1,84 @@
-<h1 class="page-header">Coupon Details</h1>
-
-<h2>{{model.coupon.dealTitle}}</h2>
-<img src="{{model.coupon.showImage}}" class="image-minified"/>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Store Name</th>
-            <th>Expiration Date</th>
-            <th>Post Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{model.coupon.name}}</td>
-            <td>{{model.coupon.expirationDate}}</td>
-            <td>{{model.coupon.postDate}}</td>
-        </tr>
-    </tbody>
-</table>
-<p>{{model.coupon.dealinfo}}</p>
-
+<section>
+    <div class="container">
+        <div class="center wow fadeInDown">
+            <h2>{{model.coupon.name}}</h2>
+            <h3>
+                <p></p>
+                <p>
+                    <a href="{{model.locuRest.website_url}}">Buy the coupon here</a>
+                </p>
+            </h3>
+        </div>
+    </div>
+</section>
+<!--
+<section>
+    <div class="parrent media-body">
+        <div class="tab-content">
+            <div class="tab-pane" id="tab1">
+                <div class="media">
+                    <div class="pull-left">
+                        <img class="img-responsive" id="image-fixed-search" src="{{model.coupon.showImage}}">
+                    </div>
+                    <div class="media-body">
+                        <h4>Adipisicing elit</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+-->
+<section id="content" class="shortcode-item">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-5">
+                <img src="{{model.coupon.showImage}}" id="img-fixed-details"/>
+            </div>
+            <div class="col-xs-12 col-sm-7">
+                <div class="accordion">
+                    <div class="panel-group" id="accordion1">
+                        <div class="panel panel-default">
+                            <div class="panel-heading active">
+                                <h3 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1">
+                                        Description
+                                    </a>
+                                </h3>
+                            </div>
+                            <div id="collapseOne1" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <div class="media accordion-inner">
+                                        <div class="media-body">
+                                            {{model.coupon.dealTitle}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-heading active">
+                                <h3 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1">
+                                        Post Date, Expiration Date
+                                    </a>
+                                </h3>
+                            </div>
+                            <div id="collapseOne2" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <div class="media accordion-inner">
+                                        <div class="media-body">
+                                            <p>{{model.coupon.postDate}}, {{model.coupon.expirationDate}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 <!--
@@ -47,6 +106,5 @@
 {{model.coupon.state}},
 {{model.coupon.ZIP}}
 -->
-<a href={{model.coupon.URL}}><h3>8CouponURL</h3></a>
 
 
