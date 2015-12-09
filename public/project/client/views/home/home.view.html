@@ -5,6 +5,76 @@
     <!--</div>-->
 <!--</div>-->
 <!--</section>-->
+
+
+<section>
+    <div class="container">
+        <div class="center wow fadeInDown">
+            <h2>Some of our first coupons</h2>
+        </div>
+    </div>
+</section>
+<section id="recent-works">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="coupon in model.coupons">
+                <div class="recent-work-wrap">
+                    <!--<img class="img-responsive" src="{{coupon.image_url}}" alt="">-->
+                    <img id="img-fixed" src="{{coupon.image_url}}" alt>
+                    <div class="overlay">
+                        <div class="recent-work-inner">
+                            <p  style="text-align: center">{{coupon.name}}</p>
+                            <br>
+                            <p class="truncate">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                                {{coupon.coupons[0].label}}
+                            </p>
+                            <p class="truncate">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                                {{coupon.coupons[0].description}}
+                            </p>
+                            <p class="truncate" ng-if="coupon.coupons[0].couponType == 'QUANTITY'">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                                {{coupon.coupons[0].itemName}}
+                            </p>
+                            <p class="truncate" ng-if="coupon.coupons[0].couponType == 'AMOUNT'">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                                {{coupon.coupons[0].discount}}%
+                            </p>
+                            <p class="truncate">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                                {{coupon.coupons[0].expiry | date}}
+                            </p>
+                            <!--<p>{{coupon.name}}</p>-->
+                            <!--<br>-->
+                            <!--<p ng-if="coupon.couponType == 'QUANTITY'">-->
+                                <!--Coupon Type: "Quantity"-->
+                                <!--<br>-->
+                                <!--Item Name: {{coupon.itemName}}-->
+                                <!--<br>-->
+                                <!--{{coupon.description}}-->
+                                <!--<br>-->
+                                <!--Valid until: {{coupon.expiry | date}}-->
+                            <!--</p>-->
+                            <!--<p ng-if="coupon.couponType == 'AMOUNT'">-->
+                                <!--Coupon Type: "Amount"-->
+                                <!--<br>-->
+                                <!--Spend {{coupon.amount}}, get {{coupon.discount}}% off-->
+                                <!--<br>-->
+                                <!--{{coupon.description}}-->
+                                <!--<br>-->
+                                <!--Valid until: {{coupon.expiry | date}}-->
+                            <!--</p>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--
+
 <section id="services" class="service-item">
     <div class="container">
         <div class="center wow fadeInDown">
@@ -19,8 +89,6 @@
                     </div>
                     <div class="media-body">
                         <a href="#/loyalUDetails/{{coupon.restLocuId}}">
-                            <!--<span class="glyphicon glyphicon-map-marker">-->
-                            <!--</span>-->
                             <p class="truncate media-heading">
                                 {{coupon.name}}
                             </p>
@@ -48,3 +116,6 @@
         </div>
     </div>
 </section>
+
+
+-->

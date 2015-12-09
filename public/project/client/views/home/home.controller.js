@@ -38,7 +38,26 @@
         function init () {
             RestaurantService.getAllRestaurantsAndCoupons().then(function (response) {
                 console.log(response.data.length);
-                model.coupons = response.data;
+                var result = [];
+                var cnt = 0;
+                for (var i = 0; i < response.data.length; i++) {
+                    if (response.data[i].coupons.length > 0) {
+                        result.push(response.data[i]);
+                        cnt++;
+                        if (cnt == 5)
+                            break;
+                    }
+                }
+                model.coupons = result;
+                //var i = 0;
+                //var cnt = model.coupons.length - 1;
+                //while (i < cnt) {
+                //    if (model.coupons[i].coupons.length == 0) {
+                //        model.coupons[i].splice(i, 1);
+                //        cnt--;
+                //        i++;
+                //    }
+                //}
             });
         }
 

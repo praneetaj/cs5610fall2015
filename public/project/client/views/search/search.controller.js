@@ -12,6 +12,7 @@
         function init () {
             LoyalUCouponService.getRestCouponsByZipcodeOrCity(zipcode).then(function (response) {
                 model.coupons = response;
+                console.log(response);
             });
             WebCouponService.searchCouponsByZipcode (zipcode).then(function(webCoupons){
                 model.webCoupons = webCoupons;

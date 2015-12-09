@@ -66,7 +66,8 @@ module.exports = function (mongoose, db) {
     function getRestCouponsByZipcodeOrCity (searchParam) {
         var deferred = q.defer ();
 
-        RestaurantModel.find ({$or : [{"zipcode" : searchParam}, {"city" : searchParam}]}, function (err, response) {
+        //RestaurantModel.find ({$or : [{"zipcode" : searchParam}, {"city" : searchParam}]}, function (err, response) {
+        RestaurantModel.find ({$and : [{"zipcode" : searchParam}, {"$where" : "this.coupons.length > 0"}]}, function (err, response) {
             if (err)
                 deferred.reject(err);
             else {
