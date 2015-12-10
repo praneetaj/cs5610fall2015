@@ -8,8 +8,10 @@
         $scope.$location = $location;
         $scope.logout = logout;
         $scope.search = search;
+        $scope.searchKeyPress = searchKeyPress;
 
         function search (zipcode) {
+            $scope.zipcode = "";
             $location.url("/search/" + zipcode);
         }
 
@@ -19,6 +21,16 @@
                 $rootScope.loggedInUser = null;
                 $location.url("/home");
             });
+        }
+
+        function searchKeyPress(e)
+        {
+            // look for window.event in case event isn't passed in
+            e = e || window.event;
+            if (e.keyCode == 13)
+            {
+                search($scope.zipcode);
+            }
         }
     }
 })();

@@ -18,63 +18,110 @@
     </div>
 </section>
 
-<section id="recent-works">
+<section id="services" class="service-item">
     <div class="container">
+        <div class="center wow fadeInDown">
+            <h2>Coupons</h2>
+        </div>
         <div class="row">
-            <div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="coupon in model.restaurant.coupons">
-                <div class="recent-work-wrap">
-                    <img id="img-fixed" src="{{model.restaurant.image_url}}">
-                    <div class="overlay">
-                        <div class="recent-work-inner">
-                            <p class="center fa-2x">{{coupon.label}}</p>
-                            <div ng-if="coupon.couponType == 'QUANTITY'">
-                                <p>
-                                    <span class="glyphicon glyphicon-tag"></span>
-                                    Coupon Type: "Quantity"
+            <div class="col-sm-6 col-md-4" ng-repeat="coupon in model.restaurant.coupons">
+                <a href="#/loyalUDetails/{{coupon.restLocuId}}">
+                    <div class="media services-wrap wow fadeInDown">
+                        <div class="pull-left">
+                            <img class="img-responsive" id="image-fixed-search1" src="{{model.restaurant.image_url}}"/>
+                        </div>
+                        <div class="media-body">
+                                <p class="center1 truncate media-heading">
+                                    {{model.restaurant.name}}, {{model.restaurant.zipcode}}
                                 </p>
-                                <p>
-                                    <span class="glyphicon glyphicon-cutlery"></span>
-                                    {{coupon.itemName}}
-                                </p>
-                                <p>
-                                    <span class="glyphicon glyphicon-info-sign"></span>
-                                    {{coupon.description}}
-                                </p>
-                                <p>
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                    Valid until: {{coupon.expiry | date}}
-                                </p>
-                                <br>
-                                <p class="fa">
-                                    *Redeem this coupon at the venue
-                                </p>
-                            </div>
-                            <div ng-if="coupon.couponType == 'AMOUNT'">
-                                <p>
-                                    <span class="glyphicon glyphicon-tag"></span>
-                                    Coupon Type: "Amount"
-                                </p>
-                                <p>
-                                    <span class="glyphicon glyphicon-usd"></span>
-                                    Spend {{coupon.amount}}, get {{coupon.discount}}% off
-                                </p>
-                                <p>
-                                    <span class="glyphicon glyphicon-info-sign"></span>
-                                    {{coupon.description}}
-                                </p>
-                                <p>
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                    Valid until: {{coupon.expiry | date}}
-                                </p>
-                                <br>
-                                <p class="fa">
-                                    *Redeem this coupon at the venue
-                                </p>
-                            </div>
+                            <p class="truncate">
+                                <span class="glyphicon glyphicon-star"></span>
+                                {{coupon.label}}
+                            </p>
+                            <p class="truncate">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                                {{coupon.description}}
+                            </p>
+                            <p class="truncate" ng-if="coupon.couponType == 'QUANTITY'">
+                                <span class="glyphicon glyphicon-cutlery"></span>
+                                {{coupon.itemName}}
+                            </p>
+                            <p class="truncate" ng-if="coupon.couponType == 'AMOUNT'">
+                                <span class="glyphicon glyphicon-usd    "></span>
+                                {{coupon.discount}}%
+                            </p>
+                            <p class="truncate">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                                {{coupon.expiry | date}}
+                            </p>
+                            <p class="fa">
+                                *Redeem this coupon at the venue
+                            </p>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>
 </section>
+
+<!--<section id="recent-works">-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="coupon in model.restaurant.coupons">-->
+                <!--<div class="recent-work-wrap">-->
+                    <!--<img id="img-fixed" src="{{model.restaurant.image_url}}">-->
+                    <!--<div class="overlay">-->
+                        <!--<div class="recent-work-inner">-->
+                            <!--<p class="center fa-2x">{{coupon.label}}</p>-->
+                            <!--<div ng-if="coupon.couponType == 'QUANTITY'">-->
+                                <!--<p>-->
+                                    <!--<span class="glyphicon glyphicon-tag"></span>-->
+                                    <!--Coupon Type: "Quantity"-->
+                                <!--</p>-->
+                                <!--<p>-->
+                                    <!--<span class="glyphicon glyphicon-cutlery"></span>-->
+                                    <!--{{coupon.itemName}}-->
+                                <!--</p>-->
+                                <!--<p>-->
+                                    <!--<span class="glyphicon glyphicon-info-sign"></span>-->
+                                    <!--{{coupon.description}}-->
+                                <!--</p>-->
+                                <!--<p>-->
+                                    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+                                    <!--Valid until: {{coupon.expiry | date}}-->
+                                <!--</p>-->
+                                <!--<br>-->
+                                <!--<p class="fa">-->
+                                    <!--*Redeem this coupon at the venue-->
+                                <!--</p>-->
+                            <!--</div>-->
+                            <!--<div ng-if="coupon.couponType == 'AMOUNT'">-->
+                                <!--<p>-->
+                                    <!--<span class="glyphicon glyphicon-tag"></span>-->
+                                    <!--Coupon Type: "Amount"-->
+                                <!--</p>-->
+                                <!--<p>-->
+                                    <!--<span class="glyphicon glyphicon-usd"></span>-->
+                                    <!--Spend {{coupon.amount}}, get {{coupon.discount}}% off-->
+                                <!--</p>-->
+                                <!--<p>-->
+                                    <!--<span class="glyphicon glyphicon-info-sign"></span>-->
+                                    <!--{{coupon.description}}-->
+                                <!--</p>-->
+                                <!--<p>-->
+                                    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+                                    <!--Valid until: {{coupon.expiry | date}}-->
+                                <!--</p>-->
+                                <!--<br>-->
+                                <!--<p class="fa">-->
+                                    <!--*Redeem this coupon at the venue-->
+                                <!--</p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</section>-->

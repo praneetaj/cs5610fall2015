@@ -45,7 +45,7 @@
                     if (response.data[i].coupons.length > 0) {
                         result.push(response.data[i]);
                         cnt++;
-                        if (cnt == 4)
+                        if (cnt == 6)
                             break;
                     }
                 }
