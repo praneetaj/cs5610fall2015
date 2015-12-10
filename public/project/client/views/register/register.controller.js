@@ -40,18 +40,15 @@
         }
 
         function createUser () {
-             if (validateInput()) {
-                if (model.newuser.role == "CUSTOMER") {
-                    createCustomerUser();
-                } else if (model.newuser.role == "ADMIN") {
-                    createAdminUser();
-                }
-             }
+            if (model.newuser.role == "CUSTOMER") {
+                createCustomerUser();
+            } else if (model.newuser.role == "ADMIN") {
+                createAdminUser();
+            }
         }
 
-        function validateInput () {
+        function validateCustomerInput () {
             if (typeof model.newuser == "undefined") {
-                alert("Please fill the form!");
                 return false;
             } else if (typeof model.newuser.role == "undefined" ||
                 typeof model.newuser.loyalUUsername == "undefined" ||
@@ -60,16 +57,18 @@
                 typeof model.newuser.loyalUUsername == "" ||
                 typeof model.newuser.password == "" ||
                 typeof model.password2 == "") {
-                alert("Please fill all the fields!");
                 return false;
             } else if (model.newuser.password != model.password2) {
-                alert("Passwords do not match!");
                 return false;
             } else
                 return true;
         }
 
         function createCustomerUser () {
+            if (!validateCustomerInput()) {
+                alert("Please fill valid entries!");
+                return;
+            }
             var newuser = {
                 loyalUUsername : model.newuser.loyalUUsername,
                 password : model.newuser.password,
@@ -95,7 +94,20 @@
             });
         }
 
+        function validateAdminInput () {
+            if (!validateCustomerInput() ||
+                typeof model.registeredRestaurant == "undefined" ||
+                model.registeredRestaurant == "")
+                return false;
+            else
+                return true;
+        }
+
         function createAdminUser () {
+            if (!validateAdminInput()) {
+                alert("Please fill valid entries!");
+                return;
+            }
             var index = model.registeredRestaurant;
             var newuser = {
                 loyalUUsername : model.newuser.loyalUUsername,
@@ -108,25 +120,47 @@
                 firstName : "",
                 lastName : ""
             };
-            PlacePhotoService.getPictureUrlFromGoogle (model.restaurants[index].name, model.restaurants[index].location.locality)
-                .then (function (place) {
-                    var restEntry = {
-                        restLocuId : model.restaurants[index].locu_id,
-                        name : model.restaurants[index].name,
-                        zipcode : model.restaurants[index].location.postal_code,
-                        city : model.restaurants[index].location.locality,
-                        image_url : place.data,
-                        coupons : []
-                    };
-                    RestaurantService.createRestaurant(restEntry).then(function (response) {
-                        console.log(response);
-                        UserService.createUser(newuser).then(function (response) {
+
+            UserService.createUser(newuser).then(function (response) {
+                console.log(response);
+                $rootScope.loggedInUser = response;
+                PlacePhotoService.getPictureUrlFromGoogle (model.restaurants[index].name,
+                    model.restaurants[index].location.locality)
+                    .then (function (place) {
+                        var restEntry = {
+                            restLocuId : model.restaurants[index].locu_id,
+                            name : model.restaurants[index].name,
+                            zipcode : model.restaurants[index].location.postal_code,
+                            city : model.restaurants[index].location.locality,
+                            image_url : place.data,
+                            coupons : []
+                        };
+                        RestaurantService.createRestaurant(restEntry).then(function (response) {
                             console.log(response);
-                            $rootScope.loggedInUser = response;
                             $location.url("/profile");
                         });
-                    });
+                });
             });
+
+            //PlacePhotoService.getPictureUrlFromGoogle (model.restaurants[index].name, model.restaurants[index].location.locality)
+            //    .then (function (place) {
+            //        var restEntry = {
+            //            restLocuId : model.restaurants[index].locu_id,
+            //            name : model.restaurants[index].name,
+            //            zipcode : model.restaurants[index].location.postal_code,
+            //            city : model.restaurants[index].location.locality,
+            //            image_url : place.data,
+            //            coupons : []
+            //        };
+            //        RestaurantService.createRestaurant(restEntry).then(function (response) {
+            //            console.log(response);
+            //            UserService.createUser(newuser).then(function (response) {
+            //                console.log(response);
+            //                $rootScope.loggedInUser = response;
+            //                $location.url("/profile");
+            //            });
+            //        });
+            //});
         }
     }
 }) ();
