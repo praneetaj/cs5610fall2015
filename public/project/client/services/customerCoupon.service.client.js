@@ -9,7 +9,8 @@
             //createCustomerCouponEntryById : createCustomerCouponEntryById,
             createOrUpdateCustCouponByCustId : createOrUpdateCustCouponByCustId,
             getAllCustCouponsByCustId : getAllCustCouponsByCustId,
-            deleteCustCouponsByCouponId : deleteCustCouponsByCouponId
+            deleteCustCouponsByCouponId : deleteCustCouponsByCouponId,
+            getCustCouponsByCouponId : getCustCouponsByCouponId
         };
         return api;
 
@@ -52,6 +53,17 @@
             var deferred = $q.defer();
             $http
                 .delete("/api/project/customer/coupon/" + couponId)
+                .then(function(response){
+                    deferred.resolve(response);
+                });
+
+            return deferred.promise;
+        }
+
+        function getCustCouponsByCouponId (couponId) {
+            var deferred = $q.defer();
+            $http
+                .get("/api/project/customer/coupon/" + couponId)
                 .then(function(response){
                     deferred.resolve(response);
                 });

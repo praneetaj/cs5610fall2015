@@ -124,6 +124,14 @@
                     loggedIn : checkLoggedInGeneral
                 }
             })
+            .when ("/analysis", {
+                templateUrl : "views/analysis/analysis.view.html",
+                controller : "AnalysisController",
+                controllerAs : "model",
+                resolve : {
+                    loggedIn : checkLoggedIn
+                }
+            })
             .when ("/logout", {
                 templateUrl : "views/logout/logout.view.html",
                 controller : "LogoutController",

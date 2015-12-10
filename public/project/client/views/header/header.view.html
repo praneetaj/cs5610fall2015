@@ -51,10 +51,16 @@
                     <a href="#/customerQuantityCoupons">View Coupons</a>
                 </li>
 
+                <!--<li ng-show="loggedInUser && loggedInUser.role == 'ADMIN'"-->
+                    <!--role="presentation"-->
+                    <!--ng-class="{'active' : $location.url().indexOf('analysis') != -1}">-->
+                    <!--<a href="#/analysis">Analytics</a>-->
+                <!--</li>-->
                 <li ng-show="loggedInUser && loggedInUser.role == 'ADMIN'"
                     role="presentation"
                     ng-class="{'active' : $location.url().indexOf('restaurantCoupons') != -1}">
-                    <a href="#/restaurantCoupons">Restaurant Coupons</a>
+                    <!--ng-class="{'active' : $location.url().indexOf('restaurantAmountCoupons') != -1}">-->
+                    <a href="#/restaurantCoupons">Manage Coupons</a>
                 </li>
                 <li ng-show="loggedInUser && loggedInUser.role == 'ADMIN'"
                     role="presentation"

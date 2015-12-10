@@ -21,6 +21,13 @@ body {
   max-height: 300px;
 }
 
+#img-fixed-1 {
+  height: 300px;
+  width: 300px;
+  max-width: 215px;
+  max-height: 200px;
+}
+
 #img-fixed-details {
   height: 250px;
   width: 400px;

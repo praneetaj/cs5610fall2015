@@ -38,7 +38,7 @@
 
         function init () {
             RestaurantService.getAllRestaurantsAndCoupons().then(function (response) {
-                //console.log(response.data.length);
+                console.log(response.data.length);
                 var result = [];
                 var cnt = 0;
                 for (var i = 0; i < response.data.length; i++) {
@@ -49,16 +49,18 @@
                             break;
                     }
                 }
+
                 model.coupons = result;
-                //var i = 0;
-                //var cnt = model.coupons.length - 1;
-                //while (i < cnt) {
-                //    if (model.coupons[i].coupons.length == 0) {
-                //        model.coupons[i].splice(i, 1);
-                //        cnt--;
-                //        i++;
-                //    }
-                //}
+
+
+                //$(document).ready(function() {
+                //    $('.hover').bind('touchstart touchend', function(e) {
+                //        e.preventDefault();
+                //        $(this).toggleClass('hover_effect');
+                //    });
+                //});
+
+                //model.coupons = response.data;
             });
         }
 

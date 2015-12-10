@@ -1,17 +1,19 @@
-<section>
-    <div class="container">
-        <div class="center wow fadeInDown">
-            <h2>Some of our first coupons</h2>
-        </div>
-    </div>
-</section>
+<!--<section>-->
+    <!--<div class="container">-->
+        <!--<div class="center wow fadeInDown">-->
+            <!--<h2>Some of our first coupons</h2>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</section>-->
+<!--     HOVER ONE -->
+<!--
 <section id="recent-works">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="coupon in model.coupons">
                 <a href="#/loyalUDetails/{{coupon.restLocuId}}">
                 <div class="recent-work-wrap">
-                    <img id="img-fixed" src="{{coupon.image_url}}" alt>
+                    <img id="img-fixed" src="{{coupon.image_url}}">
                     <div class="overlay">
                         <div class="recent-work-inner">
                             <p  style="text-align: center">{{coupon.name}}, {{coupon.city}}</p>
@@ -48,8 +50,7 @@
         </div>
     </div>
 </section>
-
-<!--
+-->
 
 <section id="services" class="service-item">
     <div class="container">
@@ -61,29 +62,36 @@
                 <a href="#/loyalUDetails/{{coupon.restLocuId}}">
                 <div class="media services-wrap wow fadeInDown">
                     <div class="pull-left">
-                        <img class="img-responsive" id="img-fixed" src="{{coupon.image_url}}"/>
+                        <img class="img-responsive" id="image-fixed-search1" src="{{coupon.image_url}}"/>
                     </div>
                     <div class="media-body">
                         <a href="#/loyalUDetails/{{coupon.restLocuId}}">
-                            <p class="truncate media-heading">
-                                {{coupon.name}}
+                            <p class="center truncate media-heading">
+                                {{coupon.name}}, {{coupon.zipcode}}
                             </p>
                         </a>
-                        <p class="truncate media-text-color">
+                        <p class="truncate">
+                            <span class="glyphicon glyphicon-star"></span>
+                            {{coupon.coupons[0].label}}
+                        </p>
+                        <p class="truncate">
                             <span class="glyphicon glyphicon-info-sign"></span>
                             {{coupon.coupons[0].description}}
                         </p>
-                        <p class="truncate media-text-color" ng-if="coupon.coupons[0].couponType == 'QUANTITY'">
-                            <span class="glyphicon glyphicon-info-sign"></span>
+                        <p class="truncate" ng-if="coupon.coupons[0].couponType == 'QUANTITY'">
+                            <span class="glyphicon glyphicon-cutlery"></span>
                             {{coupon.coupons[0].itemName}}
                         </p>
-                        <p class="truncate media-text-color" ng-if="coupon.coupons[0].couponType == 'AMOUNT'">
-                            <span class="glyphicon glyphicon-info-sign"></span>
+                        <p class="truncate" ng-if="coupon.coupons[0].couponType == 'AMOUNT'">
+                            <span class="glyphicon glyphicon-usd    "></span>
                             {{coupon.coupons[0].discount}}%
                         </p>
-                        <p class="truncate media-text-color">
+                        <p class="truncate">
                             <span class="glyphicon glyphicon-calendar"></span>
                             {{coupon.coupons[0].expiry | date}}
+                        </p>
+                        <p class="fa">
+                            *Redeem this coupon at the venue
                         </p>
                     </div>
                 </div>
@@ -92,6 +100,3 @@
         </div>
     </div>
 </section>
-
-
--->

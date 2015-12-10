@@ -2,7 +2,8 @@ module.exports = function (app, model) {
     //app.post("/api/project/customer/:customerId/coupon", createCustomerCouponEntryById);
     app.put("/api/project/customer/:customerId/coupon", createOrUpdateCustCouponByCustId);
     app.get("/api/project/customer/:customerId/coupon", getAllCustCouponsByCustId);
-    app.delete("/api/project/customer/couponId/:couponId", deleteCustCouponsByCouponId);
+    app.delete("/api/project/customer/coupon/:couponId", deleteCustCouponsByCouponId);
+    app.get("/api/project/customer/coupon/:couponId", getCustCouponsByCouponId);
 
     //function createCustomerCouponEntryById (req, res) {
     //    model
@@ -15,6 +16,14 @@ module.exports = function (app, model) {
     function deleteCustCouponsByCouponId (req, res) {
         model
             .deleteCouponsByCouponId (req.params.couponId)
+            .then (function (response) {
+                res.json (response);
+            });
+    }
+
+    function getCustCouponsByCouponId (req, res) {
+        model
+            .getCustCouponsByCouponId (req.params.couponId)
             .then (function (response) {
                 res.json (response);
             });
