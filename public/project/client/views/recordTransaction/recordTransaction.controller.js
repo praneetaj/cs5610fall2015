@@ -24,10 +24,6 @@
                     .then (function (res) {
                         model.coupons = res;
                 });
-                //LoyalUCouponService.getRestByLocuId($rootScope.loggedInUser.restLocuId).then(function (response) {
-                //    model.restaurant = response;
-                //    console.log(response);
-                //});
             }
         }
 
@@ -47,19 +43,13 @@
         function record () {
             console.log(model.users[model.selectedUser]._id);
             var index = model.selectedCoupon;
-            var currQuantity, totalQuantity, amount, thresholdAmount, thresholdQuantity, couponType;
+            var currQuantity, totalQuantity, amount, couponType;
             if (model.coupons[index].couponType == "AMOUNT") {
                 currQuantity = null;
                 amount = model.amount;
-                //thresholdAmount = restaurant.coupons[index].amount;
-                //thresholdQuantity = null;
-                //couponType = "AMOUNT";
             } else {
                 currQuantity = model.quantity;
                 amount = null;
-                //thresholdAmount = null;
-                //thresholdQuantity = model.restaurant.coupons[index].quantity;
-                //couponType = "QUANTITY";
             }
             var customerCoupon = {
                 customerId : model.users[model.selectedUser]._id,

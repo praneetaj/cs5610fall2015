@@ -5,7 +5,7 @@ module.exports = function (mongoose) {
             unique : true
         },
         password : String,
-        googleUsername : String, //not sure if google api returns this
+        googleUsername : String,
         googleId : String,
         email : String,
         role : {

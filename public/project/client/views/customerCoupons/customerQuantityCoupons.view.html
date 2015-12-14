@@ -7,32 +7,32 @@
             <li><a class="btn btn-default active" href="#/customerQuantityCoupons" data-filter="*">Quantity Coupons</a></li>
             <li><a class="btn btn-default" href="#/customerAmountCoupons" data-filter=".bootstrap">Amount Coupons</a></li>
         </ul>
-<br>
-<div class="table-responsive">
-    <table class="table table-striped table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Restaurant Name</th>
-                <th>Description</th>
-                <th>Item</th>
-                <th>Current Quantity</th>
-                <th>Threshold Quantity</th>
-                <th>Expiry</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="coupon in model.coupons" ng-if="coupon.couponType=='QUANTITY'">
-                <td>{{coupon.couponLabel}}</td>
-                <td>{{coupon.restName}}</td>
-                <td>{{coupon.description}}</td>
-                <td>{{coupon.itemName}}</td>
-                <td>{{coupon.userCurrQuantity}}</td>
-                <td>{{coupon.restQuantity}}</td>
-                <td>{{coupon.expiry | date}}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+        <br>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Restaurant Name</th>
+                        <th>Description</th>
+                        <th>Item</th>
+                        <th>Current Quantity</th>
+                        <th>Threshold Quantity</th>
+                        <th>Expiry</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="coupon in model.coupons" ng-if="coupon.couponType=='QUANTITY'">
+                        <td>{{coupon.couponLabel}}</td>
+                        <td>{{coupon.restName}}</td>
+                        <td>{{coupon.description}}</td>
+                        <td>{{coupon.itemName}}</td>
+                        <td>{{coupon.userCurrQuantity}}</td>
+                        <td>{{coupon.restQuantity}}</td>
+                        <td>{{coupon.expiry | date}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </section>
+    </div>
+</section>

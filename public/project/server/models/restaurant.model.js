@@ -36,12 +36,6 @@ module.exports = function (mongoose, db) {
                     deferred.resolve ('0');
             }
         });
-        //RestaurantModel.create (restaurant, function (err, restaurant) {
-        //    if (err)
-        //        deferred.reject(err);
-        //    else
-        //        deferred.resolve (restaurant);
-        //});
         return deferred.promise;
     }
 

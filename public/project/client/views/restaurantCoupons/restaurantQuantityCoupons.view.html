@@ -9,83 +9,83 @@
             <li><a class="btn btn-default" href="#/createCoupons" data-filter=".html">Create Coupons</a></li>
         </ul>
         <br>
-<div class="table-responsive">
-    <table class="table table-striped table-bordered table-hover">
-        <thead>
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Item</th>
-            <th>Quantity</th>
-            <th>Free</th>
-            <th>Created</th>
-            <th>Expiry</th>
-            <th><span class="glyphicon glyphicon-triangle-bottom"></span>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="coupon in model.restaurantCoupons.coupons" ng-if="coupon.couponType=='QUANTITY'">
-            <td>{{coupon.label}}</td>
-            <td>{{coupon.description}}</td>
-            <td>{{coupon.itemName}}</td>
-            <td>{{coupon.quantity}}</td>
-            <td>{{coupon.freeQuantity}}</td>
-            <td>{{coupon.dateCreated | date}}</td>
-            <td>{{coupon.expiry | date}}</td>
-            <td>
-                <button ng-click="model.removeCoupon($index)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
-                <button ng-click="model.selectCoupon($index)" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<br>
-<h3 class="page-header" ng-show="model.updateCouponFields == true">Update Coupon</h3>
-<div class="form-horizontal" ng-show="model.updateCouponFields == true">
-    <div class="form-group">
-        <label for="inputTitle" class="col-sm-2 control-label">Title</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputTitle" ng-model="model.newCoupon.label">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Free</th>
+                    <th>Created</th>
+                    <th>Expiry</th>
+                    <th><span class="glyphicon glyphicon-triangle-bottom"></span>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="coupon in model.restaurantCoupons.coupons" ng-if="coupon.couponType=='QUANTITY'">
+                    <td>{{coupon.label}}</td>
+                    <td>{{coupon.description}}</td>
+                    <td>{{coupon.itemName}}</td>
+                    <td>{{coupon.quantity}}</td>
+                    <td>{{coupon.freeQuantity}}</td>
+                    <td>{{coupon.dateCreated | date}}</td>
+                    <td>{{coupon.expiry | date}}</td>
+                    <td>
+                        <button ng-click="model.removeCoupon($index)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                        <button ng-click="model.selectCoupon($index)" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <h3 class="page-header" ng-show="model.updateCouponFields == true">Update Coupon</h3>
+        <div class="form-horizontal" ng-show="model.updateCouponFields == true">
+            <div class="form-group">
+                <label for="inputTitle" class="col-sm-2 control-label">Title</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputTitle" ng-model="model.newCoupon.label">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputDescription" class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputDescription" ng-model="model.newCoupon.description">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputItemName" class="col-sm-2 control-label">Item Name</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="inputItemName" ng-model="model.newCoupon.itemName">
+                        <option ng-repeat="currItem in model.menuItems" value="{{currItem}}">{{currItem}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputQuantity" class="col-sm-2 control-label">Min. Quantity</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputQuantity" ng-model="model.newCoupon.quantity">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputFreeQuantity" class="col-sm-2 control-label">Free Quantity</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputFreeQuantity" ng-model="model.newCoupon.freeQuantity">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputValidUntil" class="col-sm-2 control-label">Expiry</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" id="inputValidUntil" ng-model="model.newCoupon.expiry">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button ng-click="model.updateCoupon()" type="submit" class="form-control btn btn-default">Update Coupon</button>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <label for="inputDescription" class="col-sm-2 control-label">Description</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputDescription" ng-model="model.newCoupon.description">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="inputItemName" class="col-sm-2 control-label">Item Name</label>
-        <div class="col-sm-10">
-            <select class="form-control" id="inputItemName" ng-model="model.newCoupon.itemName">
-                <option ng-repeat="currItem in model.menuItems" value="{{currItem}}">{{currItem}}</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="inputQuantity" class="col-sm-2 control-label">Min. Quantity</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputQuantity" ng-model="model.newCoupon.quantity">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="inputFreeQuantity" class="col-sm-2 control-label">Free Quantity</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputFreeQuantity" ng-model="model.newCoupon.freeQuantity">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="inputValidUntil" class="col-sm-2 control-label">Expiry</label>
-        <div class="col-sm-10">
-            <input type="date" class="form-control" id="inputValidUntil" ng-model="model.newCoupon.expiry">
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button ng-click="model.updateCoupon()" type="submit" class="form-control btn btn-default">Update Coupon</button>
-        </div>
-    </div>
-</div>
-        </div>
-    </section>
+</section>

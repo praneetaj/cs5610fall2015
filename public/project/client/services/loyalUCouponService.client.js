@@ -89,17 +89,5 @@
                 });
             return deferred.promise;
         }
-
-        /*
-        function getAllCoupons () {
-            var deferred = $q.defer();
-            var searchUrl = zipcodeUrl.replace("ZIPCODE", zipcode);
-            $http
-                .jsonp(searchUrl)
-                .success(function(response) {
-                    deferred.resolve(response);
-                });
-            return deferred.promise;
-        }*/
     }
 })();

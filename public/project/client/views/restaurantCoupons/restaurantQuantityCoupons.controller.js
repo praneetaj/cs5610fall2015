@@ -28,7 +28,6 @@
                     console.log(menuItems);
                     model.menuItems = menuItems;
                     model.response = response;
-                    //console.log(response.body.venues[0].menus[0].sections[0].subsections);
                 });
             }
         }

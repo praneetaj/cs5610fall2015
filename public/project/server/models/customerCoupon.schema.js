@@ -1,14 +1,5 @@
 module.exports = function (mongoose) {
 
-    //var CustCouponSchema = mongoose.Schema ({
-    //    restLocuId : String,
-    //    couponId : String,
-    //    //couponLabel : String,
-    //    currQuantity : Number,
-    //    totalQuantity : Number,
-    //    amount : Number
-    //});
-
     var CustomerSchema = mongoose.Schema({
         customerId : String,
         restLocuId : String,

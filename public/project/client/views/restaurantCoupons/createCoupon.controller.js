@@ -28,7 +28,6 @@
                     console.log(menuItems);
                     model.menuItems = menuItems;
                     model.response = response;
-                    //console.log(response.body.venues[0].menus[0].sections[0].subsections);
                 });
             }
         }
@@ -113,13 +112,6 @@
 
         function createQuantityCoupon () {
             if (validQuantityEntries()) {
-                //var itemName;
-                //if (typeof model.newCoupon.itemName == "undefined" || model.newCoupon.itemName == "") {
-                //    console.log("menu item not selected");
-                //    itemName = model.newCoupon.itemNameOther;
-                //}
-                //else
-                //    itemName = model.newCoupon.itemName;
                 var newCoupon = {
                     label : model.newCoupon.label,
                     couponType : "QUANTITY",

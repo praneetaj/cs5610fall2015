@@ -11,7 +11,6 @@ module.exports = function (mongoose, db) {
         getAllCustCouponsByCustId : getAllCustCouponsByCustId,
         deleteCustCouponsByCouponId : deleteCustCouponsByCouponId,
         getCustCouponsByCouponId : getCustCouponsByCouponId
-        //getCustCouponsByCustIdDetailed : getCustCouponsByCustIdDetailed
     };
     return api;
 
@@ -207,40 +206,6 @@ module.exports = function (mongoose, db) {
                         break;
                     }
                 }
-                //for (var i = 0; i < coupons.length; i++) {
-                //    if (coupons[i].couponId == customerCoupon.couponId) {
-                //        if (customerCoupon.restCoupon.couponType == "AMOUNT") {
-                //            coupons[i].amount = parseInt(coupons[i].amount) + parseInt(customerCoupon.amount);
-                //            coupons[i].redeemCount = parseInt(coupons[i].redeemCount) + 1;
-                //            var discount = null;
-                //            if (parseInt(coupons[i].amount) > parseInt(customerCoupon.restCoupon.amount)) {
-                //                discount = parseInt(customerCoupon.restCoupon.discount);
-                //            }
-                //            result = {
-                //                "discount" : discount,
-                //                "freeItems" : null
-                //            };
-                //        } else {
-                //            coupons[i].currQuantity = parseInt(coupons[i].currQuantity) + parseInt(customerCoupon.currQuantity);
-                //            coupons[i].totalQuantity = parseInt(coupons[i].totalQuantity) +  parseInt(customerCoupon.currQuantity);
-                //            var freeItems = Math.floor(parseInt(coupons[i].currQuantity) / parseInt(customerCoupon.restCoupon.quantity));
-                //            coupons[i].currQuantity = parseInt(coupons[i].currQuantity) % parseInt(customerCoupon.restCoupon.quantity);
-                //            coupons[i].currQuantity = parseInt(coupons[i].currQuantity) - parseInt(freeItems);
-                //            freeItems = parseInt(freeItems) * parseInt(customerCoupon.freeQuantity);
-                //            coupons[i].redeemCount = parseInt(coupons[i].redeemCount) + parseInt(freeItems);
-                //            result = {
-                //                "discount" : null,
-                //                "freeItems" : freeItems
-                //            };
-                //        }
-                //        coupons[i].save (function (err, response) {
-                //            console.log("model: updated entry");
-                //            deferred.resolve(result);
-                //        });
-                //        flag = true;
-                //        break;
-                //    }
-                //}
                 if (!flag) {
                     console.log("model, did not find user coupon");
                     deferred.resolve("0");
@@ -293,7 +258,7 @@ module.exports = function (mongoose, db) {
         return deferred.promise;
     }
 
-    function deleteCustCouponsByCouponId (restLocuId, couponId) {
+    function deleteCustCouponsByCouponId (couponId) {
         var deferred = q.defer ();
 
         CustomerCouponModel.remove ({"couponId" : couponId}, function (err, coupons) {

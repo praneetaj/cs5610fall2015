@@ -5,20 +5,20 @@ module.exports = function (mongoose, db, passport, LocalStrategy) {
     var ProjectUserModel = mongoose.model ("ProjectUserModel", UserSchema);
 
     var api = {
-        createUser : createUser,//p
-        findAllUsers : findAllUsers,//p
+        createUser : createUser,
+        findAllUsers : findAllUsers,
         findAllCustomers : findAllCustomers,
         findUserById : findUserById,
         updateUser : updateUser,
         deleteUser : deleteUser,
         updatePassword : updatePassword,
-        findUserByCredentials : findUserByCredentials,//p
+        findUserByCredentials : findUserByCredentials,
         findUserByUsername: findUserByUsername
     };
 
     passport.use(new LocalStrategy( {
             usernameField: 'loyalUUsername',
-            passwordField: 'password',
+            passwordField: 'password'
     },
         function(loyalUUsername, password, done)
         {

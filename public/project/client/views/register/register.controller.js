@@ -33,7 +33,6 @@
             UserService.findUserByUsername(model.newuser.loyalUUsername).then(function(user) {
                 if (user != null) {
                     model.newuser.loyalUUsername = "";
-                    //model.duplicateUsernameAlert = "Username already taken, choose a different username!";
                     alert("Username already taken, choose a different username!");
                 }
             });
@@ -141,26 +140,6 @@
                         });
                 });
             });
-
-            //PlacePhotoService.getPictureUrlFromGoogle (model.restaurants[index].name, model.restaurants[index].location.locality)
-            //    .then (function (place) {
-            //        var restEntry = {
-            //            restLocuId : model.restaurants[index].locu_id,
-            //            name : model.restaurants[index].name,
-            //            zipcode : model.restaurants[index].location.postal_code,
-            //            city : model.restaurants[index].location.locality,
-            //            image_url : place.data,
-            //            coupons : []
-            //        };
-            //        RestaurantService.createRestaurant(restEntry).then(function (response) {
-            //            console.log(response);
-            //            UserService.createUser(newuser).then(function (response) {
-            //                console.log(response);
-            //                $rootScope.loggedInUser = response;
-            //                $location.url("/profile");
-            //            });
-            //        });
-            //});
         }
     }
 }) ();

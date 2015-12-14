@@ -92,14 +92,6 @@
                 controller : "RegisterController",
                 controllerAs : "model"
             })
-            /*
-            .when ("/register-restaurant", {
-                //templateUrl : "views/register/register-restaurant.view.html",
-                templateUrl : "views/register/register.view.html",
-                controller : "RegisterController",
-                controllerAs : "model"
-            })
-            */
             .when ("/createCoupons", {
                 templateUrl : "views/restaurantCoupons/createCoupon.view.html",
                 controller : "CreateCouponController",

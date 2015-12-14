@@ -1,55 +1,3 @@
-<!--
-<section>
-    <div class="container">
-        <div class="center wow fadeInDown">
-            <h2>LoyalU Coupons</h2>
-        </div>
-    </div>
-</section>
-<section id="recent-works">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="coupon in model.coupons">
-                <a href="#/loyalUDetails/{{coupon.restLocuId}}">
-                    <div class="recent-work-wrap">
-                        <img id="img-fixed" src="{{coupon.image_url}}" alt>
-                        <div class="overlay">
-                            <div class="recent-work-inner">
-                                <p class="center fa-lg">{{coupon.name}}, {{coupon.city}}</p>
-                                <p class="truncate">
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    {{coupon.coupon.label}}
-                                </p>
-                                <p class="truncate">
-                                    <span class="glyphicon glyphicon-info-sign"></span>
-                                    {{coupon.coupon.description}}
-                                </p>
-                                <p class="truncate" ng-if="coupon.coupon.couponType == 'QUANTITY'">
-                                    <span class="glyphicon glyphicon-cutlery"></span>
-                                    {{coupon.coupon.itemName}}
-                                </p>
-                                <p class="truncate" ng-if="coupon.coupon.couponType == 'AMOUNT'">
-                                    <span class="glyphicon glyphicon-usd"></span>
-                                    {{coupon.coupon.discount}}%
-                                </p>
-                                <p class="truncate">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                    {{coupon.coupon.expiry | date}}
-                                </p>
-                                <br>
-                                <p class="fa">
-                                    *Redeem this coupon at the venue
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
--->
-
 <section id="services" class="service-item">
     <div class="container">
         <div class="center wow fadeInDown">
@@ -107,30 +55,30 @@
         <div class="row">
             <div class="col-sm-6 col-md-4" ng-repeat="coupon in model.webCoupons">
                 <a href="#/store/{{coupon.storeID}}/coupon/{{coupon.ID}}">
-                <div class="media services-wrap wow fadeInDown">
-                    <div class="pull-left">
-                        <img class="img-responsive" id="image-fixed-search" src="{{coupon.showImageStandardBig}}"/>
+                    <div class="media services-wrap wow fadeInDown">
+                        <div class="pull-left">
+                            <img class="img-responsive" id="image-fixed-search" src="{{coupon.showImageStandardBig}}"/>
+                        </div>
+                        <div class="media-body">
+                            <p class="center1 truncate media-heading">{{coupon.name}}, {{coupon.city}}</p>
+                            <p class="truncate media-text-color expandable">
+                                <span class="glyphicon glyphicon-star"></span>
+                                {{coupon.dealTitle}}
+                            </p>
+                            <p class="truncate media-text-color expandable">
+                                <span class="glyphicon glyphicon-usd"></span>
+                                New Price: ${{coupon.dealPrice}}, Original Price: ${{coupon.dealOriginalPrice}}
+                            </p>
+                            <p class="truncate media-text-color expandable">
+                                <span class="glyphicon glyphicon-heart"></span>
+                                Savings: ${{coupon.dealSavings}}, Discount: {{coupon.dealDiscountPercent}}%
+                            </p>
+                            <p class="truncate media-text-color expandable">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                                Valid until: {{coupon.expirationDate | date}}
+                            </p>
+                        </div>
                     </div>
-                    <div class="media-body">
-                        <p class="center1 truncate media-heading">{{coupon.name}}, {{coupon.city}}</p>
-                        <p class="truncate media-text-color expandable">
-                            <span class="glyphicon glyphicon-star"></span>
-                            {{coupon.dealTitle}}
-                        </p>
-                        <p class="truncate media-text-color expandable">
-                            <span class="glyphicon glyphicon-usd"></span>
-                            New Price: ${{coupon.dealPrice}}, Original Price: ${{coupon.dealOriginalPrice}}
-                        </p>
-                        <p class="truncate media-text-color expandable">
-                            <span class="glyphicon glyphicon-heart"></span>
-                            Savings: ${{coupon.dealSavings}}, Discount: {{coupon.dealDiscountPercent}}%
-                        </p>
-                        <p class="truncate media-text-color expandable">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                            Valid until: {{coupon.expirationDate | date}}
-                        </p>
-                    </div>
-                </div>
                 </a>
             </div>
         </div>
