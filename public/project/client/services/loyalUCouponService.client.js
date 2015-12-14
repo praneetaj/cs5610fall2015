@@ -13,7 +13,8 @@
             removeCouponByLocuIdAndCouponIndex : removeCouponByLocuIdAndCouponIndex,
             getCouponByLocuIdAndCouponIndex : getCouponByLocuIdAndCouponIndex,
             updateCouponByLocuIdAndCouponIndex : updateCouponByLocuIdAndCouponIndex,
-            getAllCouponsByLocuId : getAllCouponsByLocuId
+            getAllCouponsByLocuId : getAllCouponsByLocuId,
+            joinAggregateAndCoupons : joinAggregateAndCoupons
         };
         return api;
 
@@ -88,6 +89,31 @@
                     deferred.resolve(response);
                 });
             return deferred.promise;
+        }
+
+        function joinAggregateAndCoupons (agg, rest) {
+            var result = [];
+            for (var i = 0; i < agg.length; i++) {
+                for (var j = 0; j < rest.coupons.length; j++) {
+                    if (agg[i]._id == rest.coupons[j]._id) {
+                        var jj = [];
+                        var t1 = {
+                            v : rest.coupons[j].label
+                        };
+                        var t2 = {
+                            v : agg[i].totalRedeem
+                        };
+                        jj.push (t1);
+                        jj.push(t2);
+                        var temp = {
+                            c : jj
+                        };
+                        result.push(temp);
+                        break;
+                    }
+                }
+            }
+            return result;
         }
     }
 })();

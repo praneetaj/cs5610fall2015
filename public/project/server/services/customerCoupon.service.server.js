@@ -3,10 +3,19 @@ module.exports = function (app, model) {
     app.get("/api/project/customer/:customerId/coupon", getAllCustCouponsByCustId);
     app.delete("/api/project/customer/coupon/:couponId", deleteCustCouponsByCouponId);
     app.get("/api/project/customer/coupon/:couponId", getCustCouponsByCouponId);
+    app.get("/api/project/customer/rest/:restLocuId", getAggregatedRedeemCountByLocuId);
 
     function deleteCustCouponsByCouponId (req, res) {
         model
             .deleteCustCouponsByCouponId (req.params.couponId)
+            .then (function (response) {
+                res.json (response);
+            });
+    }
+
+    function getAggregatedRedeemCountByLocuId (req, res) {
+        model
+            .getAggregatedRedeemCountByLocuId (req.params.restLocuId)
             .then (function (response) {
                 res.json (response);
             });

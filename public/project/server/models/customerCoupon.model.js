@@ -10,17 +10,28 @@ module.exports = function (mongoose, db) {
         createOrUpdateCustCouponByCustId : createOrUpdateCustCouponByCustId,
         getAllCustCouponsByCustId : getAllCustCouponsByCustId,
         deleteCustCouponsByCouponId : deleteCustCouponsByCouponId,
-        getCustCouponsByCouponId : getCustCouponsByCouponId
+        getCustCouponsByCouponId : getCustCouponsByCouponId,
+        getAggregatedRedeemCountByLocuId : getAggregatedRedeemCountByLocuId
     };
     return api;
 
+    function getAggregatedRedeemCountByLocuId (restLocuId) {
+        var deferred = q.defer ();
+
+        CustomerCouponModel.aggregate ({"$match":{"restLocuId":restLocuId}}, {"$group":{"_id": "$couponId", "totalRedeem":{"$sum":"$redeemCount"}}}, function (err, entry) {
+            if (err)
+                deferred.reject(err);
+            else
+                deferred.resolve (entry);
+        });
+        return deferred.promise;
+    }
+
     function createCustomerCoupon (customerCoupon) {
-        console.log("model: creating new entry for customer");
         var deferred = q.defer ();
 
         var newCoupon, result, msg, rem, x, y, z, freeItems, redeemCount;
         if (customerCoupon.restCoupon.couponType == "QUANTITY") {
-            console.log("inside if for quantity");
             var temp = calculateQtyDiscount(0, parseInt(customerCoupon.currQuantity),
                 customerCoupon.restCoupon.freeQuantity, customerCoupon.restCoupon.quantity);
             msg = "You have to pay for " + temp.paid + " items.";
@@ -38,8 +49,6 @@ module.exports = function (mongoose, db) {
                 amount: null,
                 redeemCount : temp.redeem
             };
-            console.log(msg);
-            console.log(newCoupon);
         } else {        //AMOUNT COUPON
             var discount = null;
             var redeem = 0;
@@ -65,17 +74,11 @@ module.exports = function (mongoose, db) {
             };
         }
 
-        console.log("model: printing new coupon");
-        console.log(newCoupon);
         CustomerCouponModel.create (newCoupon, function (err, entry) {
             if (err) {
-                console.log("there was an error");
-                console.log(err);
                 deferred.reject(err);
             }
             else {
-                console.log("model: created an entry for customer");
-                console.log(result);
                 deferred.resolve(result);
             }
         });

@@ -6,8 +6,8 @@
                     <div class="col-sm-6 col-xs-8" style="float : right">
                         <div class="social">
                             <ul class="social-share">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#/home"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#/home"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="https://www.linkedin.com/in/praneetajhanwar"><i class="fa fa-linkedin"></i></a></li>
                             </ul>
                             <div class="search">
@@ -36,7 +36,6 @@
                 <a class="navbar-brand" href="#/home">LoyalU</a>
             </div>
             <div id="navbar" class="navbar-collapse navbar-right collapse" style="float : right">
-
                 <ul ng-show="!loggedInUser" class="nav navbar-nav navbar-right">
                     <li ng-class="{'active' : $location.url().indexOf('register') != -1}"><a href="#/register">Register</a></li>
                     <li ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">Login</a></li>
@@ -50,6 +49,11 @@
                         <a href="#/customerQuantityCoupons">View Coupons</a>
                     </li>
 
+                    <li ng-show="loggedInUser && loggedInUser.role == 'ADMIN'"
+                        role="presentation"
+                        ng-class="{'active' : $location.url().indexOf('analysis') != -1}">
+                        <a href="#/analysis">Analysis</a>
+                    </li>
                     <li ng-show="loggedInUser && loggedInUser.role == 'ADMIN'"
                         role="presentation"
                         ng-class="{'active' : $location.url().indexOf('restaurantCoupons') != -1}">

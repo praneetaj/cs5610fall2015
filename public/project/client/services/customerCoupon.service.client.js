@@ -11,6 +11,7 @@
             getAllCustCouponsByCustId : getAllCustCouponsByCustId,
             deleteCustCouponsByCouponId : deleteCustCouponsByCouponId,
             getCustCouponsByCouponId : getCustCouponsByCouponId,
+            getAggregatedRedeemCountByLocuId : getAggregatedRedeemCountByLocuId,
             joinCoupons : joinCoupons
         };
         return api;
@@ -65,6 +66,17 @@
             var deferred = $q.defer();
             $http
                 .get("/api/project/customer/coupon/" + couponId)
+                .then(function(response){
+                    deferred.resolve(response);
+                });
+
+            return deferred.promise;
+        }
+
+        function getAggregatedRedeemCountByLocuId (restLocuId) {
+            var deferred = $q.defer();
+            $http
+                .get("/api/project/customer/rest/" + restLocuId)
                 .then(function(response){
                     deferred.resolve(response);
                 });
