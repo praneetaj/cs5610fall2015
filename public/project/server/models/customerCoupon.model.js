@@ -20,32 +20,12 @@ module.exports = function (mongoose, db) {
 
         var newCoupon, result, msg, rem, x, y, z, freeItems, redeemCount;
         if (customerCoupon.restCoupon.couponType == "QUANTITY") {
-            freeItems = Math.floor(parseInt(customerCoupon.currQuantity) / customerCoupon.restCoupon.quantity);
-            freeItems = freeItems * customerCoupon.restCoupon.freeQuantity;
-            var qty = (parseInt(customerCoupon.currQuantity) % customerCoupon.restCoupon.quantity) - freeItems;
-
-            if (parseInt(customerCoupon.currQuantity) == customerCoupon.restCoupon.quantity) {
-                msg = "You have to pay for " + customerCoupon.currQuantity + " items!";
-                msg = "You will get free items next time";
-                redeemCount = freeItems;
-            }
-            else if (parseInt(customerCoupon.currQuantity) > customerCoupon.restCoupon.quantity) {
-                if (qty > 0) {
-                    x = parseInt(customerCoupon.currQuantity) - freeItems;
-                    msg = "You have to pay for only " + x + "items. You get " + freeItems + " free!";
-                } else {
-                    z = Math.abs(qty);
-                    y = freeItems - z;
-                    x = parseInt(customerCoupon.currQuantity) - y;
-                    msg = "You have to pay for " + x + "items, " + "you will get " + y + "items free and have balance for" + z + "items!";
-                }
-                redeemCount = freeItems;
-            } else {
-                rem =  customerCoupon.restCoupon.quantity - parseInt(customerCoupon.currQuantity);
-                msg = "You have to pay for " + customerCoupon.currQuantity + " items, no coupon applicable right now!";
-                msg = msg + " To get free items, buy " + rem + " items more!";
-                redeemCount = 0;
-            }
+            console.log("inside if for quantity");
+            var temp = calculateQtyDiscount(0, parseInt(customerCoupon.currQuantity),
+                customerCoupon.restCoupon.freeQuantity, customerCoupon.restCoupon.quantity);
+            msg = "You have to pay for " + temp.paid + " items.";
+            msg = msg + "You get " + temp.free + " items free.";
+            msg = msg + "Your new counter is " + temp.finQty + " items.";
             result = {
                 msg : msg
             };
@@ -53,11 +33,13 @@ module.exports = function (mongoose, db) {
                 customerId: customerCoupon.customerId,
                 restLocuId: customerCoupon.restLocuId,
                 couponId: customerCoupon.couponId,
-                currQuantity: qty,
+                currQuantity: temp.finQty,
                 totalQuantity: parseInt(customerCoupon.currQuantity),
                 amount: null,
-                redeemCount : redeemCount
+                redeemCount : temp.redeem
             };
+            console.log(msg);
+            console.log(newCoupon);
         } else {        //AMOUNT COUPON
             var discount = null;
             var redeem = 0;
@@ -151,52 +133,18 @@ module.exports = function (mongoose, db) {
                                 msg : msg
                             };
                         } else {  //QUANTITY COUPON
-                            var freeItems, x, y, z;
-                            x = parseInt(customerCoupon.currQuantity);
-                            y = 0;
-
-                            coupons[i].currQuantity = coupons[i].currQuantity + x;
-                            coupons[i].totalQuantity = coupons[i].totalQuantity + x;
-
-                            if (coupons[i].currQuantity == 0) {
-                                msg = "You have overflowing balance, you don't have to pay anything now!";
-                                msg = msg + " You have 0 balance now!";
-                            }
-                            else if ((coupons[i].currQuantity == customerCoupon.restCoupon.quantity)) {
-                                msg = "You have to pay for " + x + " items!";
-                                msg = "You will get free items next time";
-                            }
-                            else if (coupons[i].currQuantity > customerCoupon.restCoupon.quantity) {
-                                freeItems = Math.floor(coupons[i].currQuantity / customerCoupon.restCoupon.quantity);
-                                freeItems = freeItems * customerCoupon.restCoupon.freeQuantity;
-                                coupons[i].currQuantity = coupons[i].currQuantity % customerCoupon.restCoupon.quantity;
-                                coupons[i].currQuantity = coupons[i].currQuantity - freeItems;
-                                coupons[i].redeemCount = coupons[i].redeemCount + freeItems;
-
-                                if (coupons[i].currQuantity > 0) {
-                                    x = x - freeItems;
-                                    msg = "You have to pay for " + x + "items and get " + freeItems + " free!";
-                                } else {
-                                    z = Math.abs(coupons[i].currQuantity);
-                                    y = freeItems - z;
-                                    x = x - y;
-                                    msg = "You have to pay for " + x + " items! ";
-                                    msg = msg + "You will get " + y + "items free!";
-                                    msg = msg + " You have balance for" + z + "items!";
-                                }
-                            } else if (coupons[i].currQuantity < 0) {
-                                x = Math.abs(coupons[i].currQuantity);
-                                msg = "You have overflowing balance, you don't have to pay anything now!";
-                                msg = msg + "You have balance for " + x + " items";
-                            } else if (coupons[i].currQuantity < customerCoupon.restCoupon.quantity) {
-                                var rem = customerCoupon.restCoupon.quantity - coupons[i].currQuantity;
-                                msg = "You have to pay for " + x + "items, no coupon applicable right now!";
-                                msg = msg + " To get free items, buy " + rem + " items more!";
-                            }
-
+                            var temp = calculateQtyDiscount(coupons[i].currQuantity, parseInt(customerCoupon.currQuantity),
+                                customerCoupon.restCoupon.freeQuantity, customerCoupon.restCoupon.quantity);
+                            console.log(temp);
+                            msg = "You have to pay for " + temp.paid + " items.";
+                            msg = msg + "You get " + temp.free + " items free.";
+                            msg = msg + "Your new counter is " + temp.finQty + " items.";
                             result = {
                                 msg : msg
                             };
+                            coupons[i].currQuantity = temp.finQty;
+                            coupons[i].totalQuantity += parseInt(customerCoupon.currQuantity);
+                            coupons[i].redeemCount += temp.redeem;
                         }
                         coupons[i].save (function (err, response) {
                             console.log("model: updated entry");
@@ -280,5 +228,48 @@ module.exports = function (mongoose, db) {
                 deferred.resolve (coupons);
         });
         return deferred.promise;
+    }
+
+    function calculateQtyDiscount (initQty, bought, freeQty, thldQty) {
+        console.log(initQty + " " + bought + " " + freeQty + " " + thldQty);
+        var free, paid, redeem, finQty, result;
+        free = paid = redeem = 0;
+        if (initQty < 0) {
+            finQty = initQty + bought;
+            if (finQty > 0) {
+                free = Math.abs (initQty);
+                paid = 0;
+            } else {
+                free = finQty - initQty;
+                paid = 0;
+            }
+            initQty = 0;
+        } else
+            finQty = initQty + bought;
+        console.log("mid way through math");
+        while (finQty > 0) {
+            if (finQty < thldQty) {
+                paid = paid + finQty;
+                break;
+            } else {
+                paid = paid + thldQty - initQty;
+                finQty = finQty - thldQty- freeQty;
+                redeem = redeem + freeQty;
+                if (finQty > 0)
+                    free = free + freeQty;
+                else {
+                    free = free + (freeQty - Math.abs(finQty));
+                }
+                initQty = 0;
+            }
+        }
+        result = {
+            finQty : finQty,
+            free : free,
+            paid : paid,
+            redeem : redeem
+        };
+        console.log("returning from math");
+        return result;
     }
 };

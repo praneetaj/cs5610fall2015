@@ -2,46 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b56d4b9e-c1b0-4780-9113-73664a1817c7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/server/app.js" afterPath="$PROJECT_DIR$/public/project/server/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/profile/changePassword.view.html" afterPath="$PROJECT_DIR$/public/project/client/views/profile/changePassword.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/config.js" afterPath="$PROJECT_DIR$/public/project/client/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/restaurantCoupons/createCoupon.controller.js" afterPath="$PROJECT_DIR$/public/project/client/views/restaurantCoupons/createCoupon.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/restaurantCoupons/createCoupon.view.html" afterPath="$PROJECT_DIR$/public/project/client/views/restaurantCoupons/createCoupon.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/customerCoupons/customerAmountCoupons.controller.js" afterPath="$PROJECT_DIR$/public/project/client/views/customerCoupons/customerAmountCoupons.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/customerCoupons/customerAmountCoupons.view.html" afterPath="$PROJECT_DIR$/public/project/client/views/customerCoupons/customerAmountCoupons.view.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/server/models/customerCoupon.model.js" afterPath="$PROJECT_DIR$/public/project/server/models/customerCoupon.model.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/server/models/customerCoupon.schema.js" afterPath="$PROJECT_DIR$/public/project/server/models/customerCoupon.schema.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/services/customerCoupon.service.client.js" afterPath="$PROJECT_DIR$/public/project/client/services/customerCoupon.service.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/server/services/customerCoupon.service.server.js" afterPath="$PROJECT_DIR$/public/project/server/services/customerCoupon.service.server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/customerCoupons/customerQuantityCoupons.controller.js" afterPath="$PROJECT_DIR$/public/project/client/views/customerCoupons/customerQuantityCoupons.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/customerCoupons/customerQuantityCoupons.view.html" afterPath="$PROJECT_DIR$/public/project/client/views/customerCoupons/customerQuantityCoupons.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/header/header.controller.js" afterPath="$PROJECT_DIR$/public/project/client/views/header/header.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/header/header.view.html" afterPath="$PROJECT_DIR$/public/project/client/views/header/header.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/home/home.controller.js" afterPath="$PROJECT_DIR$/public/project/client/views/home/home.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/home/home.view.html" afterPath="$PROJECT_DIR$/public/project/client/views/home/home.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/index.html" afterPath="$PROJECT_DIR$/public/project/client/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/server/services/locuApi.service.server.js" afterPath="$PROJECT_DIR$/public/project/server/services/locuApi.service.server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/login/login.controller.js" afterPath="$PROJECT_DIR$/public/project/client/views/login/login.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/login/login.view.html" afterPath="$PROJECT_DIR$/public/project/client/views/login/login.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/services/loyalUCouponService.client.js" afterPath="$PROJECT_DIR$/public/project/client/services/loyalUCouponService.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/server/services/loyalUCouponService.server.js" afterPath="$PROJECT_DIR$/public/project/server/services/loyalUCouponService.server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/server/services/placePhoto.service.server.js" afterPath="$PROJECT_DIR$/public/project/server/services/placePhoto.service.server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/profile/profile.view.html" afterPath="$PROJECT_DIR$/public/project/client/views/profile/profile.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/recordTransaction/recordTransaction.controller.js" afterPath="$PROJECT_DIR$/public/project/client/views/recordTransaction/recordTransaction.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/register/register.controller.js" afterPath="$PROJECT_DIR$/public/project/client/views/register/register.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/register/register.view.html" afterPath="$PROJECT_DIR$/public/project/client/views/register/register.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/restDetails/restDetails.view.html" afterPath="$PROJECT_DIR$/public/project/client/views/restDetails/restDetails.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/server/models/restaurant.model.js" afterPath="$PROJECT_DIR$/public/project/server/models/restaurant.model.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/server/services/restaurant.service.server.js" afterPath="$PROJECT_DIR$/public/project/server/services/restaurant.service.server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/restaurantCoupons/restaurantAmountCoupons.view.html" afterPath="$PROJECT_DIR$/public/project/client/views/restaurantCoupons/restaurantAmountCoupons.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/restaurantCoupons/restaurantQuantityCoupons.controller.js" afterPath="$PROJECT_DIR$/public/project/client/views/restaurantCoupons/restaurantQuantityCoupons.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/restaurantCoupons/restaurantQuantityCoupons.view.html" afterPath="$PROJECT_DIR$/public/project/client/views/restaurantCoupons/restaurantQuantityCoupons.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/search/search.view.html" afterPath="$PROJECT_DIR$/public/project/client/views/search/search.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/views/searchWebCoupons/searchWebCoupons.details.view.html" afterPath="$PROJECT_DIR$/public/project/client/views/searchWebCoupons/searchWebCoupons.details.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/server/models/user.model.js" afterPath="$PROJECT_DIR$/public/project/server/models/user.model.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/server/models/user.schema.js" afterPath="$PROJECT_DIR$/public/project/server/models/user.schema.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/client/services/webCouponService.js" afterPath="$PROJECT_DIR$/public/project/client/services/webCouponService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="nodejs.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,48 +22,7 @@
     <favorites_list name="nodejs" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="restaurantAmountCoupons.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/project/client/views/restaurantCoupons/restaurantAmountCoupons.controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="customerCoupon.service.client.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/project/client/services/customerCoupon.service.client.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="87" column="82" selection-start-line="87" selection-start-column="82" selection-end-line="87" selection-end-column="82" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="customerCoupon.service.server.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/project/server/services/customerCoupon.service.server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.15679443">
-              <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="customerCoupon.model.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/project/server/models/customerCoupon.model.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="260" column="42" selection-start-line="260" selection-start-column="42" selection-end-line="260" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -911,10 +831,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1046" extended-state="6" />
-    <editor active="true" />
+    <frame x="-11" y="-11" width="1942" height="1046" extended-state="7" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.196875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.196875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -1215,14 +1135,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/project/server/models/customerCoupon.schema.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="38" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/project/server/models/restaurant.mock.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1232,22 +1144,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/project/server/models/restaurant.mock1.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/project/server/models/restaurant.model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5644599">
-          <caret line="37" column="11" selection-start-line="37" selection-start-column="11" selection-end-line="37" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/project/server/models/restaurant.schema.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1335,18 +1231,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/project/client/views/restaurantCoupons/restaurantAmountCoupons.controller.js">
+    <entry file="file://$PROJECT_DIR$/public/project/server/services/customerCoupon.service.server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.15679443">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/project/client/services/customerCoupon.service.client.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="1.4738677">
           <caret line="87" column="82" selection-start-line="87" selection-start-column="82" selection-end-line="87" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/project/client/views/restaurantCoupons/restaurantAmountCoupons.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.05923345">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/project/server/models/restaurant.model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5644599">
+          <caret line="37" column="11" selection-start-line="37" selection-start-column="11" selection-end-line="37" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -1354,15 +1266,23 @@
     <entry file="file://$PROJECT_DIR$/public/project/server/models/customerCoupon.model.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="260" column="42" selection-start-line="260" selection-start-column="42" selection-end-line="260" selection-end-column="42" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/project/server/services/customerCoupon.service.server.js">
+    <entry file="file://$PROJECT_DIR$/public/project/server/models/customerCoupon.schema.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15679443">
-          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.37630662">
+          <caret line="12" column="19" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/project/server/models/restaurant.schema.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34494773">
+          <caret line="11" column="20" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="20" />
           <folding />
         </state>
       </provider>
