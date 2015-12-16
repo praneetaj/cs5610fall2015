@@ -55,10 +55,21 @@ module.exports = function (mongoose, db, passport, LocalStrategy) {
                 if (user.password == updateUser.old) {
                     console.log (user);
                     console.log(updateUser);
+                    var newnew = {
+                        loyalUUsername : user.loyalUUsername,
+                        password : updateUser.new,
+                        googleUsername : null, //not sure if google api returns this
+                        googleId : null,
+                        email : user.email,
+                        role : user.role,
+                        restLocuId : user.restLocuId,
+                        firstName : user.firstName,
+                        lastName : user.lastName
+                    };
                     delete user["_id"];
                     console.log ("user");
                     user.password = updateUser.new;
-                    ProjectUserModel.update ({"_id" : id}, {$set: user}, function (err, res) {
+                    ProjectUserModel.update ({"_id" : id}, {$set: newnew}, function (err, res) {
                         console.log("inside update");
                         if (err)
                             deferred.reject (err);
