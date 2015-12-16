@@ -53,17 +53,37 @@ module.exports = function (mongoose, db, passport, LocalStrategy) {
                 deferred.reject (err);
             else {
                 if (user.password == updateUser.old) {
+                    console.log (user);
+                    console.log(updateUser);
                     delete user["_id"];
+                    console.log ("user");
                     user.password = updateUser.new;
                     ProjectUserModel.update ({"_id" : id}, {$set: user}, function (err, res) {
+                        console.log("inside update");
                         if (err)
                             deferred.reject (err);
                         else
                             deferred.resolve (res);
                     });
-                } else
+                } else {
+                    console.log ("passwords did not match");
                     deferred.resolve('0');
+                }
             }
+        });
+        return deferred.promise;
+    }
+
+    function updateUser (id, updatedUser) {
+        var deferred = q.defer ();
+
+        delete updatedUser["_id"];
+
+        ProjectUserModel.update ({"_id" : id}, {$set: updatedUser}, function (err, user) {
+            if (err)
+                deferred.reject (err);
+            else
+                deferred.resolve (user);
         });
         return deferred.promise;
     }
@@ -117,20 +137,6 @@ module.exports = function (mongoose, db, passport, LocalStrategy) {
         var deferred = q.defer ();
 
         ProjectUserModel.findById (id, function (err, user) {
-            if (err)
-                deferred.reject (err);
-            else
-                deferred.resolve (user);
-        });
-        return deferred.promise;
-    }
-
-    function updateUser (id, updatedUser) {
-        var deferred = q.defer ();
-
-        delete updatedUser["_id"];
-
-        ProjectUserModel.update ({"_id" : id}, {$set: updatedUser}, function (err, user) {
             if (err)
                 deferred.reject (err);
             else
